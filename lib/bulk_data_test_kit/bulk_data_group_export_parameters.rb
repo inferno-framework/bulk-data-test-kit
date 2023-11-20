@@ -8,7 +8,9 @@ module BulkDataTestKit
       Verify that the Bulk Data server supports required query parameters.
     )
 
-    input :bearer_token
+    input :bearer_token,
+          title: 'Bulk Data Authorization Bearer Token',
+          description: 'The authorization bearer token for the Bulk FHIR server.'
     input :bulk_server_url,
           title: 'Bulk Data FHIR URL',
           description: 'The URL of the Bulk FHIR server.'

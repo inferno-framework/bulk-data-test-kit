@@ -1,4 +1,3 @@
-require_relative 'bulk_data_authorization'
 require_relative 'bulk_data_group_export_stu2'
 
 module BulkDataTestKit
@@ -36,33 +35,27 @@ module BulkDataTestKit
     run_as_group
 
     input_order :bulk_server_url,
-                :bulk_token_endpoint,
-                :bulk_client_id,
-                :bulk_scope,
-                :bulk_encryption_method,
+                :bearer_token,
                 :group_id,
-                :bulk_patient_ids_in_group,
-                :bulk_device_types_in_group,
-                :lines_to_validate,
                 :bulk_timeout
 
-    group from: :bulk_data_authorization,
-          description: <<~DESCRIPTION
-            Bulk Data servers are required to authorize clients using the [Backend Service
-            Authorization](http://www.hl7.org/fhir/smart-app-launch/backend-services.html)
-            specification as defined in the [FHIR Bulk Data Access IG
-            v2.0.0](https://hl7.org/fhir/uv/bulkdata/STU2/).
+    # group from: :bulk_data_authorization,
+    #       description: <<~DESCRIPTION
+    #         Bulk Data servers are required to authorize clients using the [Backend Service
+    #         Authorization](http://www.hl7.org/fhir/smart-app-launch/backend-services.html)
+    #         specification as defined in the [FHIR Bulk Data Access IG
+    #         v2.0.0](https://hl7.org/fhir/uv/bulkdata/STU2/).
 
-            In this set of tests, Inferno serves as a Bulk Data client that requests authorization
-            from the Bulk Data authorization server.  It also performs a number of negative tests
-            to validate that the authorization service does not improperly authorize invalid
-            requests.
+    #         In this set of tests, Inferno serves as a Bulk Data client that requests authorization
+    #         from the Bulk Data authorization server.  It also performs a number of negative tests
+    #         to validate that the authorization service does not improperly authorize invalid
+    #         requests.
 
-            This test returns an access token.
-          DESCRIPTION
+    #         This test returns an access token.
+    #       DESCRIPTION
 
-    test from: :incorrectly_permitted_tls_versions_messages_setup,
-         id: :bulk_auth_tls_messages_setup
+    # test from: :incorrectly_permitted_tls_versions_messages_setup,
+    #      id: :bulk_auth_tls_messages_setup
 
     group from: :bulk_data_group_export_stu2
 

@@ -1,5 +1,6 @@
 require_relative 'bulk_data_group_export_group'
 require_relative '../incorrectly_permitted_tls_versions_messages_setup_test'
+require_relative 'bulk_data_group_export_cancel'
 
 module BulkDataTestKit
   module BulkDataV101

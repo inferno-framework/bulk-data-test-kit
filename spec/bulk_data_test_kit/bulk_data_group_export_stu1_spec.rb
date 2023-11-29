@@ -1,9 +1,9 @@
-require_relative '../../lib/bulk_data_test_kit/bulk_data_group_export_stu1'
+require_relative '../../lib/bulk_data_test_kit/v1.0.1/bulk_data_group_export_group'
 
-RSpec.describe BulkDataTestKit::BulkDataGroupExportSTU1 do
-  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export') }
+RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
+  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_group') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data') }
+  let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v101') }
   let(:bulk_server_url) { 'https://example.com/fhir' }
   let(:bearer_token) { 'some_bearer_token_alphanumeric' }
   let(:group_id) { '1219' }

@@ -3,7 +3,7 @@ require_relative '../export_kick_off_performer'
 
 module BulkDataTestKit
   module BulkDataV200
-    class BulkDataGroupExportSTU2 < BulkDataV101::BulkDataGroupExportSTU1
+    class BulkDataGroupExportGroup < BulkDataV101::BulkDataGroupExportGroup
       title 'Group Compartment Export Tests STU2'
       id :bulk_data_group_export_group_stu2
 

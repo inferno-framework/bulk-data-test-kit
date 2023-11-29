@@ -3,7 +3,7 @@ require_relative '../export_kick_off_performer'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataGroupExportSTU1 < Inferno::TestGroup
+    class BulkDataGroupExportGroup < Inferno::TestGroup
       title 'Group Compartment Export Tests'
       short_description 'Verify that the system supports Group compartment export.'
       description <<~DESCRIPTION

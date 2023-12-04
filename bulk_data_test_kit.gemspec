@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Inferno Team']
   spec.email         = ['inferno@groups.mitre.org']
   spec.summary       = 'Bulk Data Test Kit'
-  spec.description   = 'FHIR Bulk Data API Test Kit'
+  spec.description   = 'FHIR Bulk Data Access Test Kit'
   spec.homepage      = 'https://github.com/inferno-framework/bulk-data-test-kit'
   spec.license       = 'Apache-2.0'
   spec.add_runtime_dependency 'bloomer', '~> 1.0.0'

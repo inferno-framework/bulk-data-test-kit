@@ -1,7 +1,7 @@
 require_relative 'bulk_data_group_export_group'
 require_relative 'bulk_data_group_export_cancel'
 require_relative 'bulk_data_group_export_parameters'
-
+require_relative '../bulk_data_group_export_validation'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -41,6 +41,9 @@ module BulkDataTestKit
       input_order :bulk_server_url,
                   :bearer_token,
                   :group_id,
+                  :bulk_patient_ids_in_group,
+                  :bulk_device_types_in_group,
+                  :lines_to_validate,
                   :bulk_timeout
 
       # group from: :bulk_data_authorization,
@@ -65,7 +68,12 @@ module BulkDataTestKit
 
       test from: :incorrectly_permitted_tls_versions_messages_setup,
           id: :bulk_group_export_tls_messages_setup
-    
+
+      group from: :bulk_data_group_export_validation
+
+      test from: :incorrectly_permitted_tls_versions_messages_setup,
+          id: :bulk_group_export_validation_messages_setup
+
       group from: :bulk_data_export_cancel_stu2
 
       group from: :bulk_data_export_parameters

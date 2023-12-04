@@ -30,7 +30,7 @@ module BulkDataTestKit
           response_body = JSON.parse(response[:body])
 
           assert response_body['resourceType'] == 'OperationOutcome', 'Server did not return an OperationOutcome'
-          #assert_valid_resource(resource: FHIR::OperationOutcome.new(response_body))
+          assert_valid_resource(resource: FHIR::OperationOutcome.new(response_body))
         end
       end
     end

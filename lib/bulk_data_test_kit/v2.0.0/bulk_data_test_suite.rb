@@ -25,6 +25,10 @@ module BulkDataTestKit
         }
       ]
 
+      validator do
+        url ENV.fetch('BULK_DATA_VALIDATOR_URL', 'http://validator_service:4567')
+      end
+
       def self.jwks_json
         bulk_data_jwks = JSON.parse(File.read(
                                       ENV.fetch('BULK_DATA_JWKS',

@@ -98,14 +98,20 @@ module BulkDataTestKit
 
         * `#{Inferno::Application[:base_url]}/custom/bulk_data_v200/.well-known/jwks.json`
       )
-
-      input_order :bulk_server_url,
-                  :bearer_token,
-                  :group_id,
-                  :bulk_timeout
-
-      group from: :bulk_data_group_export_group_stu2
       
+      group do
+        title 'Bulk Data API Tests'
+        description %(
+          The Bulk Data Access API Tests evaluate the ability of a system (Bulk Data Server) 
+          to support required Bulk Data $export operation.                  
+        )
+        input_order :bulk_server_url,
+                    :bearer_token,
+                    :group_id,
+                    :bulk_timeout
+
+        group from: :bulk_data_group_export_group_stu2
+      end    
     end
   end
 end

@@ -25,6 +25,10 @@ module BulkDataTestKit
       scratch[:patient_ids_seen] ||= []
     end
 
+    def resource_type
+      @resource_type ||= ""
+    end
+
     def build_headers(use_token)
       headers = { accept: 'application/fhir+ndjson' }
       headers.merge!({ authorization: "Bearer #{bearer_token}" }) if use_token == 'true'
@@ -141,7 +145,7 @@ module BulkDataTestKit
         # profile_urls.each do |profile_url|
         #   resources[profile_url] << resource
 
-        #   scratch[:patient_ids_seen] = patient_ids_seen | [resource.id] if resource_type == 'Patient'
+        scratch[:patient_ids_seen] = patient_ids_seen | [resource.id] if resource_type == 'Patient'
 
         #   profile_with_version = versioned_profile_url(profile_url)
         unless resource_is_valid?(resource:)
@@ -188,21 +192,28 @@ module BulkDataTestKit
               'Could not verify this functionality when Bearer Token is required and not provided'
 
       assert_valid_json(status_output)
-      file_list = JSON.parse(status_output).select { |file| file['type'] == resource_type }
-      if file_list.empty?
-        message = "No #{resource_type} resource file item returned by server."
-        omit_if (OMIT_KLASS.include? resource_type), "#{message} #{resource_type} resources are optional."
+      
+      full_file_list = JSON.parse(status_output)
+      if full_file_list.empty?
+        message = "No resource file items returned by server."
+        #omit_if (OMIT_KLASS.include? resource_type), "#{message} #{resource_type} resources are optional."
         skip message
       end
 
       @resources_from_all_files = {}
-      resource_count = 0
 
-      file_list.each do |file|
-        resource_count += check_file_request(file['url'])
+      resource_types = full_file_list.map{ |file| file["type"]}.uniq
+
+      resource_types.each do |type|
+        resource_count = 0
+        @resource_type = type
+        file_list = full_file_list.select { |file| file['type'] == resource_type }
+        file_list.each do |file|
+          resource_count += check_file_request(file['url'])
+        end
+
+        process_validation_errors(resource_count)
       end
-
-      process_validation_errors(resource_count)
 
       # validate_conformance(resources_from_all_files)
 

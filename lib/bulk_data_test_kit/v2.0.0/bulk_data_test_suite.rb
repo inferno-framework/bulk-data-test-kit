@@ -3,6 +3,9 @@ require 'smart_app_launch/smart_stu2_suite'
 
 require_relative '../version'
 require_relative 'bulk_data_group_export_group'
+require_relative 'bulk_data_group_export_cancel'
+require_relative 'bulk_data_group_export_parameters'
+require_relative '../bulk_data_group_export_validation'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -112,9 +115,15 @@ module BulkDataTestKit
         input_order :bulk_server_url,
                     :bearer_token,
                     :group_id,
+                    :bulk_patient_ids_in_group,
+                    :bulk_device_types_in_group,
+                    :lines_to_validate,
                     :bulk_timeout
 
         group from: :bulk_data_group_export_group_stu2
+        group from: :bulk_data_group_export_validation
+        group from: :bulk_data_export_cancel_stu2
+        group from: :bulk_data_export_parameters
       end    
     end
   end

@@ -78,7 +78,7 @@ module BulkDataTestKit
     end
 
     test do
-      title 'All resources returned conform to the Base FHIR standard'
+      title 'All resources returned are valid FHIR resources'
       description <<~DESCRIPTION
         This test verifies that the resources returned from bulk data export
         conform to the US Core Patient profile. This includes checking for missing data

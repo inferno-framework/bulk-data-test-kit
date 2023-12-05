@@ -29,6 +29,10 @@ module BulkDataTestKit
       @resource_type ||= ""
     end
 
+    def validation_errors
+      @validation_errors ||= []
+    end
+
     def build_headers(use_token)
       headers = { accept: 'application/fhir+ndjson' }
       headers.merge!({ authorization: "Bearer #{bearer_token}" }) if use_token == 'true'
@@ -125,7 +129,7 @@ module BulkDataTestKit
       process_line = proc do |line|
         next unless lines_to_validate.blank? ||
                     line_count < lines_to_validate.to_i ||
-                    (resource_type == 'Patient' && patient_ids_seen.length < MIN_RESOURCE_COUNT)
+                    (@resource_type == 'Patient' && patient_ids_seen.length < MIN_RESOURCE_COUNT)
 
         line_count += 1
 
@@ -135,9 +139,9 @@ module BulkDataTestKit
           skip "Server response at line \"#{line_count}\" is not a processable FHIR resource."
         end
 
-        if resource.resourceType != resource_type
+        if resource.resourceType != @resource_type
           assert false, "Resource type \"#{resource.resourceType}\" at line \"#{line_count}\" does not match type " \
-                        "defined in output \"#{resource_type}\""
+                        "defined in output \"#{@resource_type}\""
         end
 
         # TODO
@@ -145,13 +149,16 @@ module BulkDataTestKit
         # profile_urls.each do |profile_url|
         #   resources[profile_url] << resource
 
-        scratch[:patient_ids_seen] = patient_ids_seen | [resource.id] if resource_type == 'Patient'
+        scratch[:patient_ids_seen] = patient_ids_seen | [resource.id] if @resource_type == 'Patient'
 
         #   profile_with_version = versioned_profile_url(profile_url)
         unless resource_is_valid?(resource:)
           if first_error.key?(:line_number)
+            @invalid_resource_count_all += 1
             @invalid_resource_count += 1
           else
+            @invalid_resource_count_all.nil? ? @invalid_resource_count_all = 1 : @invalid_resource_count_all += 1
+            
             @invalid_resource_count = 1
             first_error[:line_number] = line_count
             first_error[:messages] = messages.dup
@@ -176,14 +183,16 @@ module BulkDataTestKit
     def process_validation_errors(resource_count)
       return if @invalid_resource_count.nil? || @invalid_resource_count.zero?
 
-      first_error_message = "The line number for the first failed resource is #{first_error[:line_number]}."
+      first_error_message = "The line number for the first failed #{@resource_type} resource is #{first_error[:line_number]}."
 
       messages.clear
       messages.concat(first_error[:messages])
 
-      assert false,
-             "#{@invalid_resource_count} / #{resource_count} #{resource_type} resources failed profile validation. " \
-             "#{first_error_message}"
+    
+      error_message = "#{@invalid_resource_count} / #{resource_count} #{@resource_type} resources failed profile validation. " \
+              "#{first_error_message}"
+      
+      validation_errors.append(error_message)
     end
 
     def perform_bulk_export_validation
@@ -203,21 +212,29 @@ module BulkDataTestKit
       @resources_from_all_files = {}
 
       resource_types = full_file_list.map{ |file| file["type"]}.uniq
+      all_resource_count = 0
 
       resource_types.each do |type|
-        resource_count = 0
         @resource_type = type
-        file_list = full_file_list.select { |file| file['type'] == resource_type }
+        @first_error = {}
+        @invalid_resource_count = 0
+        resource_count = 0
+
+        file_list = full_file_list.select { |file| file['type'] == @resource_type }
+        
         file_list.each do |file|
-          resource_count += check_file_request(file['url'])
+          count = check_file_request(file['url'])
+          all_resource_count += count
+          resource_count += count
         end
 
         process_validation_errors(resource_count)
       end
 
       # validate_conformance(resources_from_all_files)
+      assert @invalid_resource_count_all.zero?, "#{@invalid_resource_count_all} / #{all_resource_count} Resources failed validation. \n" + @validation_errors.join("\n")
 
-      pass "Successfully validated #{resource_count} #{resource_type} resource(s)."
+      pass "Successfully validated #{all_resource_count} Resources"
     end
   end
 end

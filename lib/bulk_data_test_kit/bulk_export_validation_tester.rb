@@ -4,14 +4,6 @@ module BulkDataTestKit
 
     MAX_NUM_COLLECTED_LINES = 100
     MIN_RESOURCE_COUNT = 2
-    OMIT_KLASS = ['Medication', 'Location', 'QuestionnaireResponse', 'PractitionerRole'].freeze
-
-    # def metadata_list
-    #   @metadata_list ||=
-    #     versioned_us_core_module::BulkDataTestSuite
-    #       .metadata
-    #       .select { |metadata| metadata.resource == resource_type }
-    # end
 
     def resources_from_all_files
       @resources_from_all_files ||= {}
@@ -95,33 +87,6 @@ module BulkDataTestKit
       select_profile(resource)
     end
 
-    # def validate_conformance(resources)
-    #   metadata_list.each do |meta|
-    #     next if resource_type == 'Location'
-
-    #     skip_if resources[meta.profile_url].blank?,
-    #             "No #{resource_type} resources found that conform to profile: #{meta.profile_url}."
-    #     @metadata = meta
-    #     @missing_elements = nil
-    #     @missing_slices = nil
-    #     @missing_extensions = nil
-    #     begin
-    #       perform_must_support_test(resources[meta.profile_url])
-    #     rescue Inferno::Exceptions::PassException
-    #       next
-    #     rescue Inferno::Exceptions::SkipException => e
-    #       e.message.concat " for `#{meta.profile_url}`"
-    #       raise e
-    #     end
-    #   end
-    # end
-
-    # def versioned_profile_url(profile_url)
-    #   profile_version = metadata_list.find { |metadata| metadata.profile_url == profile_url }&.profile_version
-
-    #   profile_version ? "#{profile_url}|#{profile_version}" : profile_url
-    # end
-
     def check_file_request(url) # rubocop:disable Metrics/CyclomaticComplexity
       line_count = 0
       resources = Hash.new { |h, k| h[k] = [] }
@@ -144,14 +109,8 @@ module BulkDataTestKit
                         "defined in output \"#{@resource_type}\""
         end
 
-        # TODO
-        # profile_urls = determine_profile(resource)
-        # profile_urls.each do |profile_url|
-        #   resources[profile_url] << resource
-
         scratch[:patient_ids_seen] = patient_ids_seen | [resource.id] if @resource_type == 'Patient'
 
-        #   profile_with_version = versioned_profile_url(profile_url)
         unless resource_is_valid?(resource:)
           if first_error.key?(:line_number)
             @invalid_resource_count_all += 1
@@ -205,7 +164,6 @@ module BulkDataTestKit
       full_file_list = JSON.parse(status_output)
       if full_file_list.empty?
         message = "No resource file items returned by server."
-        #omit_if (OMIT_KLASS.include? resource_type), "#{message} #{resource_type} resources are optional."
         skip message
       end
 
@@ -231,7 +189,6 @@ module BulkDataTestKit
         process_validation_errors(resource_count)
       end
 
-      # validate_conformance(resources_from_all_files)
       assert @invalid_resource_count_all.zero?, "#{@invalid_resource_count_all} / #{all_resource_count} Resources failed validation. \n" + @validation_errors.join("\n")
 
       pass "Successfully validated #{all_resource_count} Resources"

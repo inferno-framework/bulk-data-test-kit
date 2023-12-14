@@ -41,7 +41,7 @@ module BulkDataTestKit
 
         run do
           ['application/fhir+ndjson', 'application/ndjson', 'ndjson'].each do |format|
-            perform_export_kick_off_request(params: { _outputFormat: format })
+            perform_export_kick_off_request(params: { _outputFormat: format }, url: "Group/#{group_id}/$export")
             assert_response_status(202)
 
             delete_export_kick_off_request
@@ -89,7 +89,7 @@ module BulkDataTestKit
                 "The provided `_since` timestamp `#{since_timestamp}` is not a valid " \
                 '[FHIR instant](https://www.hl7.org/fhir/datatypes.html#instant).'
 
-          perform_export_kick_off_request(params: { _since: since_timestamp })
+          perform_export_kick_off_request(params: { _since: since_timestamp }, url: "Group/#{group_id}/$export")
           assert_response_status(202)
 
           delete_export_kick_off_request

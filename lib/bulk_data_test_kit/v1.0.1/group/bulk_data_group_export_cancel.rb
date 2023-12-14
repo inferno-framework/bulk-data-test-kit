@@ -37,7 +37,7 @@ module BulkDataTestKit
         output :cancelled_polling_url
 
         run do
-          perform_export_kick_off_request
+          perform_export_kick_off_request(url: "Group/#{group_id}/$export")
           assert_response_status(202)
 
           output cancelled_polling_url: request.response_header('content-location')&.value

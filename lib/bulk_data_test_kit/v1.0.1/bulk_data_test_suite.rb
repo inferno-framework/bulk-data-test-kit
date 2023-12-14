@@ -1,7 +1,10 @@
 require 'smart_app_launch/smart_stu1_suite'
 require 'smart_app_launch/smart_stu2_suite'
 require_relative '../version'
-require_relative 'bulk_data_group_export_test_group'
+require_relative 'bulk_data_group_export_group'
+require_relative 'bulk_data_patient_export_group'
+require_relative 'bulk_data_group_export_cancel'
+require_relative '../bulk_data_group_export_validation'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -112,8 +115,10 @@ module BulkDataTestKit
         title: 'Bulk Data FHIR URL',
         description: 'The URL of the Bulk FHIR server.'
 
-      fhir_client :bulk_server do
-        url :bulk_server_url
+        group from: :bulk_data_group_export_group
+        group from: :bulk_data_patient_export_group
+        group from: :bulk_data_group_export_validation
+        group from: :bulk_data_export_cancel_stu1
       end
 
       http_client :bulk_server do

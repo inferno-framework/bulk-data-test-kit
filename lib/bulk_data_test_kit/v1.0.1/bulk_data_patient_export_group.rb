@@ -1,15 +1,15 @@
 require 'tls_test_kit'
-require_relative '../bulk_data_export_tester.rb'
+require_relative '../export_kick_off_performer'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataGroupExportGroup < Inferno::TestGroup
-      title 'Group Compartment Export Tests'
-      short_description 'Verify that the system supports Group compartment export.'
+    class BulkDataPatientExportGroup < Inferno::TestGroup
+      title 'All Patient Export Tests'
+      short_description 'Verify that the system supports all patient export.'
       description <<~DESCRIPTION
         Verify that system level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
-      id :bulk_data_group_export_group
+      id :bulk_data_patient_export_group
 
       input :bearer_token,
             title: 'Bulk Data Authorization Bearer Token',
@@ -17,9 +17,6 @@ module BulkDataTestKit
       input :bulk_server_url,
             title: 'Bulk Data FHIR URL',
             description: 'The URL of the Bulk FHIR server.'
-      input :group_id,
-            title: 'Group ID',
-            description: 'The Group ID associated with the group of patients to be exported.'
       input :bulk_timeout,
             title: 'Export Times Out after (1-600)',
             description: <<~DESCRIPTION,
@@ -87,7 +84,7 @@ module BulkDataTestKit
         include BulkDataExportTester
 
         run do
-          check_export_support('Group', 'export', 'http://hl7.org/fhir/uv/bulkdata/OperationDefinition/group-export')
+          check_export_support('Patient', 'patient-export', 'http://hl7.org/fhir/uv/bulkdata/OperationDefinition/patient-export')
         end
       end
 
@@ -106,7 +103,7 @@ module BulkDataTestKit
         include ExportKickOffPerformer
 
         run do
-          rejects_without_authorization("Group/#{group_id}/$export")
+          rejects_without_authorization("Patient/$export")
         end
       end
 
@@ -126,7 +123,7 @@ module BulkDataTestKit
         output :polling_url
 
         run do
-          export_kick_off_success("Group/#{group_id}/$export")
+          export_kick_off_success("Patient/$export")
         end
       end
 
@@ -145,7 +142,7 @@ module BulkDataTestKit
         # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#bulk-data-status-request'
 
         include BulkDataExportTester
-
+        
         input :polling_url
 
         output :status_response, :requires_access_token

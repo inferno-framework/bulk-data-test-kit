@@ -1,5 +1,5 @@
-require_relative '../v1.0.1/bulk_data_patient_export_group'
-require_relative '../bulk_data_export_tester.rb'
+require_relative '../../v1.0.1/patient/bulk_data_patient_export_group'
+require_relative '../../export_operation_tests.rb'
 
 module BulkDataTestKit
   module BulkDataV200

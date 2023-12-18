@@ -1,11 +1,8 @@
 require 'smart_app_launch/smart_stu1_suite'
 require 'smart_app_launch/smart_stu2_suite'
 require_relative '../version'
-require_relative 'bulk_data_group_export_group'
-require_relative 'bulk_data_patient_export_group'
-require_relative 'bulk_data_group_export_cancel'
-require_relative 'bulk_data_group_export_parameters'
-require_relative '../bulk_data_group_export_validation'
+require_relative 'bulk_data_group_export_test_group'
+require_relative 'bulk_data_patient_export_test_group'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -112,12 +109,20 @@ module BulkDataTestKit
         * `#{Inferno::Application[:base_url]}/custom/bulk_data_v101/.well-known/jwks.json`
       )
 
-        group from: :bulk_data_group_export_group_stu2
-        group from: :bulk_data_patient_export_group_stu2
-        group from: :bulk_data_group_export_validation
-        group from: :bulk_data_export_cancel_stu2
-        group from: :bulk_data_export_parameters
-      end    
+      input :bulk_server_url,
+        title: 'Bulk Data FHIR URL',
+        description: 'The URL of the Bulk FHIR server.'
+
+      fhir_client :bulk_server do
+        url :bulk_server_url
+      end
+
+      http_client :bulk_server do
+        url :bulk_server_url
+      end
+
+      group from: :bulk_data_group_export_v200
+      group from: :bulk_data_patient_export_v200
     end
   end
 end

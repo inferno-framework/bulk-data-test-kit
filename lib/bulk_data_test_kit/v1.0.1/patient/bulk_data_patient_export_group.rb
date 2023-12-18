@@ -1,26 +1,23 @@
 require 'tls_test_kit'
-require_relative 'bulk_data_group_export_operation_support_test.rb'
-require_relative 'bulk_data_group_no_auth_test.rb'
-require_relative 'bulk_data_group_export_kick_off_test.rb'
-require_relative 'bulk_data_group_status_check_test.rb'
-require_relative 'bulk_data_group_output_check_test.rb'
+require_relative 'bulk_data_patient_export_operation_support_test.rb'
+require_relative 'bulk_data_patient_no_auth_test.rb'
+require_relative 'bulk_data_patient_export_kick_off_test.rb'
+require_relative 'bulk_data_patient_status_check_test.rb'
+require_relative 'bulk_data_patient_output_check_test.rb'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataGroupExportGroup < Inferno::TestGroup
-      title 'Group Compartment Export Tests'
-      short_description 'Verify that the system supports Group compartment export.'
+    class BulkDataPatientExportGroup < Inferno::TestGroup
+      title 'All Patient Export Tests'
+      short_description 'Verify that the system supports all patient export.'
       description <<~DESCRIPTION
         Verify that system level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
-      id :bulk_data_group_export_group
+      id :bulk_data_patient_export_group
 
       input :bearer_token,
             title: 'Bulk Data Authorization Bearer Token',
             description: 'The authorization bearer token for the Bulk FHIR server.'
-      input :group_id,
-            title: 'Group ID',
-            description: 'The Group ID associated with the group of patients to be exported.'
       input :bulk_timeout,
             title: 'Export Times Out after (1-600)',
             description: <<~DESCRIPTION,
@@ -31,9 +28,7 @@ module BulkDataTestKit
             DESCRIPTION
             default: 180
 
-      output :requires_access_token, :status_output, :bulk_download_url
-
-      run_as_group
+      output :patient_requires_access_token, :patient_status_output, :patient_bulk_download_url
 
       test from: :tls_version_test do
         title 'Bulk Data Server is secured by transport layer security'
@@ -52,11 +47,11 @@ module BulkDataTestKit
         )
       end
 
-      test from: :bulk_data_group_export_operation_support
-      test from: :bulk_data_group_no_auth_reject
-      test from: :bulk_data_group_kick_off
-      test from: :bulk_data_group_status_check
-      test from: :bulk_data_group_output_check
+      test from: :bulk_data_patient_export_operation_support
+      test from: :bulk_data_patient_no_auth_reject
+      test from: :bulk_data_patient_kick_off
+      test from: :bulk_data_patient_status_check
+      test from: :bulk_data_patient_output_check
     end
   end
 end

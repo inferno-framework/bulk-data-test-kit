@@ -45,14 +45,14 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
     it 'raises skip if use_token but token is not present' do
       performer.bearer_token = nil
 
-      expect { performer.perform_export_kick_off_request }
+      expect { performer.perform_export_kick_off_request(url: "Group/#{group_id}/$export") }
         .to raise_exception(Inferno::Exceptions::SkipException)
         .with_message('Could not verify this functionality when bearer token is not set')
     end
 
     it 'excludes token from request header if !use_token' do
       no_token_header_req
-      performer.perform_export_kick_off_request(use_token: false)
+      performer.perform_export_kick_off_request(use_token: false, url: "Group/#{group_id}/$export")
 
       expect(no_token_header_req).to have_been_made.once
       expect(token_header_req).to have_not_been_made
@@ -60,7 +60,7 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
 
     it 'includes token in request header if use_token' do
       token_header_req
-      performer.perform_export_kick_off_request
+      performer.perform_export_kick_off_request(url: "Group/#{group_id}/$export")
 
       expect(token_header_req).to have_been_made.once
     end
@@ -70,7 +70,7 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
         .with(headers: { 'authorization' => "Bearer #{token}" })
         .to_return(status: 200)
 
-      performer.perform_export_kick_off_request(params: { _outputFormat: 'application/fhir+ndjson' })
+      performer.perform_export_kick_off_request(params: { _outputFormat: 'application/fhir+ndjson' }, url: "Group/#{group_id}/$export")
       expect(params_url_req).to have_been_made.once
     end
 
@@ -80,13 +80,13 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
         .with(headers: { 'authorization' => "Bearer #{token}" })
         .to_return(status: 200)
 
-      performer.perform_export_kick_off_request(params:)
+      performer.perform_export_kick_off_request(params:, url: "Group/#{group_id}/$export")
       expect(params_url_req).to have_been_made.once
     end
 
     it "makes the named request 'export'" do
       token_header_req
-      performer.perform_export_kick_off_request
+      performer.perform_export_kick_off_request(url: "Group/#{group_id}/$export")
 
       expect(performer.requests.last.name).to be(:export)
     end

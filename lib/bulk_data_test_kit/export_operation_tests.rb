@@ -1,9 +1,17 @@
 require_relative 'export_kick_off_performer'
+require_relative 'bulk_data_test_kit_properties'
 
 module BulkDataTestKit
-  module BulkDataExportTester
-    
-    def check_export_support(resource_type, operation_name, operation_definition)
+  module BulkDataExportOperationTests
+    extend Forwardable
+   
+    def_delegators 'self.class', :properties
+    def_delegators 'properties',
+                   :resource_type,
+                   :export_operation_name,
+                   :bulk_export_url
+
+    def check_export_support
       fhir_get_capability_statement(client: :bulk_server)
       assert_response_status([200, 201])
 
@@ -32,38 +40,49 @@ module BulkDataTestKit
             "Server CapabilityStatement did not declare support for any operations on the #{resource_type} resource"
 
       has_export_operation = group_resource_capabilities.operation&.any? do |operation|
-        name_match = (operation.name == operation_name)
-        if name_match && !operation.definition&.match(%r{^#{operation_definition}(\|\S+)?$})
-          info("Server CapabilityStatement does not include #{operation_name} operation with definition #{operation_definition}")
+        name_match = (operation.name == export_operation_name)
+        if name_match && !operation.definition&.match(%r{^http://hl7.org/fhir/uv/bulkdata/OperationDefinition/#{export_operation_name}(\|\S+)?$})
+          info("Server CapabilityStatement does not include #{export_operation_name} operation with definition http://hl7.org/fhir/uv/bulkdata/OperationDefinition/#{export_operation_name}")
         end
         name_match
       end
       warning do
         assert has_export_operation,
-              "Server CapabilityStatement did not declare support for an operation named #{operation_name} in the #{resource_type} " \
-              "resource (operation.name should be #{operation_name})"
+              "Server CapabilityStatement did not declare support for an operation named #{export_operation_name} in the #{resource_type} " \
+              "resource (operation.name should be #{export_operation_name})"
       end
     end
 
-    def rejects_without_authorization(bulk_data_url)
+    def rejects_without_authorization
       skip_if bearer_token.blank?, 'Could not verify this functionality when bearer token is not set'
 
-      perform_export_kick_off_request(use_token: false, url: bulk_data_url)
+      url = bulk_export_url
+      if resource_type == 'Group'
+        url = bulk_export_url.gsub('[group_id]', group_id)
+      end
+
+      perform_export_kick_off_request(use_token: false, url: url)
       assert_response_status([400, 401])
     end
 
-    def export_kick_off_success(bulk_data_url)
-      perform_export_kick_off_request(url: bulk_data_url)
+    def export_kick_off_success
+
+      url = bulk_export_url
+      if resource_type == 'Group'
+        url = bulk_export_url.gsub('[group_id]', group_id)
+      end
+
+      perform_export_kick_off_request(url: url)
       assert_response_status(202)
 
       polling_url = request.response_header('content-location')&.value
       assert polling_url.present?, 'Export response headers did not include "Content-Location"'
 
-      output polling_url:
+      polling_url
     end
 
-    def export_status_check_success
-      skip 'Server response did not have Content-Location in header' unless polling_url.present?
+    def export_status_check_success(status_polling_url)
+      skip 'Server response did not have Content-Location in header' unless status_polling_url.present?
 
       timeout = bulk_timeout.to_i
 
@@ -78,7 +97,7 @@ module BulkDataTestKit
       used_time = 0
 
       loop do
-        get(polling_url, headers: { authorization: "Bearer #{bearer_token}", accept: 'application/json' })
+        get(status_polling_url, headers: { authorization: "Bearer #{bearer_token}", accept: 'application/json' })
 
         retry_after_val = request.response_header('retry-after')&.value.to_i
 
@@ -110,29 +129,34 @@ module BulkDataTestKit
       ['transactionTime', 'request', 'requiresAccessToken', 'output', 'error'].each do |key|
         assert response_body.key?(key), "Complete Status response did not contain \"#{key}\" as required"
       end
+      
+      requires_access_token = response_body['requiresAccessToken'].to_s.downcase
+      status_response = response[:body]
 
-      output requires_access_token: response_body['requiresAccessToken'].to_s.downcase
-      output status_response: response[:body]
+      return requires_access_token, status_response
     end
 
-    def check_bulk_data_output
-      assert status_response.present?, 'Bulk Data Server status response not found'
+    def check_bulk_data_output(export_status_response)
+        assert export_status_response.present?, 'Bulk Data Server status response not found'
 
-      assert_valid_json(status_response)
-      status_output = JSON.parse(status_response)['output']
-      assert status_output, 'Bulk Data Server status response does not contain output'
+        assert_valid_json(export_status_response)
+        status_output = JSON.parse(export_status_response)['output']
+        assert status_output, 'Bulk Data Server status response does not contain output'
+      begin 
+        status_output_json = status_output.to_json
+        bulk_download_url = status_output[0]['url']
 
-      output status_output: status_output.to_json,
-            bulk_download_url: status_output[0]['url']
+        return status_output_json, bulk_download_url
+      ensure 
+        status_output.each do |file|
+          ['type', 'url'].each do |key|
+            assert file.key?(key), "Output file did not contain \"#{key}\" as required"
+          end
 
-      status_output.each do |file|
-        ['type', 'url'].each do |key|
-          assert file.key?(key), "Output file did not contain \"#{key}\" as required"
-        end
-
-        if config.options[:require_absolute_urls_in_output]
-          assert file['url'].to_s.match?(%r{\Ahttps?://}),
-                "URLs in output file must be absolute, but found `#{file['url']}`."
+          if config.options[:require_absolute_urls_in_output]
+            assert file['url'].to_s.match?(%r{\Ahttps?://}),
+                  "URLs in output file must be absolute, but found `#{file['url']}`."
+          end
         end
       end
     end

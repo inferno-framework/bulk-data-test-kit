@@ -1,19 +1,35 @@
 require_relative 'bulk_export_validation_tester'
 
 module BulkDataTestKit
-  class BulkDataGroupExportValidation < Inferno::TestGroup
-    title 'Group Compartment Export Validation Tests'
+  class BulkDataPatientExportValidation < Inferno::TestGroup
+    title 'All Patient Export Validation Tests'
     short_description 'Verify that the exported data conforms to the US Core Implementation Guide.'
     description <<~DESCRIPTION
-      Verify that Group compartment export from the Bulk Data server follow US Core Implementation Guide
+      Verify that All Patient export from the Bulk Data server follow US Core Implementation Guide
     DESCRIPTION
 
-    id :bulk_data_group_export_validation
+    id :bulk_data_patient_export_validation
 
-    input :status_output, :requires_access_token, :bearer_token, :bulk_download_url
+    input :patient_status_output, :patient_requires_access_token, :bearer_token, :patient_bulk_download_url
     input :lines_to_validate,
           title: 'Limit validation to a maximum resource count',
           description: 'To validate all, leave blank.',
+          optional: true
+    input :bulk_patient_ids_in_group,
+          title: 'Patient IDs in exported Group',
+          description: <<~DESCRIPTION,
+            Comma separated list of every Patient ID that is in the specified Group. This information is provided by
+            the system under test to verify that data returned matches expectations. Leave blank to not verify Group
+            inclusion.
+          DESCRIPTION
+          optional: true
+    input :bulk_device_types_in_group,
+          title: 'Implantable Device Type Codes in exported Group',
+          description: <<~DESCRIPTION,
+            Comma separated list of every Implantable Device type that is in the specified Group. This information is
+            provided by the system under test to verify that data returned matches expectations. Leave blank to verify
+            all Device resources against the Implantable Device profile.
+          DESCRIPTION
           optional: true
 
     test from: :tls_version_test do
@@ -28,7 +44,7 @@ module BulkDataTestKit
       id :bulk_file_server_tls_version
 
       config(
-        inputs: { url: { name: :bulk_download_url } },
+        inputs: { url: { name: :patient_bulk_download_url } },
         options: { minimum_allowed_version: OpenSSL::SSL::TLS1_2_VERSION }
       )
     end
@@ -48,10 +64,10 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#file-request'
 
-      input :bulk_download_url
+      input :patient_bulk_download_url
 
       run do
-        ndjson_download_requiresAccessToken_check(bulk_data_download_url: bulk_download_url, bulk_requires_access_token: requires_access_token)
+        ndjson_download_requiresAccessToken_check(bulk_data_download_url: patient_bulk_download_url, bulk_requires_access_token: patient_requires_access_token)
       end
     end
 
@@ -67,7 +83,7 @@ module BulkDataTestKit
       # link 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'
 
       run do
-        perform_bulk_export_validation(bulk_status_output: status_output, bulk_requires_access_token: requires_access_token)
+        perform_bulk_export_validation(bulk_status_output: patient_status_output, bulk_requires_access_token: patient_requires_access_token)
       end
     end
 
@@ -82,6 +98,21 @@ module BulkDataTestKit
 
       run do
         export_multiple_patients_check
+      end
+    end
+
+    test do
+      include BulkDataTestKit::BulkExportValidationTester
+
+      title 'Patient IDs match those expected in Group'
+      description <<~DESCRIPTION
+        This test checks that the list of patient IDs that are expected match those that are returned.
+        If no patient ids are provided to the test, then the test will be omitted.
+      DESCRIPTION
+      # link 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'
+
+      run do
+        expected_patient_ids_check
       end
     end
   end

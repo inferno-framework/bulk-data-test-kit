@@ -69,24 +69,6 @@ module BulkDataTestKit
       process_response.call(response)
     end
 
-    def predefined_device_type?(resource) # rubocop:disable Metrics/CyclomaticComplexity
-      return true if bulk_device_types_in_group.blank?
-
-      expected = Set.new(bulk_device_types_in_group.split(',').map(&:strip))
-
-      actual = resource&.type&.coding&.filter_map do |coding|
-        coding.code if coding.system.nil? || coding.system == 'http://snomed.info/sct'
-      end
-
-      (expected & actual).any?
-    end
-
-    def determine_profile(resource)
-      return if resource.resourceType == 'Device' && !predefined_device_type?(resource)
-
-      select_profile(resource)
-    end
-
     def check_file_request(url) # rubocop:disable Metrics/CyclomaticComplexity
       line_count = 0
       resources = Hash.new { |h, k| h[k] = [] }

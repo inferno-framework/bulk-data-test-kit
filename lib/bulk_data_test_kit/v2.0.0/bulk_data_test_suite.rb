@@ -115,8 +115,6 @@ module BulkDataTestKit
         input_order :bulk_server_url,
                     :bearer_token,
                     :group_id,
-                    :bulk_patient_ids_in_group,
-                    :bulk_device_types_in_group,
                     :lines_to_validate,
                     :bulk_timeout
 

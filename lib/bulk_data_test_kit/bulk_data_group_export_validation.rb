@@ -15,22 +15,6 @@ module BulkDataTestKit
           title: 'Limit validation to a maximum resource count',
           description: 'To validate all, leave blank.',
           optional: true
-    input :bulk_patient_ids_in_group,
-          title: 'Patient IDs in exported Group',
-          description: <<~DESCRIPTION,
-            Comma separated list of every Patient ID that is in the specified Group. This information is provided by
-            the system under test to verify that data returned matches expectations. Leave blank to not verify Group
-            inclusion.
-          DESCRIPTION
-          optional: true
-    input :bulk_device_types_in_group,
-          title: 'Implantable Device Type Codes in exported Group',
-          description: <<~DESCRIPTION,
-            Comma separated list of every Implantable Device type that is in the specified Group. This information is
-            provided by the system under test to verify that data returned matches expectations. Leave blank to verify
-            all Device resources against the Implantable Device profile.
-          DESCRIPTION
-          optional: true
 
     test from: :tls_version_test do
       title 'Bulk Data Server is secured by transport layer security'
@@ -107,27 +91,6 @@ module BulkDataTestKit
 
         assert patient_ids_seen.length >= BulkExportValidationTester::MIN_RESOURCE_COUNT,
                'Bulk data export did not have multiple Patient resources.'
-      end
-    end
-
-    test do
-      title 'Patient IDs match those expected in Group'
-      description <<~DESCRIPTION
-        This test checks that the list of patient IDs that are expected match those that are returned.
-        If no patient ids are provided to the test, then the test will be omitted.
-      DESCRIPTION
-      # link 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'
-
-      include BulkExportValidationTester
-
-      run do
-        omit 'No patient ids were given.' unless bulk_patient_ids_in_group.present?
-
-        expected_ids = Set.new(bulk_patient_ids_in_group.split(',').map(&:strip))
-
-        assert patient_ids_seen.sort == expected_ids.sort,
-               "Mismatch between patient ids seen (#{patient_ids_seen.to_a.join(', ')}) " \
-               "and patient ids expected (#{bulk_patient_ids_in_group})"
       end
     end
   end

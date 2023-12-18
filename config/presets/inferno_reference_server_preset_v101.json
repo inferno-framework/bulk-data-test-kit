@@ -45,21 +45,6 @@
       "description": "To validate all, leave blank.",
       "optional": true,
       "value": null
-    },
-    {
-      "name": "bulk_patient_ids_in_group",
-      "type": "text",
-      "title": "Patient IDs in exported Group",
-      "description": "Comma separated list of every Patient ID that is in the specified Group. This information is\n          provided by the system under test to verify that data returned matches expectations. Leave blank to not\n          verify Group inclusion.",
-      "value": "85, 355"
-    },
-    {
-      "name": "bulk_device_types_in_group",
-      "type": "text",
-      "title": "Implantable Device Type Codes in exported Group",
-      "description": "Comma separated list of every Implantable Device type that is in the specified Group. This\n          information is provided by the system under test to verify that data returned matches expectations. Leave\n          blank to verify all Device resources against the Implantable Device profile.",
-      "optional": true,
-      "value": null
     }
   ]
 }

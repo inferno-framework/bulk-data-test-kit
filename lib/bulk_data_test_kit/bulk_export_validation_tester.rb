@@ -69,7 +69,7 @@ module BulkDataTestKit
       process_response.call(response)
     end
 
-    def check_file_request(url) # rubocop:disable Metrics/CyclomaticComplexity
+    def check_file_request(url, bulk_requires_access_token) # rubocop:disable Metrics/CyclomaticComplexity
       line_count = 0
       resources = Hash.new { |h, k| h[k] = [] }
 
@@ -193,16 +193,6 @@ module BulkDataTestKit
 
       assert patient_ids_seen.length >= BulkExportValidationTester::MIN_RESOURCE_COUNT,
               'Bulk data export did not have multiple Patient resources.'
-    end
-
-    def expected_patient_ids_check
-      omit 'No patient ids were given.' unless bulk_patient_ids_in_group.present?
-
-      expected_ids = Set.new(bulk_patient_ids_in_group.split(',').map(&:strip))
-
-      assert patient_ids_seen.sort == expected_ids.sort,
-             "Mismatch between patient ids seen (#{patient_ids_seen.to_a.join(', ')}) " \
-             "and patient ids expected (#{bulk_patient_ids_in_group})"
     end
   end
 end

@@ -14,8 +14,6 @@ module BulkDataTestKit
         to support required Bulk Data $export operation.                  
       )
       input_order :bearer_token,
-                  :bulk_patient_ids_in_group,
-                  :bulk_device_types_in_group,
                   :lines_to_validate,
                   :bulk_timeout
 

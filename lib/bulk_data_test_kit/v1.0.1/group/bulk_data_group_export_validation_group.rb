@@ -1,4 +1,3 @@
-require_relative 'bulk_data_group_matching_patient_ids_test'
 require_relative 'bulk_data_group_multiple_patients_test'
 require_relative 'bulk_data_group_ndjson_download_test'
 require_relative 'bulk_data_group_valid_resources_test'
@@ -18,22 +17,6 @@ module BulkDataTestKit
       input :lines_to_validate,
             title: 'Limit validation to a maximum resource count',
             description: 'To validate all, leave blank.',
-            optional: true
-      input :bulk_patient_ids_in_group,
-            title: 'Patient IDs in exported Group',
-            description: <<~DESCRIPTION,
-              Comma separated list of every Patient ID that is in the specified Group. This information is provided by
-              the system under test to verify that data returned matches expectations. Leave blank to not verify Group
-              inclusion.
-            DESCRIPTION
-            optional: true
-      input :bulk_device_types_in_group,
-            title: 'Implantable Device Type Codes in exported Group',
-            description: <<~DESCRIPTION,
-              Comma separated list of every Implantable Device type that is in the specified Group. This information is
-              provided by the system under test to verify that data returned matches expectations. Leave blank to verify
-              all Device resources against the Implantable Device profile.
-            DESCRIPTION
             optional: true
 
       test from: :tls_version_test do
@@ -56,7 +39,6 @@ module BulkDataTestKit
       test from: :bulk_data_group_ndjson_download
       test from: :bulk_data_group_valid_resources
       test from: :bulk_data_group_multiple_patients
-      test from: :bulk_data_group_matching_patient_ids
     end
   end
 end

@@ -1,7 +1,7 @@
 require_relative 'group/bulk_data_group_export_group'
 require_relative 'group/bulk_data_group_export_cancel_group'
 require_relative 'group/bulk_data_group_export_parameters_group'
-require_relative '../bulk_data_group_export_validation'
+require_relative 'group/bulk_data_group_export_validation'
 
 module BulkDataTestKit
   module BulkDataV200

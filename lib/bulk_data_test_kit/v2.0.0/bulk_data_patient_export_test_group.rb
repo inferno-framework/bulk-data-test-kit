@@ -1,7 +1,7 @@
 require_relative 'patient/bulk_data_patient_export_group'
 require_relative 'patient/bulk_data_patient_export_cancel_group'
 require_relative 'patient/bulk_data_patient_export_parameters_group'
-require_relative '../bulk_data_patient_export_validation'
+require_relative 'patient/bulk_data_patient_export_validation'
 
 
 module BulkDataTestKit

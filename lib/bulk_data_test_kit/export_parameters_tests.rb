@@ -18,7 +18,8 @@ module BulkDataTestKit
       end
 
       ['application/fhir+ndjson', 'application/ndjson', 'ndjson'].each do |format|
-        perform_export_kick_off_request(params: { _outputFormat: format }, url: url)
+        kickoff_url = url.dup
+        perform_export_kick_off_request(params: { _outputFormat: format }, url: kickoff_url)
         assert_response_status(202)
 
         delete_export_kick_off_request

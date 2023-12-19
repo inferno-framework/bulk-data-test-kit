@@ -1,7 +1,7 @@
-require_relative '../../lib/bulk_data_test_kit/v1.0.1/group/bulk_data_group_export_cancel'
+require_relative '../../lib/bulk_data_test_kit/v1.0.1/group/bulk_data_group_export_cancel_group'
 
-RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancel do
-  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_export_cancel_stu1') }
+RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
+  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_cancel_group') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v101') }
   let(:bulk_server_url) { 'https://example.com/fhir' }
@@ -31,11 +31,22 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancel do
   end
 
   describe 'delete request tests' do
-    let(:runnable) { group.tests[0] }
     let(:bulk_export_url) { "#{bulk_server_url}/Group/1219/$export" }
 
+    let(:test_class) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelTest) do
+        
+        http_client :bulk_server do
+          url :bulk_server_url
+        end
+
+        input :bulk_server_url, :bearer_token, :group_id
+      end
+    end
+
     it 'skips when no Bearer Token is given' do
-      result = run(runnable, { bearer_token: nil })
+      base_input[:bearer_token] = nil
+      result = run(test_class, base_input)
 
       expect(result.result).to eq('skip')
       expect(result.result_message).to eq('Could not verify this functionality when bearer token is not set')
@@ -45,7 +56,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancel do
       stub_request(:get, bulk_export_url)
         .to_return(status: 404)
 
-      result = run(runnable, base_input)
+      result = run(test_class, base_input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 202, but received 404')
@@ -55,7 +66,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancel do
       stub_request(:get, bulk_export_url)
         .to_return(status: 202)
 
-      result = run(runnable, base_input)
+      result = run(test_class, base_input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Export response header did not include "Content-Location"')
@@ -65,7 +76,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancel do
       stub_request(:get, bulk_export_url)
         .to_return(status: 202, headers: { 'content-type': nil })
 
-      result = run(runnable, base_input)
+      result = run(test_class, base_input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Export response header did not include "Content-Location"')
@@ -78,7 +89,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancel do
         .with(headers: { authorization: "Bearer #{bearer_token}" })
         .to_return(status: 404)
 
-      result = run(runnable, base_input)
+      result = run(test_class, base_input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 202, but received 404')
@@ -91,7 +102,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancel do
         .with(headers: { authorization: "Bearer #{bearer_token}" })
         .to_return(status: 202)
 
-      result = run(runnable, base_input)
+      result = run(test_class, base_input)
 
       expect(result.result).to eq('pass')
     end

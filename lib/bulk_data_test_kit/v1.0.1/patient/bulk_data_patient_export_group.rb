@@ -18,6 +18,9 @@ module BulkDataTestKit
       input :bearer_token,
             title: 'Bulk Data Authorization Bearer Token',
             description: 'The authorization bearer token for the Bulk FHIR server.'
+      input :bulk_server_url,
+            title: 'Bulk Data FHIR URL',
+            description: 'The URL of the Bulk FHIR server.'
       input :bulk_timeout,
             title: 'Export Times Out after (1-600)',
             description: <<~DESCRIPTION,

@@ -18,13 +18,6 @@
       "value": "https://inferno.healthit.gov/reference-server/r4"
     },
     {
-      "name": "bearer_token",
-      "type": "text",
-      "title": "Bulk Data Authorization Bearer Token",
-      "description": "The authorization bearer token for the Bulk FHIR server.",
-      "value": "2c50797a-4b40-4b14-acd4-1ddbea42a604"
-    },
-    {
       "name": "group_id",
       "type": "text",
       "title": "Group ID",

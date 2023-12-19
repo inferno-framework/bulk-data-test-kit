@@ -6,9 +6,9 @@ module BulkDataTestKit
   module BulkDataV200
     class BulkDataPatientExportParameters < Inferno::TestGroup
       id :bulk_data_patient_export_parameters_group
-      title 'All Patient Export Parameters Tests'
+      title 'Patient Export Parameters Tests'
       description %(
-        Verify that the Bulk Data server supports required query parameters.
+        Verify that the Bulk Data server supports required query parameters for the export of all Patient resources.
       )
 
       input :bearer_token,

@@ -7,7 +7,7 @@ module BulkDataTestKit
       id :bulk_data_group_export_cancel_group
       title 'Group Compartment Export Cancel Tests'
       description %(
-        Verify that the Bulk Data server supports cancelling requested exports.
+        Verify that the Bulk Data server supports cancelling requested group exports.
         This group initiates a new export and immediately cancels it to verify
         correct behavior.
       )

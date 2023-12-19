@@ -8,7 +8,7 @@ module BulkDataTestKit
 
       id :output_format_in_export_response
        
-      title 'Bulk Data Server supports "_outputFormat" query parameter'
+      title 'Bulk Data Server supports "_outputFormat" query parameter for the export of all Patient resources'
       description <<~DESCRIPTION
         [_outputFormat](http://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters):
         The format for the requested Bulk Data files to be

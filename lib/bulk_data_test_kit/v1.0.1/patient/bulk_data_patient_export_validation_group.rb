@@ -5,8 +5,8 @@ require_relative 'bulk_data_patient_valid_resources_test'
 module BulkDataTestKit
   module BulkDataV101
     class BulkDataPatientExportValidation < Inferno::TestGroup
-      title 'All Patient Export Validation Tests'
-      short_description 'Verify that the exported data conforms to the US Core Implementation Guide.'
+      title 'Patient Export Validation Tests'
+      short_description 'Verify that the data from the export of all Patients conforms to the US Core Implementation Guide.'
       description <<~DESCRIPTION
         Verify that All Patient export from the Bulk Data server follow US Core Implementation Guide
       DESCRIPTION

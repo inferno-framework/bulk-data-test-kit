@@ -8,7 +8,7 @@ module BulkDataTestKit
       id :bulk_data_group_export_parameters_group
       title 'Group Compartment Export Parameters Tests'
       description %(
-        Verify that the Bulk Data server supports required query parameters.
+        Verify that the Bulk Data server supports required query parameters for Group export.
       )
 
       input :bearer_token,

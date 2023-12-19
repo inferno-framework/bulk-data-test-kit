@@ -8,7 +8,7 @@ module BulkDataTestKit
 
       id :since_in_export_response
 
-      title 'Bulk Data Server supports "_since" query parameter'
+      title 'Bulk Data Server supports "_since" query parameter for Group export'
       description <<~DESCRIPTION
         This test verifies that the server accepts an export request with the
         `[_since](http://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters)`

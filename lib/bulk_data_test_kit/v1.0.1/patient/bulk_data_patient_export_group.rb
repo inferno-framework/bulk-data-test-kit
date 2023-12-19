@@ -8,8 +8,8 @@ require_relative 'bulk_data_patient_output_check_test.rb'
 module BulkDataTestKit
   module BulkDataV101
     class BulkDataPatientExportGroup < Inferno::TestGroup
-      title 'All Patient Export Tests'
-      short_description 'Verify that the system supports all patient export.'
+      title 'Patient Export Tests'
+      short_description 'Verify that the system supports bulk export of all Patients'
       description <<~DESCRIPTION
         Verify that system level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION

@@ -5,9 +5,9 @@ module BulkDataTestKit
   module BulkDataV101
     class BulkDataPatientExportCancelGroup < Inferno::TestGroup
       id :bulk_data_patient_export_cancel_group
-      title 'All Patient Export Cancel Tests'
+      title 'Patient Export Cancel Tests'
       description %(
-        Verify that the Bulk Data server supports cancelling requested exports.
+        Verify that the Bulk Data server supports cancelling requested exports of all Patients.
         This group initiates a new export and immediately cancels it to verify
         correct behavior.
       )

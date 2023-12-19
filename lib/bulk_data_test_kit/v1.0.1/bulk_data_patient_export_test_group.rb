@@ -11,7 +11,7 @@ module BulkDataTestKit
       
       description %(
         The Bulk Data Access API Tests evaluate the ability of a system (Bulk Data Server) 
-        to support required Bulk Data $export operation.                  
+        to support required Bulk Data Patient $export operation.                  
       )
       input_order :bearer_token,
                   :lines_to_validate,

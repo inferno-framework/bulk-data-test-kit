@@ -1,4 +1,4 @@
-require_relative '../export_kick_off_performer'
+require_relative '../../export_kick_off_performer'
 
 module BulkDataTestKit
   module BulkDataV101

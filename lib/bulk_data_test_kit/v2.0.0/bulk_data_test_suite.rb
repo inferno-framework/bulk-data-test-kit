@@ -1,11 +1,7 @@
 require 'smart_app_launch/smart_stu1_suite'
 require 'smart_app_launch/smart_stu2_suite'
-
 require_relative '../version'
-require_relative 'bulk_data_group_export_group'
-require_relative 'bulk_data_group_export_cancel'
-require_relative 'bulk_data_group_export_parameters'
-require_relative '../bulk_data_group_export_validation'
+require_relative 'bulk_data_group_export_test_group'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -81,16 +77,10 @@ module BulkDataTestKit
         Location, Organization, and Practitioner resources as they are
         referenced as must support elements in required resources.
 
-        To get started, please first register the Inferno client as a SMART App
-        with the following information:
-
-        * SMART Launch URI: `#{SMARTAppLaunch::AppLaunchTest.config.options[:launch_uri]}`
-        * OAuth Redirect URI: `#{SMARTAppLaunch::AppRedirectTest.config.options[:redirect_uri]}`
-
-        For the multi-patient API, register Inferno with the following JWK Set
+        To get started, please first register Inferno with the following JWK Set
         Url:
 
-        * `#{Inferno::Application[:base_url]}/custom/bulk_data_v200/.well-known/jwks.json`
+        * `#{Inferno::Application[:base_url]}/custom/g10_certification/.well-known/jwks.json`
 
         Systems must pass all tests in order to qualify for ONC certification.
       )
@@ -103,26 +93,22 @@ module BulkDataTestKit
 
         Register Inferno with the following JWK Set Url:
 
-        * `#{Inferno::Application[:base_url]}/custom/bulk_data_v200/.well-known/jwks.json`
+        * `#{Inferno::Application[:base_url]}/custom/bulk_data_v101/.well-known/jwks.json`
       )
-      
-      group do
-        title 'Bulk Data API Tests'
-        description %(
-          The Bulk Data Access API Tests evaluate the ability of a system (Bulk Data Server) 
-          to support required Bulk Data $export operation.                  
-        )
-        input_order :bulk_server_url,
-                    :bearer_token,
-                    :group_id,
-                    :lines_to_validate,
-                    :bulk_timeout
 
-        group from: :bulk_data_group_export_group_stu2
-        group from: :bulk_data_group_export_validation
-        group from: :bulk_data_export_cancel_stu2
-        group from: :bulk_data_export_parameters
-      end    
+      input :bulk_server_url,
+        title: 'Bulk Data FHIR URL',
+        description: 'The URL of the Bulk FHIR server.'
+
+      fhir_client :bulk_server do
+        url :bulk_server_url
+      end
+
+      http_client :bulk_server do
+        url :bulk_server_url
+      end
+
+      group from: :bulk_data_group_export_v200
     end
   end
 end

@@ -1,4 +1,4 @@
-require_relative '../../lib/bulk_data_test_kit/v2.0.0/bulk_data_group_export_cancel'
+require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_export_cancel'
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportCancel do
   let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_export_cancel_stu2') }

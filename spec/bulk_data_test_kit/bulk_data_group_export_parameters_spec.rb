@@ -1,4 +1,4 @@
-require_relative '../../lib/bulk_data_test_kit/v2.0.0/bulk_data_group_export_parameters'
+require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_export_parameters'
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_export_parameters') }

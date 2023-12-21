@@ -9,6 +9,7 @@ module BulkDataTestKit
     class BulkDataPatientTestGroup < Inferno::TestGroup
       title 'Bulk Data Patient API Tests'
       id :bulk_data_patient_export_v200
+      run_as_group
       
       description %(
         The Bulk Data Access API Tests evaluate the ability of a system (Bulk Data Server) 

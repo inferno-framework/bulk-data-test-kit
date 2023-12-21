@@ -24,8 +24,20 @@ module BulkDataTestKit
         }
       ]
 
+      VALIDATION_MESSAGE_FILTERS = [
+        /Observation\.effective\.ofType\(Period\): .*vs-1:/ # Invalid invariant in FHIR v4.0.1
+      ].freeze
+
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
+
       validator do
         url ENV.fetch('BULK_DATA_VALIDATOR_URL', 'http://validator_service:4567')
+
+        message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
+
+        exclude_message do |message|
+          message_filters.any? { |filter| filter.match? message.message }
+        end
       end
 
       def self.jwks_json

@@ -1,7 +1,7 @@
 require 'smart_app_launch/smart_stu1_suite'
 require 'smart_app_launch/smart_stu2_suite'
 require_relative '../version'
-require_relative 'bulk_data_group_export_group'
+require_relative 'bulk_data_group_export_test_group'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -23,6 +23,22 @@ module BulkDataTestKit
           url: 'https://github.com/onc-healthit/bulk_data_test_kit/releases'
         }
       ]
+
+      VALIDATION_MESSAGE_FILTERS = [
+        /Observation\.effective\.ofType\(Period\): .*vs-1:/ # Invalid invariant in FHIR v4.0.1
+      ].freeze
+
+      VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
+
+      validator do
+        url ENV.fetch('BULK_DATA_VALIDATOR_URL', 'http://validator_service:4567')
+
+        message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
+
+        exclude_message do |message|
+          message_filters.any? { |filter| filter.match? message.message }
+        end
+      end
 
       def self.jwks_json
         bulk_data_jwks = JSON.parse(File.read(
@@ -73,13 +89,7 @@ module BulkDataTestKit
         Location, Organization, and Practitioner resources as they are
         referenced as must support elements in required resources.
 
-        To get started, please first register the Inferno client as a SMART App
-        with the following information:
-
-        * SMART Launch URI: `#{SMARTAppLaunch::AppLaunchTest.config.options[:launch_uri]}`
-        * OAuth Redirect URI: `#{SMARTAppLaunch::AppRedirectTest.config.options[:redirect_uri]}`
-
-        For the multi-patient API, register Inferno with the following JWK Set
+        To get started, please first register Inferno with the following JWK Set
         Url:
 
         * `#{Inferno::Application[:base_url]}/custom/g10_certification/.well-known/jwks.json`
@@ -98,19 +108,19 @@ module BulkDataTestKit
         * `#{Inferno::Application[:base_url]}/custom/bulk_data_v101/.well-known/jwks.json`
       )
 
-      group do
-        title 'Bulk Data API Tests'
-        description %(
-          The Bulk Data Access API Tests evaluate the ability of a system (Bulk Data Server) 
-          to support required Bulk Data $export operation.                  
-        )
-        input_order :bulk_server_url,
-                    :bearer_token,
-                    :group_id,
-                    :bulk_timeout
+      input :bulk_server_url,
+        title: 'Bulk Data FHIR URL',
+        description: 'The URL of the Bulk FHIR server.'
 
-        group from: :bulk_data_group_export_group
+      fhir_client :bulk_server do
+        url :bulk_server_url
       end
+
+      http_client :bulk_server do
+        url :bulk_server_url
+      end
+
+      group from: :bulk_data_group_export_v101
     end
   end
 end

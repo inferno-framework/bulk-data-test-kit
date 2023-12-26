@@ -18,13 +18,6 @@
       "value": "https://inferno.healthit.gov/reference-server/r4"
     },
     {
-      "name": "bearer_token",
-      "type": "text",
-      "title": "Bulk Data Authorization Bearer Token",
-      "description": "The authorization bearer token for the Bulk FHIR server.",
-      "value": "2c50797a-4b40-4b14-acd4-1ddbea42a604"
-    },
-    {
       "name": "group_id",
       "type": "text",
       "title": "Group ID",
@@ -37,6 +30,14 @@
       "title": "Export Times Out after (1-600)",
       "description": "While testing, Inferno waits for the server to complete the exporting task.\n          If the calculated totalTime is greater than the timeout value specified here,\n          Inferno bulk client stops testing. Please enter an integer for the maximum wait time in seconds.\n          If timeout is less than 1, Inferno uses default value 180.\n          If the timeout is greater than 600 (10 minutes), Inferno uses the maximum value 600.",
       "value": 180
+    },
+    {
+      "name": "lines_to_validate",
+      "type": "text",
+      "title": "Limit validation to a maximum resource count",
+      "description": "To validate all, leave blank.",
+      "optional": true,
+      "value": null
     }
   ]
 }

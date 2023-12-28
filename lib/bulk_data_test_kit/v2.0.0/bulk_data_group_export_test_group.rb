@@ -23,8 +23,8 @@ module BulkDataTestKit
 
       group from: :bulk_data_group_export_group_stu2
       group from: :bulk_data_group_export_validation
-      group from: :bulk_data_export_cancel_stu2
-      group from: :bulk_data_export_parameters
+      group from: :bulk_data_group_export_cancel_group_stu2
+      group from: :bulk_data_group_export_parameters_group
     end
   end
 end

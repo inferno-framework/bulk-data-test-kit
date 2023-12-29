@@ -86,6 +86,8 @@ module BulkDataTestKit
           skip "Server response at line \"#{line_count}\" is not a processable FHIR resource."
         end
 
+        assert !resource.nil?, "Resource at line \"#{line_count}\" could not be converted to a #{@resource_type} FHIR resource"
+        
         if resource.resourceType != @resource_type
           assert false, "Resource type \"#{resource.resourceType}\" at line \"#{line_count}\" does not match type " \
                         "defined in output \"#{@resource_type}\""

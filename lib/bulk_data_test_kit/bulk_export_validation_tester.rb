@@ -21,14 +21,6 @@ module BulkDataTestKit
       @resource_type ||= ""
     end
 
-    def invalid_resource_count_all
-      @invalid_resource_count_all ||= 0
-    end
-
-    def invalid_resource_count
-      @invalid_resource_count ||= 0
-    end
-
     def validation_errors
       @validation_errors ||= []
     end
@@ -108,7 +100,7 @@ module BulkDataTestKit
             @invalid_resource_count_all += 1
             @invalid_resource_count += 1
           else
-            @invalid_resource_count_all.nil? ? @invalid_resource_count_all = 1 : @invalid_resource_count_all += 1
+            @invalid_resource_count_all.zero? ? @invalid_resource_count_all = 1 : @invalid_resource_count_all += 1
             
             @invalid_resource_count = 1
             first_error[:line_number] = line_count
@@ -163,7 +155,8 @@ module BulkDataTestKit
 
       resource_types = full_file_list.map{ |file| file["type"]}.uniq
       all_resource_count = 0
-
+      @invalid_resource_count_all = 0
+      
       resource_types.each do |type|
         @resource_type = type
         @first_error = {}

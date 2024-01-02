@@ -21,6 +21,14 @@ module BulkDataTestKit
       @resource_type ||= ""
     end
 
+    def invalid_resource_count_all
+      @invalid_resource_count_all ||= 0
+    end
+
+    def invalid_resource_count
+      @invalid_resource_count ||= 0
+    end
+
     def validation_errors
       @validation_errors ||= []
     end

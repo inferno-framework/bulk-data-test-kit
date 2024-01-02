@@ -156,6 +156,7 @@ module BulkDataTestKit
       resource_types = full_file_list.map{ |file| file["type"]}.uniq
       all_resource_count = 0
       @invalid_resource_count_all = 0
+      @validation_errors = []
       
       resource_types.each do |type|
         @resource_type = type

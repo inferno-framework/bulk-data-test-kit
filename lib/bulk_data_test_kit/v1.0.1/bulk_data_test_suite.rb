@@ -2,6 +2,7 @@ require 'smart_app_launch/smart_stu1_suite'
 require 'smart_app_launch/smart_stu2_suite'
 require_relative '../version'
 require_relative 'bulk_data_group_export_test_group'
+require_relative 'bulk_data_patient_export_test_group'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -75,14 +76,14 @@ module BulkDataTestKit
       )
 
       description %(
-        The Bulk Data Access Test Kit is a testing tool that will demonstrate the ability to export clinical data for multiple patients in
-        a group using [FHIR Bulk Data Access
+        The Bulk Data Access Test Kit is a testing tool that will demonstrate the ability to export clinical data for multiple patients. This test kit is split into
+        two different types of bulk patient export: the export of patients in a specified group and the export of all patients, using [FHIR Bulk Data Access
         IG](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/). This test kit uses [Backend Services
         Authorization](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html)
         to obtain an access token from the server. After authorization, a group
-        level bulk data export request is initialized. Finally, the tests read
-        exported NDJSON files from the server and validate the resources in
-        each file. To run these tests successfully, the selected group export is
+        level bulk data export request and a patient level bulk data export request (to request all patients) 
+        are initialized. Finally, the tests readexported NDJSON files from the server and validate the resources in
+        each file. To run these tests successfully, the selected group or patient export is
         required to have every type of resource mapped to [USCDI data
         elements](https://www.healthit.gov/isa/us-core-data-interoperability-uscdi).
         Additionally, it is expected the server will provide Encounter,
@@ -100,7 +101,7 @@ module BulkDataTestKit
       input_instructions %(
         Register Inferno as a bulk data client with the following information, and
         enter the client id and client registration in the appropriate fields.
-        This set of tests only checks the Group export. Enter the group export
+        For the Group export tests, please enter the group export
         information in the appropriate box.
 
         Register Inferno with the following JWK Set Url:
@@ -121,6 +122,7 @@ module BulkDataTestKit
       end
 
       group from: :bulk_data_group_export_v101
+      group from: :bulk_data_patient_export_v101
     end
   end
 end

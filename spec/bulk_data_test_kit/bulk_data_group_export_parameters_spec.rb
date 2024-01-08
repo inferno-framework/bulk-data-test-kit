@@ -1,7 +1,7 @@
-require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_export_parameters'
+require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_export_parameters_group'
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
-  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_export_parameters') }
+  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_parameters_group') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v200') }
   let(:export_url) { "#{bulk_server_url}/Group/#{group_id}/$export" }
@@ -32,7 +32,17 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   end
 
   describe 'Bulk Data Server supports "_outputFormat" query parameter test' do
-    let(:runnable) { group.tests.find { |test| test.id.to_s.end_with? 'output_format_in_export_response' } }
+    let(:test_class) do
+      Class.new(BulkDataTestKit::BulkDataV200::BulkDataGroupOutputFormatParamTest) do
+        
+        http_client :bulk_server do
+          url :bulk_server_url
+        end
+
+        input :bulk_server_url, :bearer_token, :group_id
+      end
+    end
+    
     let(:long_format_req) do
       stub_request(:get, "#{export_url}?_outputFormat=application%2Ffhir%2Bndjson")
         .to_return(status: 202, headers: { 'Content-Location' => polling_url })
@@ -54,7 +64,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
       stub_request(:get, "#{export_url}?_outputFormat=application%2Ffhir%2Bndjson")
         .to_return(status: 400)
 
-      result = run(runnable, input)
+      result = run(test_class, input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 202, but received 400')
@@ -65,7 +75,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
         .to_return(status: 400)
 
       long_format_req
-      result = run(runnable, input)
+      result = run(test_class, input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 202, but received 400')
@@ -78,7 +88,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
       long_format_req
       delete_export_req
 
-      result = run(runnable, input)
+      result = run(test_class, input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 202, but received 400')
@@ -93,7 +103,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
       medium_format_req
       delete_export_req
 
-      result = run(runnable, input)
+      result = run(test_class, input)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 202, but received 400')
@@ -106,7 +116,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
       short_format_req
       delete_export_req
 
-      result = run(runnable, input)
+      result = run(test_class, input)
 
       expect(result.result).to eq('pass')
       expect(delete_export_req).to have_been_made.at_least_times(3)
@@ -114,10 +124,19 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   end
 
   describe 'Bulk Data Server supports "_since" query parameter test' do
-    let(:runnable) { group.tests.find { |test| test.id.to_s.end_with? 'since_in_export_response' } }
+    let(:test_class) do
+      Class.new(BulkDataTestKit::BulkDataV200::BulkDataGroupSinceParamTest) do
+        
+        http_client :bulk_server do
+          url :bulk_server_url
+        end
+
+        input :bulk_server_url, :bearer_token, :group_id
+      end
+    end
 
     it 'fails if _since is not a valid FHIR instant' do
-      result = run(runnable, input.merge(since_timestamp: 'abc'))
+      result = run(test_class, input.merge(since_timestamp: 'abc'))
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to include('is not a valid [FHIR instant]')
@@ -133,7 +152,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
         stub_request(:delete, polling_url)
           .to_return(status: 202)
 
-      result = run(runnable, input.merge(since_timestamp: timestamp))
+      result = run(test_class, input.merge(since_timestamp: timestamp))
 
       expect(result.result).to eq('pass')
       expect(kickoff_request).to have_been_made.once

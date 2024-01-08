@@ -1,5 +1,5 @@
 require_relative '../../v1.0.1/group/bulk_data_group_export_group'
-require_relative '../../export_kick_off_performer'
+require_relative '../../export_operation_tests.rb'
 
 module BulkDataTestKit
   module BulkDataV200

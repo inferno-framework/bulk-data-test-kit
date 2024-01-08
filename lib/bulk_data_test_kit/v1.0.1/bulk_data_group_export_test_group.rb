@@ -1,6 +1,6 @@
 require_relative 'group/bulk_data_group_export_group'
-require_relative 'group/bulk_data_group_export_cancel'
-require_relative '../bulk_data_group_export_validation'
+require_relative 'group/bulk_data_group_export_cancel_group'
+require_relative 'group/bulk_data_group_export_validation_group'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -21,7 +21,7 @@ module BulkDataTestKit
 
       group from: :bulk_data_group_export_group
       group from: :bulk_data_group_export_validation
-      group from: :bulk_data_export_cancel_stu1
+      group from: :bulk_data_group_export_cancel_group
     end
   end
 end

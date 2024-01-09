@@ -3,6 +3,7 @@ require 'smart_app_launch/smart_stu2_suite'
 require_relative '../version'
 require_relative 'bulk_data_group_export_test_group'
 require_relative 'bulk_data_patient_export_test_group'
+require_relative 'bulk_data_system_export_test_group'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -146,6 +147,7 @@ module BulkDataTestKit
 
       group from: :bulk_data_group_export_v101
       group from: :bulk_data_patient_export_v101
+      group from: :bulk_data_system_export_v101
     end
   end
 end

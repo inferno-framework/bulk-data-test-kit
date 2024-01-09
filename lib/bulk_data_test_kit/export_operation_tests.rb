@@ -31,8 +31,12 @@ module BulkDataTestKit
       group_resource_capabilities = nil
 
       capability_statement&.rest&.each do |rest|
-        group_resource_capabilities = rest.resource&.find do |resource|
-          resource.type == resource_type
+        if resource_type == 'system'
+          group_resource_capabilities = rest
+        else
+          group_resource_capabilities = rest.resource&.find do |resource|
+            resource.type == resource_type
+          end
         end
       end
 
@@ -142,6 +146,9 @@ module BulkDataTestKit
         assert_valid_json(export_status_response)
         status_output = JSON.parse(export_status_response)['output']
         assert status_output, 'Bulk Data Server status response does not contain output'
+
+        skip_if status_output.empty?, 'Bulk Data Server status response does not contain any data in the output'
+
       begin 
         status_output_json = status_output.to_json
         bulk_download_url = status_output[0]['url']

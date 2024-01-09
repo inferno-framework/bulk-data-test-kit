@@ -10,10 +10,9 @@ module BulkDataTestKit
       title 'All resources returned are valid FHIR resources'
       description <<~DESCRIPTION
         This test verifies that the resources returned from bulk data export
-        conform to the US Core Patient profile. This includes checking for missing data
+        conform to the base FHIR standard. This includes checking for missing data
         elements and value set verification.
       DESCRIPTION
-      # link 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'
 
       input :status_output
       input :requires_access_token

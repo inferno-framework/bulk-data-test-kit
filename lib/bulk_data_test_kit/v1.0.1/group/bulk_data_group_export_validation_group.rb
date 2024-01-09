@@ -6,9 +6,9 @@ module BulkDataTestKit
   module BulkDataV101
     class BulkDataGroupExportValidation < Inferno::TestGroup
       title 'Group Compartment Export Validation Tests'
-      short_description 'Verify that the data from Group export conforms to the US Core Implementation Guide.'
+      short_description 'Verify that the data from Group export conforms to the base FHIR standard.'
       description <<~DESCRIPTION
-        Verify that Group compartment export from the Bulk Data server follow US Core Implementation Guide
+        Verify that Group compartment export from the Bulk Data server follow the base FHIR standard
       DESCRIPTION
 
       id :bulk_data_group_export_validation

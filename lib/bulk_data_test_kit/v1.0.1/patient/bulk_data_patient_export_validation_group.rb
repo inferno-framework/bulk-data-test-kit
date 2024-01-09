@@ -6,9 +6,9 @@ module BulkDataTestKit
   module BulkDataV101
     class BulkDataPatientExportValidation < Inferno::TestGroup
       title 'Patient Export Validation Tests'
-      short_description 'Verify that the data from the export of all Patients conforms to the US Core Implementation Guide.'
+      short_description 'Verify that the data from the export of all Patients conforms to the base FHIR standard.'
       description <<~DESCRIPTION
-        Verify that All Patient export from the Bulk Data server follow US Core Implementation Guide
+        Verify that All Patient export from the Bulk Data server follow the base FHIR standard
       DESCRIPTION
 
       id :bulk_data_patient_export_validation

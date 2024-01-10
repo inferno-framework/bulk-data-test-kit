@@ -1,6 +1,6 @@
 require_relative '../../export_kick_off_performer'
-require_relative 'bulk_data_group_outputFormat_param_test.rb'
-require_relative 'bulk_data_group_since_param_test.rb'
+require_relative '../bulk_data_outputFormat_param_test.rb'
+require_relative '../bulk_data_since_param_test.rb'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -21,8 +21,18 @@ module BulkDataTestKit
             title: 'Group ID',
             description: 'The Group ID associated with the group of patients to be exported.'
 
-      test from: :output_format_in_export_response
-      test from: :since_in_export_response
+      test from: :output_format_in_export_response,
+        id: :output_format_in_group_export_response,
+        config: {
+          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+        }
+      
+      test from: :since_in_export_response,
+        id: :since_in_group_export_response,
+        config: {
+          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+        }
+
     end
   end
 end

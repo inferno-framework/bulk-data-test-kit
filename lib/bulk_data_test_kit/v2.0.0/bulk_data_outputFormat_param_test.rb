@@ -1,14 +1,14 @@
-require_relative '../../export_parameters_tests'
+require_relative '../export_parameters_tests'
 
 module BulkDataTestKit
   module BulkDataV200
-    class BulkDataGroupOutputFormatParamTest < Inferno::Test
+    class BulkDataOutputFormatParamTest < Inferno::Test
       include BulkDataTestKit::BulkDataExportParametersTests
       include BulkDataTestKit::ExportKickOffPerformer
 
       id :output_format_in_export_response
        
-      title 'Bulk Data Server supports "_outputFormat" query parameter for Group export'
+      title 'Bulk Data Server supports "_outputFormat" query parameter for bulk data export'
       description <<~DESCRIPTION
         [_outputFormat](http://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters):
         The format for the requested Bulk Data files to be
@@ -21,8 +21,8 @@ module BulkDataTestKit
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
-          resource_type: 'Group',
-          bulk_export_url: 'Group/[group_id]/$export'
+          resource_type: config.options[:resource_type],
+          bulk_export_url: config.options[:bulk_export_url]
         )
       end
 

@@ -1,14 +1,14 @@
-require_relative '../../export_parameters_tests'
+require_relative '../export_parameters_tests'
 
 module BulkDataTestKit
   module BulkDataV200
-    class BulkDataPatientSinceParamTest < Inferno::Test
+    class BulkDataSinceParamTest < Inferno::Test
       include BulkDataTestKit::BulkDataExportParametersTests
       include BulkDataTestKit::ExportKickOffPerformer
 
       id :since_in_export_response
 
-      title 'Bulk Data Server supports "_since" query parameter for the export of all Patient resources'
+      title 'Bulk Data Server supports "_since" query parameter for bulk data export'
       description <<~DESCRIPTION
         This test verifies that the server accepts an export request with the
         `[_since](http://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters)`
@@ -33,8 +33,8 @@ module BulkDataTestKit
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
-          resource_type: 'Patient',
-          bulk_export_url: 'Patient/$export'
+          resource_type: config.options[:resource_type],
+          bulk_export_url: config.options[:bulk_export_url]
         )
       end
 

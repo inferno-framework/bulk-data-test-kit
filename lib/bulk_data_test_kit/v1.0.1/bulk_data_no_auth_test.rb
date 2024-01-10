@@ -1,12 +1,12 @@
-require_relative '../../export_operation_tests.rb'
+require_relative '../export_operation_tests.rb'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataGroupExportNoAuthRejectTest < Inferno::Test
+    class BulkDataExportNoAuthRejectTest < Inferno::Test
       include BulkDataTestKit::BulkDataExportOperationTests
       include BulkDataTestKit::ExportKickOffPerformer
 
-      id :bulk_data_group_no_auth_reject
+      id :bulk_data_no_auth_reject
 
       title 'Bulk Data Server rejects $export request without authorization'
       description <<~DESCRIPTION
@@ -21,8 +21,8 @@ module BulkDataTestKit
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
-          resource_type: 'Group',
-          bulk_export_url: 'Group/[group_id]/$export'
+          resource_type: config.options[:resource_type],
+          bulk_export_url: config.options[:bulk_export_url]
         )
       end
 

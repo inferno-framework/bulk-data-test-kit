@@ -1,11 +1,11 @@
-require_relative '../../bulk_export_validation_tester'
+require_relative '../bulk_export_validation_tester'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataPatientNDJSONDownloadTest < Inferno::Test
+    class BulkDataNDJSONDownloadTest < Inferno::Test
       include BulkDataTestKit::BulkExportValidationTester
 
-      id :bulk_data_patient_ndjson_download
+      id :bulk_data_ndjson_download
 
       title 'NDJSON download requires access token if requireAccessToken is true'
       description <<~DESCRIPTION
@@ -19,10 +19,11 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#file-request'
 
-      input :patient_bulk_download_url
+      input :bulk_download_url
+      input :requires_access_token
 
       run do
-        ndjson_download_requiresAccessToken_check(bulk_data_download_url: patient_bulk_download_url, bulk_requires_access_token: patient_requires_access_token)
+        ndjson_download_requiresAccessToken_check(bulk_data_download_url: bulk_download_url, bulk_requires_access_token: requires_access_token)
       end
     end
   end

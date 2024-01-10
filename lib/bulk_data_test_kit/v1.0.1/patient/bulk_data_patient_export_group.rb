@@ -1,9 +1,9 @@
 require 'tls_test_kit'
-require_relative 'bulk_data_patient_export_operation_support_test.rb'
-require_relative 'bulk_data_patient_no_auth_test.rb'
-require_relative 'bulk_data_patient_export_kick_off_test.rb'
-require_relative 'bulk_data_patient_status_check_test.rb'
-require_relative 'bulk_data_patient_output_check_test.rb'
+require_relative '../bulk_data_export_operation_support_test.rb'
+require_relative '../bulk_data_no_auth_test.rb'
+require_relative '../bulk_data_export_kick_off_test.rb'
+require_relative '../bulk_data_status_check_test.rb'
+require_relative '../bulk_data_output_check_test.rb'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -50,11 +50,73 @@ module BulkDataTestKit
         )
       end
 
-      test from: :bulk_data_patient_export_operation_support
-      test from: :bulk_data_patient_no_auth_reject
-      test from: :bulk_data_patient_kick_off
-      test from: :bulk_data_patient_status_check
-      test from: :bulk_data_patient_output_check
+      test from: :bulk_data_export_operation_support do
+        title 'Bulk Data Server declares support for Patient export operation in CapabilityStatement'
+        description <<~DESCRIPTION
+          This test verifies that the Bulk Data Server declares support for
+          `Patient/$export` operation in its server CapabilityStatement.
+
+          Given flexibility in the FHIR specification for declaring constrained
+          OperationDefinitions, this test only verifies that the server declares
+          any operation on the Patient resource.  It does not verify that it
+          declares the standard Patient export OperationDefinition provided in the
+          Bulk Data specification, nor does it attempt to resolve any non-standard
+          OperationDefinitions to verify if it is a constrained version of the
+          standard OperationDefintion.
+
+          This test will provide a warning if no operations are declared at
+          `Patient/$export`, via the
+          `CapabilityStatement.rest.resource.operation.name` element.  It will
+          also provide an informational message if an operation on the Patient
+          resource exists, but does not point to the standard OperationDefinition
+          canonical URL:
+          http://hl7.org/fhir/uv/bulkdata/OperationDefinition/patient-export
+
+          Additionally, this test provides a warning if the bulk data server does
+          not include the following URL in its `CapabilityStatement.instantiates`
+          element: http://hl7.org/fhir/uv/bulkdata/CapabilityStatement/bulk-data
+        DESCRIPTION
+        id :bulk_data_patient_export_operation_support
+        
+        config(
+          options: { resource_type: 'Patient', export_operation_name: 'patient-export' }
+        )
+      end
+
+      test from: :bulk_data_no_auth_reject,
+        id: :bulk_data_patient_no_auth_reject,
+        config: {
+          options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
+        }
+        
+      test from: :bulk_data_kick_off,
+        id: :bulk_data_patient_kick_off,
+        config: {
+          outputs: { polling_url: { name: :patient_polling_url } },
+          options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
+        }
+
+      test from: :bulk_data_status_check,
+        id: :bulk_data_patient_status_check,
+        config: {
+          inputs: { polling_url: { name: :patient_polling_url } },
+          outputs: { 
+            status_response: { name: :patient_status_response },
+            requires_access_token: { name: :patient_requires_access_token }
+          },
+          options: { resource_type: 'Patient' }
+        }
+
+      test from: :bulk_data_output_check,
+        id: :bulk_data_patient_output_check,
+        config: {
+          inputs: { status_response: { name: :patient_status_response } },
+          outputs: { 
+            status_output: { name: :patient_status_output },
+            bulk_download_url: { name: :patient_bulk_download_url }
+          },
+          options: { resource_type: 'Patient' }
+        }
     end
   end
 end

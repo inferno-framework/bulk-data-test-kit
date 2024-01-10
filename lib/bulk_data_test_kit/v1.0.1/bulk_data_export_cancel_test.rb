@@ -1,12 +1,12 @@
-require_relative '../../export_cancel_tests.rb'
+require_relative '../export_cancel_tests.rb'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataGroupExportCancelTest < Inferno::Test
+    class BulkDataExportCancelTest < Inferno::Test
       include BulkDataTestKit::BulkDataExportCancelTests
       include BulkDataTestKit::ExportKickOffPerformer
 
-      id :bulk_data_group_export_cancel
+      id :bulk_data_export_cancel
 
       title 'Bulk Data Server returns "202 Accepted" for delete request'
       description <<~DESCRIPTION
@@ -19,8 +19,8 @@ module BulkDataTestKit
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
-          resource_type: 'Group',
-          bulk_export_url: 'Group/[group_id]/$export'
+          resource_type: config.options[:resource_type],
+          bulk_export_url: config.options[:bulk_export_url]
         )
       end
 

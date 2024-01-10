@@ -1,11 +1,11 @@
-require_relative '../../export_operation_tests.rb'
+require_relative '../export_operation_tests.rb'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataPatientOutputCheckTest < Inferno::Test
+    class BulkDataOutputCheckTest < Inferno::Test
       include BulkDataTestKit::BulkDataExportOperationTests
 
-      id :bulk_data_patient_output_check
+      id :bulk_data_output_check
 
       title 'Bulk Data Server returns output with type and url for status complete'
       description <<~DESCRIPTION
@@ -23,21 +23,21 @@ module BulkDataTestKit
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---complete-status'
 
 
-      input :patient_status_response
+      input :status_response
 
-      output :patient_status_output, :patient_bulk_download_url
-
+      output :status_output, :bulk_download_url
+      
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
-          resource_type: 'Group'
+          resource_type: config.options[:resource_type]
         )
       end
 
       run do
-        status_output, bulk_download_url = check_bulk_data_output(patient_status_response)
-
-        output patient_status_output: status_output,
-        patient_bulk_download_url: bulk_download_url
+        status_output, bulk_download_url = check_bulk_data_output(status_response)
+        
+        output status_output: status_output,
+            bulk_download_url: bulk_download_url
       end
     end
   end

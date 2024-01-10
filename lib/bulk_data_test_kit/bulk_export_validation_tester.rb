@@ -195,8 +195,12 @@ module BulkDataTestKit
     def export_multiple_patients_check
       skip 'No Patient resources processed from bulk data export.' unless patient_ids_seen.present?
 
-      assert patient_ids_seen.length >= BulkExportValidationTester::MIN_RESOURCE_COUNT,
-              'Bulk data export did not have multiple Patient resources.'
+      begin 
+        assert patient_ids_seen.length >= BulkExportValidationTester::MIN_RESOURCE_COUNT,
+                'Bulk data export did not have multiple Patient resources.'
+      ensure
+        scratch[:patient_ids_seen] = []
+      end
     end
   end
 end

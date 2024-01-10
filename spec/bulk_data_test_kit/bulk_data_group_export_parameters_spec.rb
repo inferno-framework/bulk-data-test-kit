@@ -33,13 +33,16 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
 
   describe 'Bulk Data Server supports "_outputFormat" query parameter test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV200::BulkDataGroupOutputFormatParamTest) do
+      Class.new(BulkDataTestKit::BulkDataV200::BulkDataOutputFormatParamTest) do
         
         http_client :bulk_server do
           url :bulk_server_url
         end
 
         input :bulk_server_url, :bearer_token, :group_id
+        config(
+          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+        )
       end
     end
     
@@ -125,13 +128,16 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
 
   describe 'Bulk Data Server supports "_since" query parameter test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV200::BulkDataGroupSinceParamTest) do
+      Class.new(BulkDataTestKit::BulkDataV200::BulkDataSinceParamTest) do
         
         http_client :bulk_server do
           url :bulk_server_url
         end
 
         input :bulk_server_url, :bearer_token, :group_id
+        config(
+          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+        )      
       end
     end
 

@@ -48,7 +48,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     let(:runnable) { group.tests[1] }
 
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupExportOperationSupportTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportOperationSupportTest) do
         
         fhir_client :bulk_server do
           url :bulk_server_url
@@ -59,6 +59,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
         end
 
         input :bulk_server_url, :bearer_token, :group_id
+        config(
+          options: { resource_type: 'Group', export_operation_name: 'group-export' }
+        )
       end
     end
 
@@ -151,7 +154,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
   describe '[Bulk Data Server rejects $export request without authorization] test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupExportNoAuthRejectTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportNoAuthRejectTest) do
         
         fhir_client :bulk_server do
           url :bulk_server_url
@@ -162,6 +165,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
         end
 
         input :bulk_server_url, :bearer_token, :group_id
+        config(
+          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+        )
       end
     end
 
@@ -197,7 +203,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
   describe '[Bulk Data Server returns "202 Accepted" and "Content-location" for $export] test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupKickOffTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataKickOffTest) do
         
         fhir_client :bulk_server do
           url :bulk_server_url
@@ -208,6 +214,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
         end
 
         input :bulk_server_url, :bearer_token, :group_id
+        config(
+          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+        )
       end
     end
 
@@ -265,7 +274,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     end
 
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupStatusCheckTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataStatusCheckTest) do
         
         fhir_client :bulk_server do
           url :bulk_server_url
@@ -276,6 +285,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
         end
 
         input :bulk_server_url, :bearer_token, :group_id, :polling_url, :bulk_timeout
+        config(
+          options: { resource_type: 'Group' }
+        )
       end
     end
 
@@ -360,7 +372,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
   describe '[Bulk Data Server returns output with type and url for status complete] test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupOutputCheckTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataOutputCheckTest) do
         
         fhir_client :bulk_server do
           url :bulk_server_url
@@ -371,6 +383,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
         end
 
         input :bulk_server_url, :bearer_token, :group_id
+        config(
+          options: { resource_type: 'Group'}
+        )
       end
     end
 

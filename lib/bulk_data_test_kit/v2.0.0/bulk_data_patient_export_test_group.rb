@@ -1,7 +1,7 @@
-require_relative 'patient/bulk_data_patient_export_group'
 require_relative 'patient/bulk_data_patient_export_cancel_group'
 require_relative 'patient/bulk_data_patient_export_parameters_group'
-require_relative 'patient/bulk_data_patient_export_validation'
+require_relative '../v1.0.1/patient/bulk_data_patient_export_group'
+require_relative '../v1.0.1/patient/bulk_data_patient_export_validation_group'
 
 
 module BulkDataTestKit
@@ -20,9 +20,18 @@ module BulkDataTestKit
                   :group_id,
                   :lines_to_validate,
                   :bulk_timeout
-      
-      group from: :bulk_data_patient_export_group_stu2
-      group from: :bulk_data_patient_export_validation
+
+      group from: :bulk_data_patient_export_group,
+      title: 'Patient Export Tests STU2',
+      id: :bulk_data_patient_export_group_stu2,
+      config: {
+        options: { require_absolute_urls_in_output: true }
+      }
+
+      group from: :bulk_data_patient_export_validation,
+        title: 'All Patient Export Validation Tests STU2',
+        id: :bulk_data_patient_export_validation_stu2
+
       group from: :bulk_data_patient_export_cancel_group_stu2
       group from: :bulk_data_patient_export_parameters_group
     end

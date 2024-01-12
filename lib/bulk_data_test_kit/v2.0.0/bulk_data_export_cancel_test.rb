@@ -1,8 +1,8 @@
-require_relative '../../export_cancel_tests'
+require_relative '../export_cancel_tests'
 
 module BulkDataTestKit
   module BulkDataV200
-    class BulkDataGroupExportCancelTest < Inferno::Test
+    class BulkDataExportCancelTest < Inferno::Test
       include BulkDataTestKit::BulkDataExportCancelTests
 
       title 'Bulk Data Server returns a 404 and OperationOutcome for polling requests to cancelled exports'
@@ -14,7 +14,7 @@ module BulkDataTestKit
         http://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-delete-request
       DESCRIPTION
 
-      id :bulk_data_group_export_cancel_stu2
+      id :bulk_data_export_cancel_stu2
 
       input :cancelled_polling_url
 

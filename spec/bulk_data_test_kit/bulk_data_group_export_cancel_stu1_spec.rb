@@ -34,13 +34,16 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
     let(:bulk_export_url) { "#{bulk_server_url}/Group/1219/$export" }
 
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportCancelTest) do
         
         http_client :bulk_server do
           url :bulk_server_url
         end
 
         input :bulk_server_url, :bearer_token, :group_id
+        config(
+          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+        )
       end
     end
 

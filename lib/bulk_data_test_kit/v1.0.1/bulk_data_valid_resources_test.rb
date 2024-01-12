@@ -1,11 +1,11 @@
-require_relative '../../bulk_export_validation_tester'
+require_relative '../bulk_export_validation_tester'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataPatientValidResourcesTest < Inferno::Test
+    class BulkDataValidResourcesTest < Inferno::Test
       include BulkDataTestKit::BulkExportValidationTester
 
-      id :bulk_data_patient_valid_resources
+      id :bulk_data_valid_resources
   
       title 'All resources returned are valid FHIR resources'
       description <<~DESCRIPTION
@@ -15,8 +15,11 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'
 
+      input :status_output
+      input :requires_access_token
+
       run do
-        perform_bulk_export_validation(bulk_status_output: patient_status_output, bulk_requires_access_token: patient_requires_access_token)
+        perform_bulk_export_validation(bulk_status_output: status_output, bulk_requires_access_token: requires_access_token)
       end
     end
   end

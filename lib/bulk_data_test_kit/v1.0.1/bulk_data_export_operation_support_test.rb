@@ -1,31 +1,29 @@
-require_relative '../../export_operation_tests.rb'
+require_relative '../export_operation_tests.rb'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataPatientExportOperationSupportTest < Inferno::Test
+    class BulkDataExportOperationSupportTest < Inferno::Test
       include BulkDataTestKit::BulkDataExportOperationTests
 
-      id :bulk_data_patient_export_operation_support
-      title 'Bulk Data Server declares support for Patient export operation in CapabilityStatement'
+      id :bulk_data_export_operation_support
+      title "Bulk Data Server declares support for particular bulk data export operation in CapabilityStatement"
       description <<~DESCRIPTION
         This test verifies that the Bulk Data Server declares support for
-        Patient/$export operation in its server CapabilityStatement.
+        a particular bulk data operation in its server CapabilityStatement.
 
         Given flexibility in the FHIR specification for declaring constrained
         OperationDefinitions, this test only verifies that the server declares
-        any operation on the Patient resource.  It does not verify that it
-        declares the standard patient export OperationDefinition provided in the
+        any operation for the specific resource in the CapabilityStatement.  It does not verify that it
+        declares the standard bulk data export OperationDefinition provided in the
         Bulk Data specification, nor does it attempt to resolve any non-standard
         OperationDefinitions to verify if it is a constrained version of the
         standard OperationDefintion.
 
-        This test will provide a warning if no operations are declared at
-        `Patient/$export`, via the
+        This test will provide a warning if no operations are declared via the
         `CapabilityStatement.rest.resource.operation.name` element.  It will
-        also provide an informational message if an operation on the Patient
+        also provide an informational message if an operation on the particular
         resource exists, but does not point to the standard OperationDefinition
-        canonical URL:
-        http://hl7.org/fhir/uv/bulkdata/OperationDefinition/patient-export
+        canonical URL.
 
         Additionally, this test provides a warning if the bulk data server does
         not include the following URL in its `CapabilityStatement.instantiates`
@@ -34,8 +32,8 @@ module BulkDataTestKit
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
-          resource_type: 'Patient',
-          export_operation_name: 'patient-export'
+          resource_type: config.options[:resource_type],
+          export_operation_name: config.options[:export_operation_name]
         )
       end
 

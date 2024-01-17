@@ -145,6 +145,9 @@ module BulkDataTestKit
         end
       end
 
+      group from: :smart_backend_services do
+        run_as_group
+      end
       group from: :bulk_data_group_export_v101
       group from: :bulk_data_patient_export_v101
       group from: :bulk_data_system_export_v101

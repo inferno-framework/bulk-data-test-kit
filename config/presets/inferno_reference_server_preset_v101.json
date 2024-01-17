@@ -18,6 +18,20 @@
       "value": "https://inferno.healthit.gov/reference-server/r4"
     },
     {
+      "name": "smart_token_url",
+      "type": "text",
+      "title": "Backend Services Token Endpoint",
+      "description": "The OAuth 2.0 Token Endpoint used by the Backend Services specification\n                        to provide bearer tokens.",
+      "value": "https://inferno.healthit.gov/reference-server/oauth/token"
+    },
+    {
+      "name": "backend_services_client_id",
+      "type": "text",
+      "title": "Bulk Data Client ID",
+      "description": "Client ID provided at registration to the Inferno application.",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJlZ2lzdHJhdGlvbi10b2tlbiJ9.eyJqd2tzX3VybCI6Imh0dHA6Ly8xMC4xNS4yNTIuNzMvaW5mZXJuby8ud2VsbC1rbm93bi9qd2tzLmpzb24iLCJhY2Nlc3NUb2tlbnNFeHBpcmVJbiI6MTUsImlhdCI6MTU5NzQxMzE5NX0.q4v4Msc74kN506KTZ0q_minyapJw0gwlT6M_uiL73S4"
+    },
+    {
       "name": "group_id",
       "type": "text",
       "title": "Group ID",

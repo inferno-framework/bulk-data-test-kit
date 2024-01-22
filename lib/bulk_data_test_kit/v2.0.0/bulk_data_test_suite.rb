@@ -1,4 +1,3 @@
-require 'smart_app_launch/smart_stu1_suite'
 require 'smart_app_launch/smart_stu2_suite'
 require_relative '../version'
 require_relative 'bulk_data_group_export_test_group'
@@ -121,6 +120,10 @@ module BulkDataTestKit
         url :bulk_server_url
       end
 
+      group from: :smart_backend_services_authorization do
+        run_as_group
+      end
+
       group do
         id :bulk_data_server_tests_stu2
         title 'Bulk Data Server TLS Tests'
@@ -143,10 +146,7 @@ module BulkDataTestKit
           )
         end
       end
-      
-      group from: :smart_backend_services do
-        run_as_group
-      end
+
       group from: :bulk_data_group_export_v200
       group from: :bulk_data_patient_export_v200
       group from: :bulk_data_system_export_v200

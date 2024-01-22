@@ -45,8 +45,7 @@ module BulkDataTestKit
       def self.jwks_json
         bulk_data_jwks = JSON.parse(File.read(
                                       ENV.fetch('BULK_DATA_JWKS',
-                                                File.join(__dir__, 'bulk_data_test_kit',
-                                                          'bulk_data_jwks.json'))
+                                                File.join(File.expand_path('..', __dir__), 'bulk_data_jwks.json'))
                                     ))
         @jwks_json ||= JSON.pretty_generate(
           { keys: bulk_data_jwks['keys'].select { |key| key['key_ops']&.include?('verify') } }
@@ -94,7 +93,7 @@ module BulkDataTestKit
         To get started, please first register Inferno with the following JWK Set
         Url:
 
-        * `#{Inferno::Application[:base_url]}/custom/g10_certification/.well-known/jwks.json`
+        * `#{Inferno::Application[:base_url]}/custom/bulk_data_v200/.well-known/jwks.json`
 
         Systems must pass all tests in order to qualify for ONC certification.
       )
@@ -107,7 +106,7 @@ module BulkDataTestKit
 
         Register Inferno with the following JWK Set Url:
 
-        * `#{Inferno::Application[:base_url]}/custom/bulk_data_v101/.well-known/jwks.json`
+        * `#{Inferno::Application[:base_url]}/custom/bulk_data_v200/.well-known/jwks.json`
       )
 
       input :bulk_server_url,

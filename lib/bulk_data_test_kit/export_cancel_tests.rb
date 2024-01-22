@@ -11,7 +11,7 @@ module BulkDataTestKit
                    :bulk_export_url
 
     def perform_export_cancel_test
-        url = bulk_export_url
+        url = bulk_export_url.dup
         if resource_type == 'Group'
           url = bulk_export_url.gsub('[group_id]', group_id)
         end      

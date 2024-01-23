@@ -11,13 +11,6 @@
       "value": "https://inferno.healthit.gov/reference-server/r4"
     },
     {
-      "name": "smart_token_url",
-      "type": "text",
-      "title": "Backend Services Token Endpoint",
-      "description": "The OAuth 2.0 Token Endpoint used by the Backend Services specification\n                        to provide bearer tokens.",
-      "value": "https://inferno.healthit.gov/reference-server/oauth/token"
-    },
-    {
       "name": "backend_services_client_id",
       "type": "text",
       "title": "Bulk Data Client ID",

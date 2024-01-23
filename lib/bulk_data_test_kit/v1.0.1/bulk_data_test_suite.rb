@@ -120,8 +120,17 @@ module BulkDataTestKit
         url :bulk_server_url
       end
 
-      group from: :smart_backend_services_authorization do
+      group do
+        title 'SMART Backend Services'
+        id :bulk_data_smart_backend_services_v101
         run_as_group
+  
+        group from: :smart_discovery_stu2,
+        config: {
+          inputs: { url: { name: :bulk_server_url } }
+        }
+        
+        group from: :smart_backend_services_authorization
       end
 
       group do

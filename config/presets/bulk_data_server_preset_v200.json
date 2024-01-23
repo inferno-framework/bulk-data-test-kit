@@ -8,14 +8,14 @@
       "type": "text",
       "title": "Bulk Data FHIR URL",
       "description": "The URL of the Bulk FHIR server.",
-      "value": "https://bulk-data.smarthealthit.org/eyJlcnIiOiIiLCJwYWdlIjoxMDAwMDAsImR1ciI6MTAsInRsdCI6NjAsIm0iOjEsInN0dSI6NCwiZGVsIjoxMH0/fhir"
+      "value": "https://bulk-data.smarthealthit.org/eyJlcnIiOiIiLCJwYWdlIjoxMDAwMDAwLCJkdXIiOjEwLCJ0bHQiOjYwLCJtIjoxLCJzdHUiOjQsImRlbCI6MTB9/fhir"
     },
     {
       "name": "backend_services_client_id",
       "type": "text",
       "title": "Bulk Data Client ID",
       "description": "Client ID provided at registration to the Inferno application.",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJlZ2lzdHJhdGlvbi10b2tlbiJ9.eyJqd2tzX3VybCI6Imh0dHBzOi8vaW5mZXJuby5oZWFsdGhpdC5nb3Yvc3VpdGVzL2N1c3RvbS9nMTBfY2VydGlmaWNhdGlvbi8ud2VsbC1rbm93bi9qd2tzLmpzb24iLCJhY2Nlc3NUb2tlbnNFeHBpcmVJbiI6NjAsImlhdCI6MTcwNTk1NjQzNn0.6OJs0tOLBQakQ8uyCTYUe---W0sybmDgcpJfrTjgb98"
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJlZ2lzdHJhdGlvbi10b2tlbiJ9.eyJqd2tzX3VybCI6Imh0dHBzOi8vaW5mZXJuby5oZWFsdGhpdC5nb3Yvc3VpdGVzL2N1c3RvbS9nMTBfY2VydGlmaWNhdGlvbi8ud2VsbC1rbm93bi9qd2tzLmpzb24iLCJhY2Nlc3NUb2tlbnNFeHBpcmVJbiI6NjAsImlhdCI6MTcwNjA0MjAxNH0.FYukKOl0a68jzLajB_Za-6FkzY5Txr7f-cTCa4hUR1Y"
     },
     {
       "name": "group_id",

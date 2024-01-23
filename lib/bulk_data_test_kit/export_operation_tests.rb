@@ -58,7 +58,7 @@ module BulkDataTestKit
     end
 
     def rejects_without_authorization
-      skip_if bearer_token.blank?, 'Could not verify this functionality when bearer token is not set'
+      skip_if bearer_token.blank?, 'Bearer token is not set and thus not required to connect to server.'
 
       url = bulk_export_url.dup
       if resource_type == 'Group'
@@ -70,13 +70,14 @@ module BulkDataTestKit
     end
 
     def export_kick_off_success
-
+      use_token = !bearer_token.blank?
+      
       url = bulk_export_url.dup
       if resource_type == 'Group'
         url = bulk_export_url.gsub('[group_id]', group_id)
       end
 
-      perform_export_kick_off_request(url: url)
+      perform_export_kick_off_request(use_token: use_token, url: url)
       assert_response_status(202)
 
       polling_url = request.response_header('content-location')&.value

@@ -11,12 +11,13 @@ module BulkDataTestKit
                    :bulk_export_url
 
     def perform_export_cancel_test
+        use_token = !bearer_token.blank?
         url = bulk_export_url.dup
         if resource_type == 'Group'
           url = bulk_export_url.gsub('[group_id]', group_id)
         end      
 
-        perform_export_kick_off_request(url: url)
+        perform_export_kick_off_request(use_token: use_token, url: url)
         assert_response_status(202)
       begin 
         request.response_header('content-location')&.value

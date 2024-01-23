@@ -8,7 +8,7 @@
       "type": "text",
       "title": "Bulk Data FHIR URL",
       "description": "The URL of the Bulk FHIR server.",
-      "value": "https://bulk-data.smarthealthit.org/eyJlcnIiOiIiLCJwYWdlIjoxMDAwMDAwLCJkdXIiOjEwLCJ0bHQiOjYwLCJtIjoxLCJzdHUiOjIsImRlbCI6MTB9/fhir"
+      "value": "https://bulk-data.smarthealthit.org/eyJlcnIiOiIiLCJwYWdlIjoxMDAwMDAwLCJkdXIiOjEwLCJ0bHQiOjYwLCJtIjoxLCJzdHUiOjQsImRlbCI6MTB9/fhir"
     },
     {
       "name": "backend_services_client_id",

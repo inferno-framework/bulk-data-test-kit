@@ -47,12 +47,15 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
       end
     end
 
-    it 'skips when no Bearer Token is given' do
+    it 'passes when no Bearer Token is given' do
+      stub_request(:get, bulk_export_url)
+        .to_return(status: 202, headers: { 'content-location': polling_url })
+      stub_request(:delete, polling_url)
+        .to_return(status: 202)
+
       base_input[:bearer_token] = nil
       result = run(test_class, base_input)
-
-      expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('Could not verify this functionality when bearer token is not set')
+      expect(result.result).to eq('pass')
     end
 
     it 'fails when unable to kick-off export' do

@@ -4,16 +4,16 @@ require_relative '../bulk_data_valid_resources_test'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataGroupExportValidation < Inferno::TestGroup
-      title 'Group Compartment Export Validation Tests'
-      short_description 'Verify that the data from Group export conforms to the base FHIR standard.'
+    class BulkDataSystemExportValidation < Inferno::TestGroup
+      title 'System Level Export Validation Tests'
+      short_description 'Verify that the data returned from system level export conforms to the base FHIR standard.'
       description <<~DESCRIPTION
-        Verify that Group compartment export from the Bulk Data server follow the base FHIR standard
+        Verify that system level export from the Bulk Data server follow the base FHIR standard
       DESCRIPTION
 
-      id :bulk_data_group_export_validation
+      id :bulk_data_system_export_validation
 
-      input :status_output, :requires_access_token, :bearer_token, :bulk_download_url
+      input :system_status_output, :system_requires_access_token, :bearer_token, :system_bulk_download_url
       input :lines_to_validate,
             title: 'Limit validation to a maximum resource count',
             description: 'To validate all, leave blank.',
@@ -31,20 +31,31 @@ module BulkDataTestKit
         id :bulk_file_server_tls_version
 
         config(
-          inputs: { url: { name: :bulk_download_url } },
+          inputs: { url: { name: :system_bulk_download_url } },
           options: { minimum_allowed_version: OpenSSL::SSL::TLS1_2_VERSION }
         )
       end
 
       test from: :bulk_data_ndjson_download,
-        id: :bulk_data_group_ndjson_download
+        id: :bulk_data_system_ndjson_download,
+        config: {
+          inputs: {
+            bulk_download_url: { name: :system_bulk_download_url },
+            requires_access_token: { name: :system_requires_access_token }
+          }
+        }
       
       test from: :bulk_data_valid_resources,
-        id: :bulk_data_group_valid_resources
+        id: :bulk_data_system_valid_resources,
+        config: {
+          inputs: {
+            status_output: { name: :system_status_output },
+            requires_access_token: { name: :system_requires_access_token }
+          }
+        }
       
       test from: :bulk_data_multiple_patients,
-        id: :bulk_data_group_multiple_patients
-
+        id: :bulk_data_system_multiple_patients
     end
   end
 end

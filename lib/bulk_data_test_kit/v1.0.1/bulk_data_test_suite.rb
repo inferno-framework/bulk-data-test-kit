@@ -37,9 +37,22 @@ module BulkDataTestKit
 
         message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
 
+        num_messages = 0
+        capped_message = false
+        
         exclude_message do |message|
-          message_filters.any? { |filter| filter.match? message.message }
+          if message.type != 'error' then num_messages+=1 end
+          message_filters.any? { |filter| filter.match? message.message } ||
+          (message.type != 'error' && message.message != 'Only showing the first 50 validation info and warning messages.' && num_messages > 50)
         end
+
+        perform_additional_validation do
+          if num_messages > 50 && !capped_message
+            capped_message = true
+            { type: 'info', message: 'Only showing the first 50 validation info and warning messages.'}
+          end
+        end
+
       end
 
       def self.jwks_json

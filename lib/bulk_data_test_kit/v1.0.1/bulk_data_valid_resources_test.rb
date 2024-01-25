@@ -11,7 +11,8 @@ module BulkDataTestKit
       description <<~DESCRIPTION
         This test verifies that the resources returned from bulk data export
         conform to the base FHIR standard. This includes checking for missing data
-        elements and value set verification.
+        elements and value set verification. This test caps the number of validation info and warning messages that
+        it will display to 50 messages.
       DESCRIPTION
 
       input :status_output

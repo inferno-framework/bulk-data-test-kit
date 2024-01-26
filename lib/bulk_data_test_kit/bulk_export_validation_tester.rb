@@ -143,6 +143,11 @@ module BulkDataTestKit
       skip_if (bulk_requires_access_token == 'true' && bearer_token.blank?),
               'Could not verify this functionality when Bearer Token is required and not provided'
 
+      $num_messages = 0
+      $capped_message = false
+      $num_errors = 0
+      $capped_errors = false
+
       assert_valid_json(bulk_status_output)
       
       full_file_list = JSON.parse(bulk_status_output)

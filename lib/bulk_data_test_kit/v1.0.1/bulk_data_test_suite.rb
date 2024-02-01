@@ -119,7 +119,7 @@ module BulkDataTestKit
       end
 
       group from: :bulk_data_smart_backend_services,
-        id: :bulk_data_group_export_validation_v101
+        id: :bulk_data_smart_backend_services_v101
 
       group from: :bulk_data_export_tests_v101
     end

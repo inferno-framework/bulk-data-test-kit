@@ -17,7 +17,8 @@ module BulkDataTestKit
 
       input :bearer_token,
             title: 'Bulk Data Authorization Bearer Token',
-            description: 'The authorization bearer token for the Bulk FHIR server.'
+            description: 'The authorization bearer token for the Bulk FHIR server. If not required, leave blank.',
+            optional: true
       input :bulk_server_url,
             title: 'Bulk Data FHIR URL',
             description: 'The URL of the Bulk FHIR server.'

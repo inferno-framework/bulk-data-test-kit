@@ -39,7 +39,7 @@ module BulkDataTestKit
       end
 
       run do
-        perform_since_param_test
+        perform_since_param_test(since_timestamp)
       end
     end
   end

@@ -179,7 +179,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       result = run(test_class, bad_token_input)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('Could not verify this functionality when bearer token is not set')
+      expect(result.result_message).to eq('Bearer token is not set and thus not required to connect to server.')
     end
 
     it 'fails if client can $export without authorization' do

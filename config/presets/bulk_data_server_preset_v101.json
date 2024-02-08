@@ -1,28 +1,28 @@
 {
-  "title": "Inferno Reference Server",
+  "title": "Bulk Data Server",
   "id": null,
-  "test_suite_id": "bulk_data_v200",
+  "test_suite_id": "bulk_data_v101",
   "inputs": [
     {
       "name": "bulk_server_url",
       "type": "text",
       "title": "Bulk Data FHIR URL",
       "description": "The URL of the Bulk FHIR server.",
-      "value": "https://inferno.healthit.gov/reference-server/r4"
+      "value": "https://bulk-data.smarthealthit.org/eyJlcnIiOiIiLCJwYWdlIjoxMDAwMDAwLCJkdXIiOjEwLCJ0bHQiOjYwLCJtIjoxLCJzdHUiOjQsImRlbCI6MTB9/fhir"
     },
     {
       "name": "backend_services_client_id",
       "type": "text",
       "title": "Bulk Data Client ID",
       "description": "Client ID provided at registration to the Inferno application.",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJlZ2lzdHJhdGlvbi10b2tlbiJ9.eyJqd2tzX3VybCI6Imh0dHA6Ly8xMC4xNS4yNTIuNzMvaW5mZXJuby8ud2VsbC1rbm93bi9qd2tzLmpzb24iLCJhY2Nlc3NUb2tlbnNFeHBpcmVJbiI6MTUsImlhdCI6MTU5NzQxMzE5NX0.q4v4Msc74kN506KTZ0q_minyapJw0gwlT6M_uiL73S4"
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJlZ2lzdHJhdGlvbi10b2tlbiJ9.eyJqd2tzX3VybCI6Imh0dHBzOi8vaW5mZXJuby5oZWFsdGhpdC5nb3Yvc3VpdGVzL2N1c3RvbS9nMTBfY2VydGlmaWNhdGlvbi8ud2VsbC1rbm93bi9qd2tzLmpzb24iLCJhY2Nlc3NUb2tlbnNFeHBpcmVJbiI6NjAsImlhdCI6MTcwNjA0MjAxNH0.FYukKOl0a68jzLajB_Za-6FkzY5Txr7f-cTCa4hUR1Y"
     },
     {
       "name": "group_id",
       "type": "text",
       "title": "Group ID",
       "description": "The Group ID associated with the group of patients to be exported.",
-      "value": "1a"
+      "value": "1f76e2b7-a222-4765-9097-a71b86e90d07"
     },
     {
       "name": "bulk_timeout",

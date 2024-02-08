@@ -12,7 +12,7 @@ module BulkDataTestKit
 
 
     def perform_outputFormat_param_test
-      url = bulk_export_url
+      url = bulk_export_url.dup
       if resource_type == 'Group'
         url = bulk_export_url.gsub('[group_id]', group_id)
       end
@@ -26,7 +26,7 @@ module BulkDataTestKit
       end
     end
 
-    def perform_since_param_test
+    def perform_since_param_test(since_timestamp_param)
       fhir_instant_regex = /
         ([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)
         -(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])
@@ -34,16 +34,16 @@ module BulkDataTestKit
         ?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))
       /x
 
-      url = bulk_export_url
+      url = bulk_export_url.dup
       if resource_type == 'Group'
         url = bulk_export_url.gsub('[group_id]', group_id)
       end
 
-      assert since_timestamp.match?(fhir_instant_regex),
-            "The provided `_since` timestamp `#{since_timestamp}` is not a valid " \
+      assert since_timestamp_param.match?(fhir_instant_regex),
+            "The provided `_since` timestamp `#{since_timestamp_param}` is not a valid " \
             '[FHIR instant](https://www.hl7.org/fhir/datatypes.html#instant).'
 
-      perform_export_kick_off_request(params: { _since: since_timestamp }, url: url)
+      perform_export_kick_off_request(params: { _since: since_timestamp_param }, url: url)
       assert_response_status(202)
 
       delete_export_kick_off_request

@@ -60,7 +60,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
         input :bulk_server_url, :bearer_token, :group_id
         config(
-          options: { resource_type: 'Group', export_operation_name: 'group-export' }
+          options: { resource_type: 'Group' }
         )
       end
     end

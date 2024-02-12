@@ -8,7 +8,6 @@ module BulkDataTestKit
     def_delegators 'self.class', :properties
     def_delegators 'properties',
                    :resource_type,
-                   :export_operation_name,
                    :bulk_export_url
 
     def check_export_support
@@ -44,16 +43,18 @@ module BulkDataTestKit
             "Server CapabilityStatement did not declare support for any operations on the #{resource_type} resource"
 
       has_export_operation = group_resource_capabilities.operation&.any? do |operation|
-        name_match = (operation.name == export_operation_name)
-        if name_match && !operation.definition&.match(%r{^http://hl7.org/fhir/uv/bulkdata/OperationDefinition/#{export_operation_name}(\|\S+)?$})
-          info("Server CapabilityStatement does not include #{export_operation_name} operation with definition http://hl7.org/fhir/uv/bulkdata/OperationDefinition/#{export_operation_name}")
+        name_match = (operation.name == 'export')
+        operationDefURL = resource_type == 'system' ? 'export' : resource_type.downcase + '-export'
+        
+        if name_match && !operation.definition&.match(%r{^http://hl7.org/fhir/uv/bulkdata/OperationDefinition/#{operationDefURL}(\|\S+)?$})
+          info("Server CapabilityStatement does not include export operation with definition http://hl7.org/fhir/uv/bulkdata/OperationDefinition/#{operationDefURL}")
         end
         name_match
       end
       warning do
         assert has_export_operation,
-              "Server CapabilityStatement did not declare support for an operation named #{export_operation_name} in the #{resource_type} " \
-              "resource (operation.name should be #{export_operation_name})"
+              "Server CapabilityStatement did not declare support for an operation named export in the #{resource_type} " \
+              "resource (operation.name should be export)"
       end
     end
 

@@ -33,7 +33,6 @@ module BulkDataTestKit
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
           resource_type: config.options[:resource_type],
-          export_operation_name: config.options[:export_operation_name]
         )
       end
 

@@ -2,7 +2,6 @@ module BulkDataTestKit
   class BulkDataTestKitProperties
     ATTRIBUTES = [
       :resource_type,
-      :export_operation_name,
       :bulk_export_url
     ].freeze
 

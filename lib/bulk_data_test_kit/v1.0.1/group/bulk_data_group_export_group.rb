@@ -68,7 +68,7 @@ module BulkDataTestKit
         id :bulk_data_group_export_operation_support
 
         config(
-          options: { resource_type: 'Group', export_operation_name: 'group-export' }
+          options: { resource_type: 'Group' }
         )
       end
 

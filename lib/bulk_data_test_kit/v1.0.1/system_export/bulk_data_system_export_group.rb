@@ -63,7 +63,7 @@ module BulkDataTestKit
         id :bulk_data_system_export_operation_support
         
         config(
-          options: { resource_type: 'system', export_operation_name: 'export' }
+          options: { resource_type: 'system' }
         )
       end
 

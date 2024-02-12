@@ -63,7 +63,7 @@ module BulkDataTestKit
         id :bulk_data_patient_export_operation_support
         
         config(
-          options: { resource_type: 'Patient', export_operation_name: 'patient-export' }
+          options: { resource_type: 'Patient' }
         )
       end
 

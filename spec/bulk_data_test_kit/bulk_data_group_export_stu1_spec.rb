@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/bulk_data_test_kit/v1.0.1/group/bulk_data_group_export_group'
 
 RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
@@ -49,7 +51,6 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportOperationSupportTest) do
-        
         fhir_client :bulk_server do
           url :bulk_server_url
         end
@@ -155,7 +156,6 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   describe '[Bulk Data Server rejects $export request without authorization] test' do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportNoAuthRejectTest) do
-        
         fhir_client :bulk_server do
           url :bulk_server_url
         end
@@ -204,7 +204,6 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   describe '[Bulk Data Server returns "202 Accepted" and "Content-location" for $export] test' do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataKickOffTest) do
-        
         fhir_client :bulk_server do
           url :bulk_server_url
         end
@@ -275,7 +274,6 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataStatusCheckTest) do
-        
         fhir_client :bulk_server do
           url :bulk_server_url
         end
@@ -303,9 +301,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
         .with(headers: { 'Authorization' => "Bearer #{bearer_token}" })
         .to_return(status: 202)
 
-      regex = /^#{"Server already used \\d+(\\.\\d+)? seconds processing this request, " \
-        "and next poll is \\d+ seconds after. " \
-        "The total wait time for next poll is more than \\d+ seconds time out setting."}$/
+      regex = /^#{'Server already used \\d+(\\.\\d+)? seconds processing this request, ' \
+        'and next poll is \\d+ seconds after. ' \
+        'The total wait time for next poll is more than \\d+ seconds time out setting.'}$/
 
       allow_any_instance_of(test_class).to receive(:sleep)
       result = run(test_class, input)
@@ -359,10 +357,10 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
     it 'sends content type headers' do
       get_stub = stub_request(:get, polling_url.to_s)
-        .with(headers: {
-                'Authorization' => "Bearer #{bearer_token}",
-                'Accept' => 'application/json'
-              })
+                 .with(headers: {
+                         'Authorization' => "Bearer #{bearer_token}",
+                         'Accept' => 'application/json'
+                       })
 
       run(test_class, input)
 
@@ -373,7 +371,6 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   describe '[Bulk Data Server returns output with type and url for status complete] test' do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataOutputCheckTest) do
-        
         fhir_client :bulk_server do
           url :bulk_server_url
         end
@@ -384,7 +381,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
         input :bulk_server_url, :bearer_token, :group_id
         config(
-          options: { resource_type: 'Group'}
+          options: { resource_type: 'Group' }
         )
       end
     end
@@ -396,7 +393,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     end
 
     it 'fails when response not found' do
-      result = run(test_class, {bulk_server_url: bulk_server_url})
+      result = run(test_class, { bulk_server_url: })
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Bulk Data Server status response not found')

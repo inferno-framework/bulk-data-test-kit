@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../bulk_data_multiple_patients_test'
 require_relative '../bulk_data_ndjson_download_test'
 require_relative '../bulk_data_valid_resources_test'
@@ -37,25 +39,25 @@ module BulkDataTestKit
       end
 
       test from: :bulk_data_ndjson_download,
-        id: :bulk_data_patient_ndjson_download,
-        config: {
-          inputs: {
-            bulk_download_url: { name: :patient_bulk_download_url },
-            requires_access_token: { name: :patient_requires_access_token }
-          }
-        }
-      
+           id: :bulk_data_patient_ndjson_download,
+           config: {
+             inputs: {
+               bulk_download_url: { name: :patient_bulk_download_url },
+               requires_access_token: { name: :patient_requires_access_token }
+             }
+           }
+
       test from: :bulk_data_valid_resources,
-        id: :bulk_data_patient_valid_resources,
-        config: {
-          inputs: {
-            status_output: { name: :patient_status_output },
-            requires_access_token: { name: :patient_requires_access_token }
-          }
-        }
-      
+           id: :bulk_data_patient_valid_resources,
+           config: {
+             inputs: {
+               status_output: { name: :patient_status_output },
+               requires_access_token: { name: :patient_requires_access_token }
+             }
+           }
+
       test from: :bulk_data_multiple_patients,
-        id: :bulk_data_patient_multiple_patients
+           id: :bulk_data_patient_multiple_patients
     end
   end
 end

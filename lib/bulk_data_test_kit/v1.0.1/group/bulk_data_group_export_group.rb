@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'tls_test_kit'
-require_relative '../bulk_data_export_operation_support_test.rb'
-require_relative '../bulk_data_no_auth_test.rb'
-require_relative '../bulk_data_export_kick_off_test.rb'
-require_relative '../bulk_data_status_check_test.rb'
-require_relative '../bulk_data_output_check_test.rb'
+require_relative '../bulk_data_export_operation_support_test'
+require_relative '../bulk_data_no_auth_test'
+require_relative '../bulk_data_export_kick_off_test'
+require_relative '../bulk_data_status_check_test'
+require_relative '../bulk_data_output_check_test'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -11,7 +13,7 @@ module BulkDataTestKit
       title 'Group Compartment Export Tests'
       short_description 'Verify that the system supports Group compartment export.'
       description <<~DESCRIPTION
-        Verify that system level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
+        Verify that group level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
       id :bulk_data_group_export_group
 
@@ -38,7 +40,7 @@ module BulkDataTestKit
       output :requires_access_token, :status_output, :bulk_download_url
 
       run_as_group
-      
+
       test from: :bulk_data_export_operation_support do
         title 'Bulk Data Server declares support for Group export operation in CapabilityStatement'
         description <<~DESCRIPTION
@@ -73,28 +75,28 @@ module BulkDataTestKit
       end
 
       test from: :bulk_data_no_auth_reject,
-        id: :bulk_data_group_no_auth_reject,
-        config: {
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        }
-        
+           id: :bulk_data_group_no_auth_reject,
+           config: {
+             options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+           }
+
       test from: :bulk_data_kick_off,
-        id: :bulk_data_group_kick_off,
-        config: {
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        }
+           id: :bulk_data_group_kick_off,
+           config: {
+             options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+           }
 
       test from: :bulk_data_status_check,
-        id: :bulk_data_group_status_check,
-        config: {
-          options: { resource_type: 'Group' }
-        }
+           id: :bulk_data_group_status_check,
+           config: {
+             options: { resource_type: 'Group' }
+           }
 
       test from: :bulk_data_output_check,
-        id: :bulk_data_group_output_check,
-        config: {
-          options: { resource_type: 'Group' }
-        }
+           id: :bulk_data_group_output_check,
+           config: {
+             options: { resource_type: 'Group' }
+           }
     end
   end
 end

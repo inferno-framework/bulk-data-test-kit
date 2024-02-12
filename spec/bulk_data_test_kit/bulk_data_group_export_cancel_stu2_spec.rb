@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_export_cancel_group'
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportCancelGroup do
@@ -24,7 +26,6 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportCancelGroup do
 
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV200::BulkDataExportCancelTest) do
-        
         http_client :bulk_server do
           url :bulk_server_url
         end

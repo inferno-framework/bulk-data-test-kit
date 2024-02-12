@@ -1,4 +1,6 @@
-require_relative '../export_cancel_tests.rb'
+# frozen_string_literal: true
+
+require_relative '../export_cancel_tests'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -26,10 +28,8 @@ module BulkDataTestKit
 
       run do
         cancelled_polling_url = perform_export_cancel_test
-        output cancelled_polling_url: cancelled_polling_url
+        output cancelled_polling_url:
       end
     end
   end
 end
-
-    

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'bulk_data_group_export_test_group'
 require_relative 'bulk_data_patient_export_test_group'
 require_relative 'bulk_data_system_export_test_group'
@@ -12,7 +14,7 @@ module BulkDataTestKit
         id :bulk_data_server_tests
         title 'Bulk Data Server TLS Tests'
         run_as_group
-        
+
         test from: :tls_version_test do
           title 'Bulk Data Server is secured by transport layer security'
           description <<~DESCRIPTION

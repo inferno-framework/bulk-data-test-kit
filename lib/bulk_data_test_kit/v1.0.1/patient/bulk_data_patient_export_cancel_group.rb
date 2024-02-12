@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../export_kick_off_performer'
 require_relative '../bulk_data_export_cancel_test'
 
@@ -18,14 +20,13 @@ module BulkDataTestKit
             description: 'The URL of the Bulk FHIR server.'
 
       output :patient_cancelled_polling_url
-      
-      test from: :bulk_data_export_cancel,
-        id: :bulk_data_patient_export_cancel,
-        config: {
-          outputs: { cancelled_polling_url: { name: :patient_cancelled_polling_url } },
-          options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
-        }
 
+      test from: :bulk_data_export_cancel,
+           id: :bulk_data_patient_export_cancel,
+           config: {
+             outputs: { cancelled_polling_url: { name: :patient_cancelled_polling_url } },
+             options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
+           }
     end
   end
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require_relative '../../export_kick_off_performer'
-require_relative '../bulk_data_outputFormat_param_test.rb'
-require_relative '../bulk_data_since_param_test.rb'
+require_relative '../bulk_data_outputFormat_param_test'
+require_relative '../bulk_data_since_param_test'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -20,16 +22,16 @@ module BulkDataTestKit
             description: 'The URL of the Bulk FHIR server.'
 
       test from: :output_format_in_export_response,
-        id: :output_format_in_patient_export_response,
-        config: {
-          options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
-        }
-          
+           id: :output_format_in_patient_export_response,
+           config: {
+             options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
+           }
+
       test from: :since_in_export_response,
-        id: :since_in_patient_export_response,
-        config: {
-          options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
-        }
+           id: :since_in_patient_export_response,
+           config: {
+             options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
+           }
     end
   end
 end

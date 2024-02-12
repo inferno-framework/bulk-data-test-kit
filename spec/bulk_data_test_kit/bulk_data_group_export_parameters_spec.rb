@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_export_parameters_group'
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
@@ -34,7 +36,6 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   describe 'Bulk Data Server supports "_outputFormat" query parameter test' do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV200::BulkDataOutputFormatParamTest) do
-        
         http_client :bulk_server do
           url :bulk_server_url
         end
@@ -45,7 +46,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
         )
       end
     end
-    
+
     let(:long_format_req) do
       stub_request(:get, "#{export_url}?_outputFormat=application%2Ffhir%2Bndjson")
         .to_return(status: 202, headers: { 'Content-Location' => polling_url })
@@ -129,7 +130,6 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   describe 'Bulk Data Server supports "_since" query parameter test' do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV200::BulkDataSinceParamTest) do
-        
         http_client :bulk_server do
           url :bulk_server_url
         end
@@ -137,7 +137,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
         input :bulk_server_url, :bearer_token, :group_id
         config(
           options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        )      
+        )
       end
     end
 
@@ -152,11 +152,11 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
       timestamp = Time.now.iso8601
       kickoff_request =
         stub_request(:get, "#{export_url}?_since=#{ERB::Util.url_encode(timestamp)}")
-          .to_return(status: 202, headers: { 'Content-Location' => polling_url })
+        .to_return(status: 202, headers: { 'Content-Location' => polling_url })
 
       delete_request =
         stub_request(:delete, polling_url)
-          .to_return(status: 202)
+        .to_return(status: 202)
 
       result = run(test_class, input.merge(since_timestamp: timestamp))
 

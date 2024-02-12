@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module BulkDataTestKit
   module ExportKickOffPerformer
-    def perform_export_kick_off_request(use_token: true, params: {}, url: "")
+    def perform_export_kick_off_request(use_token: true, params: {}, url: '')
       skip_if use_token && bearer_token.blank?, 'Could not verify this functionality when bearer token is not set'
 
       headers = { accept: 'application/fhir+json', prefer: 'respond-async' }

@@ -1,25 +1,25 @@
+# frozen_string_literal: true
+
 require_relative 'export_kick_off_performer'
 require_relative 'bulk_data_test_kit_properties'
 
 module BulkDataTestKit
   module BulkDataExportCancelTests
     extend Forwardable
-   
+
     def_delegators 'self.class', :properties
     def_delegators 'properties',
                    :resource_type,
                    :bulk_export_url
 
     def perform_export_cancel_test
-        use_token = !bearer_token.blank?
-        url = bulk_export_url.dup
-        if resource_type == 'Group'
-          url = bulk_export_url.gsub('[group_id]', group_id)
-        end      
+      use_token = !bearer_token.blank?
+      url = bulk_export_url.dup
+      url = bulk_export_url.gsub('[group_id]', group_id) if resource_type == 'Group'
 
-        perform_export_kick_off_request(use_token: use_token, url: url)
-        assert_response_status(202)
-      begin 
+      perform_export_kick_off_request(use_token:, url:)
+      assert_response_status(202)
+      begin
         request.response_header('content-location')&.value
       ensure
         delete_export_kick_off_request

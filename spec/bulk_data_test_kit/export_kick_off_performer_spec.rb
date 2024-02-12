@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/bulk_data_test_kit/export_kick_off_performer'
 
 class ExportKickOffPerformerTesterClass < Inferno::Test
@@ -67,18 +69,19 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
 
     it 'includes single param in request url if param' do
       params_url_req = stub_request(:get, "#{bulk_export_url}?_outputFormat=application%2Ffhir%2Bndjson")
-        .with(headers: { 'authorization' => "Bearer #{token}" })
-        .to_return(status: 200)
+                       .with(headers: { 'authorization' => "Bearer #{token}" })
+                       .to_return(status: 200)
 
-      performer.perform_export_kick_off_request(params: { _outputFormat: 'application/fhir+ndjson' }, url: "Group/#{group_id}/$export")
+      performer.perform_export_kick_off_request(params: { _outputFormat: 'application/fhir+ndjson' },
+                                                url: "Group/#{group_id}/$export")
       expect(params_url_req).to have_been_made.once
     end
 
     it 'includes multiple params in request url if params' do
       params_url_req = stub_request(:get,
                                     "#{bulk_export_url}?_outputFormat=application%2Ffhir%2Bndjson&_sort=sample%2Bvalue")
-        .with(headers: { 'authorization' => "Bearer #{token}" })
-        .to_return(status: 200)
+                       .with(headers: { 'authorization' => "Bearer #{token}" })
+                       .to_return(status: 200)
 
       performer.perform_export_kick_off_request(params:, url: "Group/#{group_id}/$export")
       expect(params_url_req).to have_been_made.once

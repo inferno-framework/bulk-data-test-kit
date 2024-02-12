@@ -1,4 +1,6 @@
-require_relative '../export_operation_tests.rb'
+# frozen_string_literal: true
+
+require_relative '../export_operation_tests'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -22,11 +24,10 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---complete-status'
 
-
       input :status_response
 
       output :status_output, :bulk_download_url
-      
+
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
           resource_type: config.options[:resource_type]
@@ -35,12 +36,10 @@ module BulkDataTestKit
 
       run do
         status_output, bulk_download_url = check_bulk_data_output(status_response)
-        
-        output status_output: status_output,
-            bulk_download_url: bulk_download_url
+
+        output status_output:,
+               bulk_download_url:
       end
     end
   end
 end
-
-    

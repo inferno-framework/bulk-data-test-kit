@@ -1,4 +1,6 @@
-require_relative '../export_operation_tests.rb'
+# frozen_string_literal: true
+
+require_relative '../export_operation_tests'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -6,7 +8,7 @@ module BulkDataTestKit
       include BulkDataTestKit::BulkDataExportOperationTests
 
       id :bulk_data_export_operation_support
-      title "Bulk Data Server declares support for particular bulk data export operation in CapabilityStatement"
+      title 'Bulk Data Server declares support for particular bulk data export operation in CapabilityStatement'
       description <<~DESCRIPTION
         This test verifies that the Bulk Data Server declares support for
         a particular bulk data operation in its server CapabilityStatement.
@@ -32,7 +34,7 @@ module BulkDataTestKit
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
-          resource_type: config.options[:resource_type],
+          resource_type: config.options[:resource_type]
         )
       end
 
@@ -42,5 +44,3 @@ module BulkDataTestKit
     end
   end
 end
-
-    

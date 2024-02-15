@@ -13,15 +13,15 @@ module BulkDataTestKit
       links [
         {
           label: 'Report Issue',
-          url: 'https://github.com/onc-healthit/bulk_data_test_kit/issues/'
+          url: 'https://github.com/inferno-framework/bulk-data-test-kit/issues/'
         },
         {
           label: 'Open Source',
-          url: 'https://github.com/onc-healthit/bulk_data_test_kit/'
+          url: 'https://github.com/inferno-framework/bulk-data-test-kit/'
         },
         {
           label: 'Download',
-          url: 'https://github.com/onc-healthit/bulk_data_test_kit/releases'
+          url: 'https://github.com/inferno-framework/bulk-data-test-kit/releases'
         }
       ]
 
@@ -97,12 +97,11 @@ module BulkDataTestKit
       )
 
       description %(
-        The Bulk Data Access Test Kit is a testing tool that will demonstrate
-        the ability to exporting bulk data from a FHIR server to a
-        pre-authorized client following the criterion from the [FHIR Bulk Data
-        Access IG](http://build.fhir.org/ig/HL7/bulk-data).
+        The Bulk Data Access v2.0.0 suite validates the conformance of a FHIR®
+        server to the [FHIR Bulk Data Access
+        IG STU2](http://hl7.org/fhir/uv/bulkdata/STU2).
 
-        This test kit is split into three different types of bulk data export:
+        This test suite is split into three different types of bulk data export:
         - All Patients: FHIR Operation to obtain a detailed set of FHIR resources
           of diverse resource types pertaining to all patients
         - Group of Patients: FHIR Operation to obtain a detailed set of FHIR
@@ -111,7 +110,7 @@ module BulkDataTestKit
         - System Level Export: FHIR Operation to export data from a FHIR server,
           whether or not it is associated with a patient
 
-        This test kit uses [Backend Services
+        This test suite uses [Backend Services
         Authorization](https://www.hl7.org/fhir/smart-app-launch/backend-services.html)
         to obtain an access token from the server. After authorization, a group
         level, patient level, and system level bulk data export request is

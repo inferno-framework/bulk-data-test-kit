@@ -97,12 +97,12 @@ module BulkDataTestKit
       )
 
       description %(
-        The Bulk Data Access Test Kit is a testing tool that will demonstrate
-        the ability to exporting bulk data from a FHIR server to a
-        pre-authorized client following the criterion from the [FHIR Bulk Data
-        Access IG](http://hl7.org/fhir/uv/bulkdata/STU1.0.1).
 
-        This test kit is split into three different types of bulk data export:
+        The Bulk Data Access v1.0.1 suite validates the conformance of a FHIR®
+        server to the [FHIR Bulk Data Access
+        IG STU1.0.1](http://hl7.org/fhir/uv/bulkdata/STU1.0.1).
+
+        This test suite is split into three different types of bulk data export:
 
         - All Patients: FHIR Operation to obtain a detailed set of FHIR
           resources of diverse resource types pertaining to all patients
@@ -112,7 +112,7 @@ module BulkDataTestKit
         - System Level Export: FHIR Operation to export data from a FHIR
           server, whether or not it is associated with a patient
 
-        This test kit uses [Backend Services
+        This test suite uses [Backend Services
         Authorization](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html)
         to obtain an access token from the server. After authorization, a group
         level, patient level, and system level bulk data export request is

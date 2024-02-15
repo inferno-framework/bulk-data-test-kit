@@ -106,10 +106,12 @@ module BulkDataTestKit
 
         This test kit uses [Backend Services Authorization](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html) to obtain an access token from the server. After authorization, a group level, patient level, and system level bulk data export request is initialized, and for each type of export, the tests read exported NDJSON files from the server and validate the resources in each file. It is expected the server will provide Encounter, Location, Organization, and Practitioner resources as they are referenced as must support elements in required resources.
 
-        To get started, please first register Inferno with the following JWK Set
+        To get started, if your server supports SMART backend services authorization, please first register Inferno with the following JWK Set
         Url:
 
         * `#{Inferno::Application[:base_url]}/custom/bulk_data_v101/.well-known/jwks.json`
+
+        Then, run the full Bulk Data Access test suite containing both the SMART Backend Services test group and the Bulk Data Export Tests test group. Otherwise, if your server does not support SMART backend services authorization, only run the second test group, Bulk Data Export Tests.
       )
 
       input_instructions %(

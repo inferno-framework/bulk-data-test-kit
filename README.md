@@ -2,7 +2,7 @@
 
 The **Bulk Data Access Test Kit** is a testing tool that will demonstrate the
 ability to exporting bulk data from a FHIR server to a pre-authorized client
-following the criterion from the FHIR Bulk Data Access IG
+following the requirements from the FHIR Bulk Data Access IG
 [v1.0.1](http://hl7.org/fhir/uv/bulkdata/STU1.0.1) and
 [v2.0.0](http://build.fhir.org/ig/HL7/bulk-data). This test kit will test the
 APIs through which an authenticated and authorized client may request a Bulk

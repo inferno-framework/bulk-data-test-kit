@@ -13,8 +13,8 @@ module BulkDataTestKit
       run_as_group
 
       description %(
-        The Bulk Data Access API Tests evaluate the ability of a system (Bulk Data Server)
-        to support required Bulk Data $export operation.
+        The Bulk Data Access API Tests evaluate the ability of a system (Bulk
+        Data Server) to support required Bulk Data $export operation.
       )
 
       group from: :bulk_data_system_export_group,

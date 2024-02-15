@@ -97,25 +97,47 @@ module BulkDataTestKit
       )
 
       description %(
-        The Bulk Data Access Test Kit is a testing tool that will demonstrate the ability to exporting bulk data from a FHIR server to a pre-authorized client following the criterion from the [FHIR Bulk Data Access IG](http://build.fhir.org/ig/HL7/bulk-data).
+        The Bulk Data Access Test Kit is a testing tool that will demonstrate
+        the ability to exporting bulk data from a FHIR server to a
+        pre-authorized client following the criterion from the [FHIR Bulk Data
+        Access IG](http://build.fhir.org/ig/HL7/bulk-data).
 
         This test kit is split into three different types of bulk data export:
-          - All Patients: FHIR Operation to obtain a detailed set of FHIR resources of diverse resource types pertaining to all patients
-          - Group of Patients: FHIR Operation to obtain a detailed set of FHIR resources of diverse resource types pertaining to all members of a specified Group
-          - System Level Export: FHIR Operation to export data from a FHIR server, whether or not it is associated with a patient
+        - All Patients: FHIR Operation to obtain a detailed set of FHIR resources
+          of diverse resource types pertaining to all patients
+        - Group of Patients: FHIR Operation to obtain a detailed set of FHIR
+          resources of diverse resource types pertaining to all members of a
+          specified Group
+        - System Level Export: FHIR Operation to export data from a FHIR server,
+          whether or not it is associated with a patient
 
-        This test kit uses [Backend Services Authorization](https://www.hl7.org/fhir/smart-app-launch/backend-services.html) to obtain an access token from the server. After authorization, a group level, patient level, and system level bulk data export request is initialized, and for each type of export, the tests read exported NDJSON files from the server and validate the resources in each file. It is expected the server will provide Encounter, Location, Organization, and Practitioner resources as they are referenced as must support elements in required resources.
+        This test kit uses [Backend Services
+        Authorization](https://www.hl7.org/fhir/smart-app-launch/backend-services.html)
+        to obtain an access token from the server. After authorization, a group
+        level, patient level, and system level bulk data export request is
+        initialized, and for each type of export, the tests read exported NDJSON
+        files from the server and validate the resources in each file. It is
+        expected the server will provide Encounter, Location, Organization, and
+        Practitioner resources as they are referenced as must support elements
+        in required resources.
 
-        To get started, if your server supports SMART backend services authorization, please first register Inferno with the following JWK Set
-        Url:
+        To get started, if your server supports SMART backend services
+        authorization, please first register Inferno with the following JWK Set
+        URL:
 
         * `#{Inferno::Application[:base_url]}/custom/bulk_data_v200/.well-known/jwks.json`
 
-        Then, run the full Bulk Data Access test suite containing both the SMART Backend Services test group and the Bulk Data Export Tests test group. Otherwise, if your server does not support SMART backend services authorization, only run the second test group, Bulk Data Export Tests.
+        Then, run the full Bulk Data Access test suite containing both the SMART
+        Backend Services test group and the Bulk Data Export Tests test group.
+        Otherwise, if your server does not support SMART Backend Services
+        authorization, only run the second test group, Bulk Data Export Tests.
       )
 
       input_instructions %(
-        Register Inferno as a bulk data client with the following information, and enter the client id and client registration in the appropriate fields. This set of tests only checks the Group export. Enter the group export information in the appropriate box.
+        Register Inferno as a bulk data client with the following information,
+        and enter the client id and client registration in the appropriate
+        fields. This set of tests only checks the Group export. Enter the group
+        export information in the appropriate box.
 
         Register Inferno with the following JWK Set Url:
 

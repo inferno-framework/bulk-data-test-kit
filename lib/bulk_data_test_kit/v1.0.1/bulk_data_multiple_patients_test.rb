@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../bulk_export_validation_tester'
 
 module BulkDataTestKit
@@ -12,7 +14,7 @@ module BulkDataTestKit
         This test verifies that the bulk data export has at least two patients.
       DESCRIPTION
       # link 'http://ndjson.org/'
-  
+
       run do
         export_multiple_patients_check
       end

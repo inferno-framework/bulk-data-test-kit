@@ -1,4 +1,6 @@
-require_relative '../export_operation_tests.rb'
+# frozen_string_literal: true
+
+require_relative '../export_operation_tests'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -10,13 +12,13 @@ module BulkDataTestKit
 
       title 'Bulk Data Server returns "202 Accepted" and "Content-location" for bulk data $export operations'
       description <<~DESCRIPTION
-          Response - Success
+        Response - Success
 
-          * HTTP Status Code of 202 Accepted
-          * Content-Location header with the absolute URL of an endpoint for subsequent status requests (polling location)
+        * HTTP Status Code of 202 Accepted
+        * Content-Location header with the absolute URL of an endpoint for subsequent status requests (polling location)
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---success'
-      
+
       output :polling_url
 
       def self.properties
@@ -28,10 +30,8 @@ module BulkDataTestKit
 
       run do
         polling_url = export_kick_off_success
-        output polling_url: polling_url
+        output polling_url:
       end
     end
   end
 end
-
-    

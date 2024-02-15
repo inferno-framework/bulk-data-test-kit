@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../export_cancel_tests'
 
 module BulkDataTestKit

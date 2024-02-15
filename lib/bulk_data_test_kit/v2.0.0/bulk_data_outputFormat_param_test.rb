@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../export_parameters_tests'
 
 module BulkDataTestKit
@@ -7,7 +9,7 @@ module BulkDataTestKit
       include BulkDataTestKit::ExportKickOffPerformer
 
       id :output_format_in_export_response
-       
+
       title 'Bulk Data Server supports "_outputFormat" query parameter for bulk data export'
       description <<~DESCRIPTION
         [_outputFormat](http://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters):

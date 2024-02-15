@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../export_kick_off_performer'
 require_relative '../bulk_data_export_cancel_test'
 
@@ -19,12 +21,12 @@ module BulkDataTestKit
       input :group_id,
             title: 'Group ID',
             description: 'The Group ID associated with the group of patients to be exported.'
-      
+
       test from: :bulk_data_export_cancel,
-        id: :bulk_data_group_export_cancel,
-        config: {
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        }
+           id: :bulk_data_group_export_cancel,
+           config: {
+             options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
+           }
     end
   end
 end

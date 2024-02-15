@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/bulk_data_test_kit/version'
 
 Gem::Specification.new do |spec|

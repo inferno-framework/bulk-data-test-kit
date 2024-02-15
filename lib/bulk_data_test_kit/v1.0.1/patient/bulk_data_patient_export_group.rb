@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'tls_test_kit'
-require_relative '../bulk_data_export_operation_support_test.rb'
-require_relative '../bulk_data_no_auth_test.rb'
-require_relative '../bulk_data_export_kick_off_test.rb'
-require_relative '../bulk_data_status_check_test.rb'
-require_relative '../bulk_data_output_check_test.rb'
+require_relative '../bulk_data_export_operation_support_test'
+require_relative '../bulk_data_no_auth_test'
+require_relative '../bulk_data_export_kick_off_test'
+require_relative '../bulk_data_status_check_test'
+require_relative '../bulk_data_output_check_test'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -11,7 +13,7 @@ module BulkDataTestKit
       title 'Patient Export Tests'
       short_description 'Verify that the system supports bulk export of all Patients'
       description <<~DESCRIPTION
-        Verify that system level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
+        Verify that patient level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
       id :bulk_data_patient_export_group
 
@@ -61,46 +63,46 @@ module BulkDataTestKit
           element: http://hl7.org/fhir/uv/bulkdata/CapabilityStatement/bulk-data
         DESCRIPTION
         id :bulk_data_patient_export_operation_support
-        
+
         config(
-          options: { resource_type: 'Patient', export_operation_name: 'patient-export' }
+          options: { resource_type: 'Patient' }
         )
       end
 
       test from: :bulk_data_no_auth_reject,
-        id: :bulk_data_patient_no_auth_reject,
-        config: {
-          options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
-        }
-        
+           id: :bulk_data_patient_no_auth_reject,
+           config: {
+             options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
+           }
+
       test from: :bulk_data_kick_off,
-        id: :bulk_data_patient_kick_off,
-        config: {
-          outputs: { polling_url: { name: :patient_polling_url } },
-          options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
-        }
+           id: :bulk_data_patient_kick_off,
+           config: {
+             outputs: { polling_url: { name: :patient_polling_url } },
+             options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
+           }
 
       test from: :bulk_data_status_check,
-        id: :bulk_data_patient_status_check,
-        config: {
-          inputs: { polling_url: { name: :patient_polling_url } },
-          outputs: { 
-            status_response: { name: :patient_status_response },
-            requires_access_token: { name: :patient_requires_access_token }
-          },
-          options: { resource_type: 'Patient' }
-        }
+           id: :bulk_data_patient_status_check,
+           config: {
+             inputs: { polling_url: { name: :patient_polling_url } },
+             outputs: {
+               status_response: { name: :patient_status_response },
+               requires_access_token: { name: :patient_requires_access_token }
+             },
+             options: { resource_type: 'Patient' }
+           }
 
       test from: :bulk_data_output_check,
-        id: :bulk_data_patient_output_check,
-        config: {
-          inputs: { status_response: { name: :patient_status_response } },
-          outputs: { 
-            status_output: { name: :patient_status_output },
-            bulk_download_url: { name: :patient_bulk_download_url }
-          },
-          options: { resource_type: 'Patient' }
-        }
+           id: :bulk_data_patient_output_check,
+           config: {
+             inputs: { status_response: { name: :patient_status_response } },
+             outputs: {
+               status_output: { name: :patient_status_output },
+               bulk_download_url: { name: :patient_bulk_download_url }
+             },
+             options: { resource_type: 'Patient' }
+           }
     end
   end
 end

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'tls_test_kit'
-require_relative '../bulk_data_export_operation_support_test.rb'
-require_relative '../bulk_data_no_auth_test.rb'
-require_relative '../bulk_data_export_kick_off_test.rb'
-require_relative '../bulk_data_status_check_test.rb'
-require_relative '../bulk_data_output_check_test.rb'
+require_relative '../bulk_data_export_operation_support_test'
+require_relative '../bulk_data_no_auth_test'
+require_relative '../bulk_data_export_kick_off_test'
+require_relative '../bulk_data_status_check_test'
+require_relative '../bulk_data_output_check_test'
 
 module BulkDataTestKit
   module BulkDataV101
@@ -51,8 +53,8 @@ module BulkDataTestKit
           This test will provide a warning if no operations are declared at
           `/$export`, via the
           `CapabilityStatement.rest.operation.name` element.  It will
-          also provide an informational message if an operation within the Capability 
-          Statement's server operation list exists, but does not point to the standard 
+          also provide an informational message if an operation within the Capability
+          Statement's server operation list exists, but does not point to the standard
           OperationDefinition canonical URL:
           http://hl7.org/fhir/uv/bulkdata/OperationDefinition/export
 
@@ -61,46 +63,46 @@ module BulkDataTestKit
           element: http://hl7.org/fhir/uv/bulkdata/CapabilityStatement/bulk-data
         DESCRIPTION
         id :bulk_data_system_export_operation_support
-        
+
         config(
-          options: { resource_type: 'system', export_operation_name: 'export' }
+          options: { resource_type: 'system' }
         )
       end
 
       test from: :bulk_data_no_auth_reject,
-        id: :bulk_data_system_no_auth_reject,
-        config: {
-          options: { resource_type: 'system', bulk_export_url: '$export' }
-        }
-        
+           id: :bulk_data_system_no_auth_reject,
+           config: {
+             options: { resource_type: 'system', bulk_export_url: '$export' }
+           }
+
       test from: :bulk_data_kick_off,
-        id: :bulk_data_system_kick_off,
-        config: {
-          outputs: { polling_url: { name: :system_polling_url } },
-          options: { resource_type: 'system', bulk_export_url: '$export' }
-        }
+           id: :bulk_data_system_kick_off,
+           config: {
+             outputs: { polling_url: { name: :system_polling_url } },
+             options: { resource_type: 'system', bulk_export_url: '$export' }
+           }
 
       test from: :bulk_data_status_check,
-        id: :bulk_data_system_status_check,
-        config: {
-          inputs: { polling_url: { name: :system_polling_url } },
-          outputs: { 
-            status_response: { name: :system_status_response },
-            requires_access_token: { name: :system_requires_access_token }
-          },
-          options: { resource_type: 'system' }
-        }
+           id: :bulk_data_system_status_check,
+           config: {
+             inputs: { polling_url: { name: :system_polling_url } },
+             outputs: {
+               status_response: { name: :system_status_response },
+               requires_access_token: { name: :system_requires_access_token }
+             },
+             options: { resource_type: 'system' }
+           }
 
       test from: :bulk_data_output_check,
-        id: :bulk_data_system_output_check,
-        config: {
-          inputs: { status_response: { name: :system_status_response } },
-          outputs: { 
-            status_output: { name: :system_status_output },
-            bulk_download_url: { name: :system_bulk_download_url }
-          },
-          options: { resource_type: 'system' }
-        }
+           id: :bulk_data_system_output_check,
+           config: {
+             inputs: { status_response: { name: :system_status_response } },
+             outputs: {
+               status_output: { name: :system_status_output },
+               bulk_download_url: { name: :system_bulk_download_url }
+             },
+             options: { resource_type: 'system' }
+           }
     end
   end
 end

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module BulkDataTestKit
   class BulkDataTestKitProperties
-    ATTRIBUTES = [
-      :resource_type,
-      :export_operation_name,
-      :bulk_export_url
+    ATTRIBUTES = %i[
+      resource_type
+      bulk_export_url
     ].freeze
 
     ATTRIBUTES.each { |name| attr_reader name }

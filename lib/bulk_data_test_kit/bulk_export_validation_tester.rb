@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BulkDataTestKit
   module BulkExportValidationTester
     attr_reader :metadata
@@ -18,7 +20,7 @@ module BulkDataTestKit
     end
 
     def resource_type
-      @resource_type ||= ""
+      @resource_type ||= ''
     end
 
     def validation_errors
@@ -86,8 +88,9 @@ module BulkDataTestKit
           skip "Server response at line \"#{line_count}\" is not a processable FHIR resource."
         end
 
-        assert !resource.nil?, "Resource at line \"#{line_count}\" could not be converted to a #{@resource_type} FHIR resource"
-        
+        assert !resource.nil?,
+               "Resource at line \"#{line_count}\" could not be converted to a #{@resource_type} FHIR resource"
+
         if resource.resourceType != @resource_type
           assert false, "Resource type \"#{resource.resourceType}\" at line \"#{line_count}\" does not match type " \
                         "defined in output \"#{@resource_type}\""
@@ -101,7 +104,7 @@ module BulkDataTestKit
             @invalid_resource_count += 1
           else
             @invalid_resource_count_all.zero? ? @invalid_resource_count_all = 1 : @invalid_resource_count_all += 1
-            
+
             @invalid_resource_count = 1
             first_error[:line_number] = line_count
             first_error[:messages] = messages.dup
@@ -131,14 +134,13 @@ module BulkDataTestKit
       messages.clear
       messages.concat(first_error[:messages])
 
-    
       error_message = "#{@invalid_resource_count} / #{resource_count} #{@resource_type} resources failed profile validation. " \
               "#{first_error_message}"
-      
+
       validation_errors.append(error_message)
     end
 
-    def perform_bulk_export_validation(bulk_status_output: "", bulk_requires_access_token: "")
+    def perform_bulk_export_validation(bulk_status_output: '', bulk_requires_access_token: '')
       skip_if bulk_status_output.blank?, 'Could not verify this functionality when Bulk Status Output is not provided'
       skip_if (bulk_requires_access_token == 'true' && bearer_token.blank?),
               'Could not verify this functionality when Bearer Token is required and not provided'
@@ -149,20 +151,20 @@ module BulkDataTestKit
       $capped_errors = false
 
       assert_valid_json(bulk_status_output)
-      
+
       full_file_list = JSON.parse(bulk_status_output)
       if full_file_list.empty?
-        message = "No resource file items returned by server."
+        message = 'No resource file items returned by server.'
         skip message
       end
 
       @resources_from_all_files = {}
 
-      resource_types = full_file_list.map{ |file| file["type"]}.uniq
+      resource_types = full_file_list.map { |file| file['type'] }.uniq
       all_resource_count = 0
       @invalid_resource_count_all = 0
       @validation_errors = []
-      
+
       resource_types.each do |type|
         @resource_type = type
         @first_error = {}
@@ -170,7 +172,7 @@ module BulkDataTestKit
         resource_count = 0
 
         file_list = full_file_list.select { |file| file['type'] == @resource_type }
-        
+
         file_list.each do |file|
           count = check_file_request(file['url'], bulk_requires_access_token)
           all_resource_count += count
@@ -180,12 +182,13 @@ module BulkDataTestKit
         process_validation_errors(resource_count)
       end
 
-      assert @invalid_resource_count_all.zero?, "#{@invalid_resource_count_all} / #{all_resource_count} Resources failed validation. \n" + @validation_errors.join("\n")
+      assert @invalid_resource_count_all.zero?,
+             "#{@invalid_resource_count_all} / #{all_resource_count} Resources failed validation. \n" + @validation_errors.join("\n")
 
       pass "Successfully validated #{all_resource_count} Resources"
     end
 
-    def ndjson_download_requiresAccessToken_check(bulk_data_download_url: "", bulk_requires_access_token: "")
+    def ndjson_download_requiresAccessToken_check(bulk_data_download_url: '', bulk_requires_access_token: '')
       skip_if bulk_data_download_url.blank?, 'Could not verify this functionality when no download link was provided'
       skip_if bulk_requires_access_token.blank?,
               'Could not verify this functionality when requiresAccessToken is not provided'
@@ -200,9 +203,9 @@ module BulkDataTestKit
     def export_multiple_patients_check
       skip 'No Patient resources processed from bulk data export.' unless patient_ids_seen.present?
 
-      begin 
+      begin
         assert patient_ids_seen.length >= BulkExportValidationTester::MIN_RESOURCE_COUNT,
-                'Bulk data export did not have multiple Patient resources.'
+               'Bulk data export did not have multiple Patient resources.'
       ensure
         scratch[:patient_ids_seen] = []
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../bulk_data_multiple_patients_test'
 require_relative '../bulk_data_ndjson_download_test'
 require_relative '../bulk_data_valid_resources_test'
@@ -37,14 +39,13 @@ module BulkDataTestKit
       end
 
       test from: :bulk_data_ndjson_download,
-        id: :bulk_data_group_ndjson_download
-      
-      test from: :bulk_data_valid_resources,
-        id: :bulk_data_group_valid_resources
-      
-      test from: :bulk_data_multiple_patients,
-        id: :bulk_data_group_multiple_patients
+           id: :bulk_data_group_ndjson_download
 
+      test from: :bulk_data_valid_resources,
+           id: :bulk_data_group_valid_resources
+
+      test from: :bulk_data_multiple_patients,
+           id: :bulk_data_group_multiple_patients
     end
   end
 end

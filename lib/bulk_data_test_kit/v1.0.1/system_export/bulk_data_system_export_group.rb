@@ -53,8 +53,8 @@ module BulkDataTestKit
           This test will provide a warning if no operations are declared at
           `/$export`, via the
           `CapabilityStatement.rest.operation.name` element.  It will
-          also provide an informational message if an operation within the Capability#{' '}
-          Statement's server operation list exists, but does not point to the standard#{' '}
+          also provide an informational message if an operation within the Capability
+          Statement's server operation list exists, but does not point to the standard
           OperationDefinition canonical URL:
           http://hl7.org/fhir/uv/bulkdata/OperationDefinition/export
 

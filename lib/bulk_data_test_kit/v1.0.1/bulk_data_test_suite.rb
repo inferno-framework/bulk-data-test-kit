@@ -117,10 +117,8 @@ module BulkDataTestKit
         to obtain an access token from the server. After authorization, a group
         level, patient level, and system level bulk data export request is
         initialized, and for each type of export, the tests read exported NDJSON
-        files from the server and validate the resources in each file. It is
-        expected the server will provide Encounter, Location, Organization, and
-        Practitioner resources as they are referenced as must support elements
-        in required resources.
+        files from the server and validate the resources in each file against
+        the base FHIR specification.
 
         To get started, if your server supports SMART backend services
         authorization, please first register Inferno with the following JWK Set

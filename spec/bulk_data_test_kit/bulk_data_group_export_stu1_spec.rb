@@ -179,7 +179,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       result = run(test_class, bad_token_input)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('Bearer token is not set and thus not required to connect to server.')
+      expect(result.result_message).to eq("Input 'bearer_token' is nil, skipping test.")
     end
 
     it 'fails if client can $export without authorization' do
@@ -293,7 +293,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       result = run(test_class, base_input)
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('Server response did not have Content-Location in header')
+      expect(result.result_message).to eq("Input 'polling_url' is nil, skipping test.")
     end
 
     it 'skips when server only returns "202 Accepted", and not "200 OK" in the allowed timeframe' do
@@ -379,7 +379,8 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
           url :bulk_server_url
         end
 
-        input :bulk_server_url, :bearer_token, :group_id
+        input :bulk_server_url, :group_id
+        input :bearer_token, optional: true
         config(
           options: { resource_type: 'Group' }
         )
@@ -391,30 +392,31 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       status_output_json['output'][1].delete('type')
       status_output_json.to_json
     end
+    let(:group_id) { '1219' }
 
-    it 'fails when response not found' do
-      result = run(test_class, { bulk_server_url: })
+    it 'skips when response not found' do
+      result = run(test_class, { group_id:, bulk_server_url: })
 
-      expect(result.result).to eq('fail')
-      expect(result.result_message).to eq('Bulk Data Server status response not found')
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to eq("Input 'status_response' is nil, skipping test.")
     end
 
     it 'fails when response does not contain output' do
-      result = run(test_class, { status_response: '{"no_output":"!"}' })
+      result = run(test_class, { group_id:, bulk_server_url:, status_response: '{"no_output":"!"}' })
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Bulk Data Server status response does not contain output')
     end
 
     it 'fails when output does not contain required attributes' do
-      result = run(test_class, { status_response: bad_status_output })
+      result = run(test_class, { group_id:, bulk_server_url:, status_response: bad_status_output })
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Output file did not contain "type" as required')
     end
 
     it 'passes when response contains output with required attributes' do
-      result = run(test_class, { status_response: status_output })
+      result = run(test_class, { group_id:, bulk_server_url:, status_response: status_output })
 
       expect(result.result).to eq('pass')
     end

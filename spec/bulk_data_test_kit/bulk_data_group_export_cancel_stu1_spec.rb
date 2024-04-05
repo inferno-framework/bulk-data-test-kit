@@ -41,7 +41,8 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
           url :bulk_server_url
         end
 
-        input :bulk_server_url, :bearer_token, :group_id
+        input :bulk_server_url, :group_id
+        input :bearer_token, optional: true
         config(
           options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
         )

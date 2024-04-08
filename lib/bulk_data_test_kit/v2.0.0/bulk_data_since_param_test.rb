@@ -27,6 +27,10 @@ module BulkDataTestKit
         After the export was successfully initiated, it is then cancelled.
       DESCRIPTION
 
+      input :bearer_token,
+            optional: true
+      input :group_id,
+            optional: true
       input :since_timestamp,
             title: 'Timestamp for _since parameter',
             description: 'A timestamp formatted as a FHIR instant which will be used to test the ' \

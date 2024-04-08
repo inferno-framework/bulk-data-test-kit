@@ -16,9 +16,6 @@ module BulkDataTestKit
 
       input :bearer_token,
             optional: true
-      input :bulk_server_url,
-            title: 'Bulk Data FHIR URL',
-            description: 'The URL of the Bulk FHIR server.'
       input :group_id,
             title: 'Group ID',
             description: 'The Group ID associated with the group of patients to be exported.'

@@ -16,9 +16,6 @@ module BulkDataTestKit
 
       input :bearer_token, 
             optional: true
-      input :bulk_server_url,
-            title: 'Bulk Data FHIR URL',
-            description: 'The URL of the Bulk FHIR server.'
 
       output :patient_cancelled_polling_url
 

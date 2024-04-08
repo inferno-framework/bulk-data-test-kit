@@ -23,6 +23,8 @@ module BulkDataTestKit
 
       input :bulk_download_url
       input :requires_access_token
+      input :bearer_token,
+            optional: true
 
       run do
         ndjson_download_requiresAccessToken_check(bulk_data_download_url: bulk_download_url,

@@ -10,6 +10,8 @@ module BulkDataTestKit
       id :bulk_data_export_tests_v101
       title 'Bulk Data Export Tests'
 
+      input :bulk_server_url
+
       group do
         id :bulk_data_server_tests
         title 'Bulk Data Server TLS Tests'

@@ -19,6 +19,10 @@ module BulkDataTestKit
       id :bulk_data_export_cancel_stu2
 
       input :cancelled_polling_url
+      input :group_id,
+            optional: true
+      input :bearer_token,
+            optional: true
 
       run do
         perform_cancelled_polling_test(cancelled_polling_url)

@@ -14,7 +14,10 @@ module BulkDataTestKit
 
     def perform_outputFormat_param_test
       url = bulk_export_url.dup
-      url = bulk_export_url.gsub('[group_id]', group_id) if resource_type == 'Group'
+      if resource_type == 'Group'
+        skip_if group_id.blank?, 'Group id is blank, skipping test.'
+        url = bulk_export_url.gsub('[group_id]', group_id) if resource_type == 'Group'
+      end
 
       ['application/fhir+ndjson', 'application/ndjson', 'ndjson'].each do |format|
         kickoff_url = url.dup
@@ -34,7 +37,10 @@ module BulkDataTestKit
       /x
 
       url = bulk_export_url.dup
-      url = bulk_export_url.gsub('[group_id]', group_id) if resource_type == 'Group'
+      if resource_type == 'Group'
+        skip_if group_id.blank?, 'Group id is blank, skipping test.'
+        url = bulk_export_url.gsub('[group_id]', group_id) if resource_type == 'Group'
+      end
 
       assert since_timestamp_param.match?(fhir_instant_regex),
              "The provided `_since` timestamp `#{since_timestamp_param}` is not a valid " \

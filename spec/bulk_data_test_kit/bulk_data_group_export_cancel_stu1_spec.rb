@@ -7,14 +7,13 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v101') }
   let(:bulk_server_url) { 'https://example.com/fhir' }
-  let(:bearer_token) { 'some_bearer_token_alphanumeric' }
   let(:group_id) { '1219' }
+  let(:bearer_token) { 'some_bearer_token_alphanumeric' }
   let(:polling_url) { 'https://redirect.com' }
   let(:base_input) do
     {
-      bulk_server_url:,
-      bearer_token:,
-      group_id:
+      group_id:,
+      bearer_token:
     }
   end
 
@@ -38,11 +37,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportCancelTest) do
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
-        input :bulk_server_url, :group_id
-        input :bearer_token, optional: true
         config(
           options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
         )

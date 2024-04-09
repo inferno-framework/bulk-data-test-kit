@@ -23,8 +23,6 @@ module BulkDataTestKit
 
       input :bearer_token,
             optional: true
-      input :group_id,
-            optional: true
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(

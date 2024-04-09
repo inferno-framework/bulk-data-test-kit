@@ -21,8 +21,6 @@ module BulkDataTestKit
 
       input :bearer_token,
             optional: true
-      input :group_id,
-            optional: true
       output :polling_url
 
       def self.properties

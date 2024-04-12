@@ -20,6 +20,9 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#bulk-data-kick-off-request'
 
+      input :bearer_token,
+          optional: true
+
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
           resource_type: config.options[:resource_type],

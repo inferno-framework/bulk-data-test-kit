@@ -15,7 +15,10 @@ module BulkDataTestKit
     def perform_export_cancel_test
       use_token = !bearer_token.blank?
       url = bulk_export_url.dup
-      url = bulk_export_url.gsub('[group_id]', group_id) if resource_type == 'Group'
+      if resource_type == 'Group'
+        skip_if group_id.blank?, 'Group id is blank, skipping test.'
+        url = bulk_export_url.gsub('[group_id]', group_id) if resource_type == 'Group'
+      end
 
       perform_export_kick_off_request(use_token:, url:)
       assert_response_status(202)

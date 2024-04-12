@@ -27,13 +27,8 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportCancelGroup do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV200::BulkDataExportCancelTest) do
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
-
-        input :bulk_server_url, :bearer_token, :group_id
-        config(
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        )
       end
     end
 
@@ -63,7 +58,6 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportCancelGroup do
       allow_any_instance_of(test_class).to receive(:assert_valid_resource).and_return(true)
 
       result = run(test_class, cancelled_polling_url: url)
-
       expect(result.result).to eq('pass')
     end
   end

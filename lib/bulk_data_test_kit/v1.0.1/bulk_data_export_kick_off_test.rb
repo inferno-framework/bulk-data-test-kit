@@ -19,6 +19,8 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---success'
 
+      input :bearer_token,
+            optional: true
       output :polling_url
 
       def self.properties

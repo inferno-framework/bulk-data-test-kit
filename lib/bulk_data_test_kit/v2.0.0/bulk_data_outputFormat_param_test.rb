@@ -21,6 +21,9 @@ module BulkDataTestKit
         as the abbreviated representations application/ndjson and ndjson.
       DESCRIPTION
 
+      input :bearer_token,
+            optional: true
+
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(
           resource_type: config.options[:resource_type],

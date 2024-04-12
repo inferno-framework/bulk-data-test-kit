@@ -3,7 +3,9 @@
 require 'tls_test_kit'
 require_relative '../bulk_data_export_operation_support_test'
 require_relative '../bulk_data_no_auth_test'
+require_relative '../bulk_data_group_no_auth_test'
 require_relative '../bulk_data_export_kick_off_test'
+require_relative '../bulk_data_group_export_kick_off_test'
 require_relative '../bulk_data_status_check_test'
 require_relative '../bulk_data_output_check_test'
 
@@ -24,9 +26,6 @@ module BulkDataTestKit
       input :group_id,
             title: 'Group ID',
             description: 'The Group ID associated with the group of patients to be exported.'
-      input :bulk_server_url,
-            title: 'Bulk Data FHIR URL',
-            description: 'The URL of the Bulk FHIR server.'
       input :bulk_timeout,
             title: 'Export Times Out after (1-600)',
             description: <<~DESCRIPTION,
@@ -74,17 +73,9 @@ module BulkDataTestKit
         )
       end
 
-      test from: :bulk_data_no_auth_reject,
-           id: :bulk_data_group_no_auth_reject,
-           config: {
-             options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-           }
+      test from: :bulk_data_group_no_auth_reject
 
-      test from: :bulk_data_kick_off,
-           id: :bulk_data_group_kick_off,
-           config: {
-             options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-           }
+      test from: :bulk_data_group_kick_off
 
       test from: :bulk_data_status_check,
            id: :bulk_data_group_status_check,

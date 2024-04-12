@@ -7,15 +7,14 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v101') }
   let(:bulk_server_url) { 'https://example.com/fhir' }
-  let(:bearer_token) { 'some_bearer_token_alphanumeric' }
   let(:group_id) { '1219' }
+  let(:bearer_token) { 'some_bearer_token_alphanumeric' }
   let(:polling_url) { 'https://redirect.com' }
   let(:bulk_timeout) { 180 }
   let(:base_input) do
     {
-      bulk_server_url:,
-      bearer_token:,
-      group_id:
+      group_id:,
+      bearer_token:
     }
   end
   let(:capability_statement) { FHIR.from_contents(File.read('spec/fixtures/CapabilityStatement.json')) }
@@ -52,14 +51,13 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportOperationSupportTest) do
         fhir_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
-        input :bulk_server_url, :bearer_token, :group_id
         config(
           options: { resource_type: 'Group' }
         )
@@ -70,7 +68,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 400)
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Unexpected response status: expected 200, 201, but received 400')
@@ -80,7 +78,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 200, body: 'not_json')
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Invalid JSON. ')
@@ -92,7 +90,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 200, body: capability_statement.to_json)
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('fail')
       expect(result.result_message)
@@ -105,7 +103,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 200, body: capability_statement.to_json)
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('fail')
       expect(result.result_message)
@@ -116,7 +114,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 200, body: capability_statement.to_json)
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('pass')
     end
@@ -126,7 +124,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 200, body: capability_statement.to_json)
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('pass')
     end
@@ -136,7 +134,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 200, body: capability_statement.to_json)
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('pass')
     end
@@ -147,7 +145,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       stub_request(:get, "#{bulk_server_url}/metadata")
         .to_return(status: 200, body: capability_statement.to_json)
 
-      result = run(test_class, base_input)
+      result = run(test_class)
 
       expect(result.result).to eq('pass')
     end
@@ -155,19 +153,14 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
   describe '[Bulk Data Server rejects $export request without authorization] test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportNoAuthRejectTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupExportNoAuthRejectTest) do
         fhir_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
-
-        input :bulk_server_url, :bearer_token, :group_id
-        config(
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        )
       end
     end
 
@@ -203,19 +196,14 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
 
   describe '[Bulk Data Server returns "202 Accepted" and "Content-location" for $export] test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV101::BulkDataKickOffTest) do
+      Class.new(BulkDataTestKit::BulkDataV101::BulkDataGroupKickOffTest) do
         fhir_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
-
-        input :bulk_server_url, :bearer_token, :group_id
-        config(
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        )
       end
     end
 
@@ -264,7 +252,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   end
 
   describe '[Bulk Data Server returns "202 Accepted" or "200 OK" for status check] test' do
-    let(:input) { base_input.merge(polling_url:).merge(bulk_timeout:) }
+    let(:input) { base_input.merge(polling_url:).merge(bulk_timeout:).except(:group_id) }
     let(:headers) { { 'content-type' => 'application/json' } }
     let(:incomplete_status_response) do
       status_response_json = JSON.parse(status_response)
@@ -275,14 +263,13 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataStatusCheckTest) do
         fhir_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
-        input :bulk_server_url, :bearer_token, :group_id, :polling_url, :bulk_timeout
         config(
           options: { resource_type: 'Group' }
         )
@@ -290,10 +277,10 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     end
 
     it 'skips when polling_url is not provided' do
-      result = run(test_class, base_input)
+      result = run(test_class, input.except(:polling_url))
 
       expect(result.result).to eq('skip')
-      expect(result.result_message).to eq('Server response did not have Content-Location in header')
+      expect(result.result_message).to eq("Input 'polling_url' is nil, skipping test.")
     end
 
     it 'skips when server only returns "202 Accepted", and not "200 OK" in the allowed timeframe' do
@@ -372,14 +359,13 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataOutputCheckTest) do
         fhir_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
 
-        input :bulk_server_url, :bearer_token, :group_id
         config(
           options: { resource_type: 'Group' }
         )
@@ -391,12 +377,13 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
       status_output_json['output'][1].delete('type')
       status_output_json.to_json
     end
+    let(:group_id) { '1219' }
 
-    it 'fails when response not found' do
-      result = run(test_class, { bulk_server_url: })
+    it 'skips when response not found' do
+      result = run(test_class)
 
-      expect(result.result).to eq('fail')
-      expect(result.result_message).to eq('Bulk Data Server status response not found')
+      expect(result.result).to eq('skip')
+      expect(result.result_message).to eq("Input 'status_response' is nil, skipping test.")
     end
 
     it 'fails when response does not contain output' do
@@ -407,14 +394,14 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     end
 
     it 'fails when output does not contain required attributes' do
-      result = run(test_class, { status_response: bad_status_output })
+      result = run(test_class, status_response: bad_status_output )
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Output file did not contain "type" as required')
     end
 
     it 'passes when response contains output with required attributes' do
-      result = run(test_class, { status_response: status_output })
+      result = run(test_class, status_response: status_output )
 
       expect(result.result).to eq('pass')
     end

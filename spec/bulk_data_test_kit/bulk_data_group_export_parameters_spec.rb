@@ -6,16 +6,15 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_parameters_group') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v200') }
-  let(:export_url) { "#{bulk_server_url}/Group/#{group_id}/$export" }
   let(:bulk_server_url) { 'https://example.com/fhir' }
-  let(:bearer_token) { 'some_bearer_token_alphanumeric' }
+  let(:export_url) { "#{bulk_server_url}/Group/#{group_id}/$export" }
   let(:group_id) { '1219' }
+  let(:bearer_token) { 'some_bearer_token_alphanumeric' }
   let(:polling_url) { 'https://redirect.com' }
   let(:input) do
     {
-      bulk_server_url:,
-      bearer_token:,
-      group_id:
+      group_id:,
+      bearer_token:
     }
   end
 
@@ -35,15 +34,10 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
 
   describe 'Bulk Data Server supports "_outputFormat" query parameter test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV200::BulkDataOutputFormatParamTest) do
+      Class.new(BulkDataTestKit::BulkDataV200::BulkDataGroupOutputFormatParamTest) do
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
-
-        input :bulk_server_url, :bearer_token, :group_id
-        config(
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        )
       end
     end
 
@@ -129,15 +123,10 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
 
   describe 'Bulk Data Server supports "_since" query parameter test' do
     let(:test_class) do
-      Class.new(BulkDataTestKit::BulkDataV200::BulkDataSinceParamTest) do
+      Class.new(BulkDataTestKit::BulkDataV200::BulkDataGroupSinceParamTest) do
         http_client :bulk_server do
-          url :bulk_server_url
+          url 'https://example.com/fhir'
         end
-
-        input :bulk_server_url, :bearer_token, :group_id
-        config(
-          options: { resource_type: 'Group', bulk_export_url: 'Group/[group_id]/$export' }
-        )
       end
     end
 

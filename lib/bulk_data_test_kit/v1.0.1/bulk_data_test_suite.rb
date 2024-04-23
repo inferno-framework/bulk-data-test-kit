@@ -26,13 +26,14 @@ module BulkDataTestKit
       ]
 
       VALIDATION_MESSAGE_FILTERS = [
-        /Observation\.effective\.ofType\(Period\): .*vs-1:/ # Invalid invariant in FHIR v4.0.1
+        /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
+        /\A\S+: \S+: URL value '.*' does not resolve/
       ].freeze
 
       VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
 
-      validator do
-        url ENV.fetch('BULK_DATA_VALIDATOR_URL', 'http://validator_service:4567')
+      fhir_resource_validator do
+        url ENV.fetch('BULK_DATA_FHIR_RESOURCE_VALIDATOR_URL', 'http://hl7_validator_service:3500')
 
         message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
 
@@ -42,13 +43,17 @@ module BulkDataTestKit
         $capped_errors = false
 
         exclude_message do |message|
-          if message.type != 'error'
-            $num_messages += 1
-          else
-            $num_errors += 1
+          matches_filter = message_filters.any? { |filter| filter.match? message.message }
+
+          unless matches_filter
+            if message.type != 'error'
+              $num_messages += 1
+            else
+              $num_errors += 1
+            end
           end
 
-          message_filters.any? { |filter| filter.match? message.message } ||
+          matches_filter ||
             (message.type != 'error' && $num_messages > 50 && !message.message.include?('Inferno is only showing the first')) ||
             (message.type == 'error' && $num_errors > 20 && !message.message.include?('Inferno is only showing the first'))
         end

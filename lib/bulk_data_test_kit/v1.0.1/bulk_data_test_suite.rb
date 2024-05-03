@@ -33,8 +33,6 @@ module BulkDataTestKit
       VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
 
       fhir_resource_validator do
-        url ENV.fetch('BULK_DATA_FHIR_RESOURCE_VALIDATOR_URL', 'http://hl7_validator_service:3500')
-
         message_filters = VALIDATION_MESSAGE_FILTERS + VERSION_SPECIFIC_MESSAGE_FILTERS
 
         $num_messages = 0

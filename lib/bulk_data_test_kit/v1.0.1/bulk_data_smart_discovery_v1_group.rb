@@ -11,13 +11,6 @@ module BulkDataTestKit
 
       test from: :well_known_endpoint
       test from: :bulk_data_smart_discovery_v1_contents
-
-      # group from: :smart_discovery_stu2,
-      #       config: {
-      #         inputs: { url: { name: :bulk_server_url } }
-      #       }
-
-      # group from: :backend_services_authorization
     end
   end
 end

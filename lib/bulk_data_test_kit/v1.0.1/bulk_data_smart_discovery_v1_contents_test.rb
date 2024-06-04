@@ -12,42 +12,50 @@ module BulkDataTestKit
         > scopes_supported, token_endpoint_auth_methods_supported (with values that include private_key_jwt), and
         > token_endpoint_auth_signing_alg_values_supported (with values that include at least one of RS384, ES384)
         > attributes for backend services. The response is a JSON document using the application/json mime type.
+
+        This test requires a valid `token_endpoint` claim to pass but issue a warning for all other claims.
       )
 
       input :well_known_configuration
 
       output :smart_token_url
 
-      run do
-        # omitted scopes_supported 
-        capabilities = {
-          'token_endpoint' => String,
-          'token_endpoint_auth_methods_supported' => Array,
-          'token_endpoint_auth_signing_alg_values_supported' => Array
-        }
+      def test_key(config, key, type)
+        assert config.key?(key), "Well-known configuration does not include `#{key}`"
+        assert config[key].present?, "Well-known configuration field `#{key}` is blank"
+        assert config[key].is_a?(type), "Well-known `#{key}` must be type: #{type.to_s.downcase}"
+      end
 
-        skip_if well_known_configuration.blank?, 'No well-known configuration found'
+      run do
         config = JSON.parse(well_known_configuration)
 
-        capabilities.each do |key, type|
-          assert config.key?(key), "Well-known configuration does not include `#{key}`"
-          assert config[key].present?, "Well-known configuration field `#{key}` is blank"
-          assert config[key].is_a?(type), "Well-known `#{key}` must be type: #{type.to_s.downcase}"
-        end
-
+        # token_endpoint must be output for downstream tests to work
+        test_key(config, 'token_endpoint', String)
         token_endpoint = config['token_endpoint']
         assert token_endpoint.match?(URI::DEFAULT_PARSER.make_regexp), "`#{token_endpoint}` is not a valid URI"
 
         output smart_token_url: token_endpoint
 
-        assert config['token_endpoint_auth_methods_supported'].include?('private_key_jwt'),
-               '`token_endpoint_auth_methods_supported` does not include the value `private_key_jwt`'
+        recommended_capabilities = [
+          'token_endpoint_auth_methods_supported',
+          'token_endpoint_auth_signing_alg_values_supported',
+          'scopes_supported'
+        ]
 
-        supports_RS384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'RS384'
-        supports_ES384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'ES384'
+        warning do
+          recommended_capabilities.each do |key|
+            test_key(config, key, Array)
+          end
 
-        err_msg = '`token_endpoint_auth_signing_alg_values_supported` does not include values for `RS384` or `ES384`'
-        assert (supports_RS384 || supports_ES384), err_msg
+          assert config['token_endpoint_auth_methods_supported'].include?('private_key_jwt'),
+                '`token_endpoint_auth_methods_supported` does not include the value `private_key_jwt`'
+
+          supports_RS384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'RS384'
+          supports_ES384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'ES384'
+
+          err_msg = '`token_endpoint_auth_signing_alg_values_supported` does not include values for `RS384` or `ES384`'
+          assert (supports_RS384 || supports_ES384), err_msg
+        end
       end
     end
   end

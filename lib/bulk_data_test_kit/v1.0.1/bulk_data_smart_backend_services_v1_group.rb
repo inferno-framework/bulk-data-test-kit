@@ -8,7 +8,6 @@ module BulkDataTestKit
     class BulkDataSmartBackendServicesV1Group < Inferno::TestGroup
       title 'SMART Backend Services'
       id :bulk_data_smart_backend_services_v101
-      run_as_group
       optional
 
       group from: :bulk_data_smart_discovery_v1,

@@ -7,7 +7,6 @@ module BulkDataTestKit
       title 'SMART on FHIR Discovery'
       id :bulk_data_smart_discovery_v1
       run_as_group
-      optional
 
       test from: :well_known_endpoint
       test from: :bulk_data_smart_discovery_v1_contents

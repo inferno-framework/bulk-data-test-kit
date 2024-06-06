@@ -15,7 +15,7 @@ module BulkDataTestKit
               inputs: { url: { name: :bulk_server_url } }
             }
 
-      group from: :backend_services_authorization
+      group from: :backend_services_authorization, run_as_group: true
     end
   end
 end

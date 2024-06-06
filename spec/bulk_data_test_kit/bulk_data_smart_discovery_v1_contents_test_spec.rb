@@ -62,21 +62,23 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV1ContentsTe
     metadata.delete('token_endpoint')
     result = run(runnable, well_known_configuration: JSON.generate(metadata))
     expect(result.result).to eq('fail')
+    expect(result.result_message).to match(/does not include `token_endpoint`/)
   end
 
   it 'fails with incorrect token_endpoint contents' do
-    incorrect_token_endpoint_values = [
-      '',
-      'not_a_uri',
-      ['https://example.org/auth/token']
-    ]
+    incorrect_token_endpoint_values = {
+      '' => '`token_endpoint` is blank',
+      'not_a_uri' => 'not a valid URI',
+      ['https://example.org/auth/token'] => '`token_endpoint` must be type'
+    }
 
     metadata = correct_metadata
 
-    incorrect_token_endpoint_values.each do |value|
-      metadata['token_endpoint'] = value
+    incorrect_token_endpoint_values.each do |key, value|
+      metadata['token_endpoint'] = key
       result = run(runnable, well_known_configuration: JSON.generate(metadata))
       expect(result.result).to eq('fail')
+      expect(result.result_message).to match(value)
     end
   end
 end

@@ -3,7 +3,7 @@ require_relative 'bulk_data_smart_discovery_v101_contents_test'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataSmartDiscoveryV1Group < Inferno::TestGroup
+    class BulkDataSmartDiscoveryV101Group < Inferno::TestGroup
       title 'SMART on FHIR Discovery'
       id :bulk_data_smart_discovery_v101
       run_as_group

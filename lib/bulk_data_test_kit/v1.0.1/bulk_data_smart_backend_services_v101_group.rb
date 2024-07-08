@@ -5,7 +5,7 @@ require_relative 'bulk_data_smart_discovery_v101_group'
 
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataSmartBackendServicesV1Group < Inferno::TestGroup
+    class BulkDataSmartBackendServicesV101Group < Inferno::TestGroup
       title 'SMART Backend Services'
       id :bulk_data_smart_backend_services_v101
       optional

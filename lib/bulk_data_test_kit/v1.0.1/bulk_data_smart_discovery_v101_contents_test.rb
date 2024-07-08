@@ -1,6 +1,6 @@
 module BulkDataTestKit
   module BulkDataV101
-    class BulkDataSmartDiscoveryV1ContentsTest < Inferno::Test
+    class BulkDataSmartDiscoveryV101ContentsTest < Inferno::Test
       title 'Well-known configuration contains the required fields'
       id :bulk_data_smart_discovery_v101_contents
 

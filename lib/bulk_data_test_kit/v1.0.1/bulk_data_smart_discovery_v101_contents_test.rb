@@ -1,3 +1,4 @@
+require 'pry'
 module BulkDataTestKit
   module BulkDataV101
     class BulkDataSmartDiscoveryV101ContentsTest < Inferno::Test
@@ -13,7 +14,9 @@ module BulkDataTestKit
         > token_endpoint_auth_signing_alg_values_supported (with values that include at least one of RS384, ES384)
         > attributes for backend services. The response is a JSON document using the application/json mime type.
 
-        This test requires a valid `token_endpoint` claim to pass but issue a warning for all other claims.
+        This test requires a valid `token_endpoint` claim to pass but issue a warning for any other recommended claims
+        that are not present.
+        However, any included claim must have the proper format and/or values indicated by the IG.
       )
 
       input :well_known_configuration
@@ -21,7 +24,6 @@ module BulkDataTestKit
       output :smart_token_url
 
       def test_key(config, key, type)
-        assert config.key?(key), "Well-known configuration does not include `#{key}`"
         assert config[key].present?, "Well-known configuration field `#{key}` is blank"
         assert config[key].is_a?(type), "Well-known `#{key}` must be type: #{type.to_s.downcase}"
       end
@@ -30,6 +32,7 @@ module BulkDataTestKit
         config = JSON.parse(well_known_configuration)
 
         # token_endpoint must be output for downstream tests to work
+        assert config.key?('token_endpoint'), 'Well-known configuration does not include `token_endpoint`'
         test_key(config, 'token_endpoint', String)
         token_endpoint = config['token_endpoint']
         assert_valid_http_uri(token_endpoint, "`#{token_endpoint}` is not a valid URI")
@@ -42,19 +45,31 @@ module BulkDataTestKit
           'scopes_supported'
         ]
 
-        warning do
-          recommended_capabilities.each do |key|
-            test_key(config, key, Array)
+        present_capabilities = []
+        recommended_capabilities.each do |key|
+          if config.key?(key) then present_capabilities.append(key)
+          else
+            warning do
+              assert config.key?(key), "Well-known configuration does not include `#{key}`"
+            end
           end
+        end
 
+        present_capabilities.each do |key|
+          test_key(config, key, Array)
+        end
+
+        if present_capabilities.include?('token_endpoint_auth_methods_supported')
           assert config['token_endpoint_auth_methods_supported'].include?('private_key_jwt'),
                 '`token_endpoint_auth_methods_supported` does not include the value `private_key_jwt`'
+        end
 
-          supports_RS384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'RS384'
+        if present_capabilities.include?('token_endpoint_auth_methods_supported')
+            supports_RS384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'RS384'
           supports_ES384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'ES384'
 
-          err_msg = '`token_endpoint_auth_signing_alg_values_supported` does not include values for `RS384` or `ES384`'
-          assert (supports_RS384 || supports_ES384), err_msg
+          assert (supports_RS384 || supports_ES384),
+          '`token_endpoint_auth_signing_alg_values_supported` does not include values for `RS384` or `ES384`'
         end
       end
     end

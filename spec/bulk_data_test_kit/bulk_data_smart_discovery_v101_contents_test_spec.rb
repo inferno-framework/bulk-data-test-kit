@@ -9,7 +9,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
   let(:correct_metadata) {
     {
       'token_endpoint' => 'https://example.org/auth/token',
-      'token_endpont_auth_methods_supported' => ['private_key_jwt'],
+      'token_endpoint_auth_methods_supported' => ['private_key_jwt'],
       'token_endpoint_auth_signing_alg_values_supported' => [ 'RS384', 'ES384' ],
       'scopes_supported' => ['system/*.read']
     }
@@ -17,7 +17,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
   
   let(:recommended_capabilities) {
     [
-      'token_endpont_auth_methods_supported',
+      'token_endpoint_auth_methods_supported',
       'token_endpoint_auth_signing_alg_values_supported',
       'scopes_supported'
     ]
@@ -80,5 +80,30 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
       expect(result.result).to eq('fail')
       expect(result.result_message).to match(value)
     end
+  end
+
+  it 'fails when recommended claims are present but have improper format' do
+    recommended_capabilities.each do |key|
+      metadata = correct_metadata.clone
+      # should be an array for all
+      metadata[key] = ''
+      result = run(runnable, well_known_configuration: JSON.generate(metadata))
+      expect(result.result).to eq('fail')
+      expect(result.result_message).to match(key)
+    end
+  end
+
+  it 'fails when token_endpoint_auth_methods_supported value is incorrect' do
+    correct_metadata['token_endpoint_auth_methods_supported'] = ['invalid']
+    result = run(runnable, well_known_configuration: JSON.generate(correct_metadata))
+    expect(result.result).to eq('fail')
+    expect(result.result_message).to match('private_key_jwt')
+  end
+
+  it 'fails when token_endpoint_auth_signing_alg_values_supported value is incorrect' do
+    correct_metadata['token_endpoint_auth_signing_alg_values_supported'] = ['invalid']
+    result = run(runnable, well_known_configuration: JSON.generate(correct_metadata))
+    expect(result.result).to eq('fail')
+    expect(result.result_message).to match('`RS384` or `ES384`')
   end
 end

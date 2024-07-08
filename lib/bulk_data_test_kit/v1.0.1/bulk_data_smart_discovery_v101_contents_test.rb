@@ -32,7 +32,7 @@ module BulkDataTestKit
         # token_endpoint must be output for downstream tests to work
         test_key(config, 'token_endpoint', String)
         token_endpoint = config['token_endpoint']
-        assert token_endpoint.match?(URI::DEFAULT_PARSER.make_regexp), "`#{token_endpoint}` is not a valid URI"
+        assert_valid_http_uri(token_endpoint, "`#{token_endpoint}` is not a valid URI")
 
         output smart_token_url: token_endpoint
 

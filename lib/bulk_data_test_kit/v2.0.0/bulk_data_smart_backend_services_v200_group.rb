@@ -3,8 +3,8 @@
 require 'smart_app_launch/smart_stu2_suite'
 
 module BulkDataTestKit
-  module BulkDataV101
-    class BulkDataSmartBackendServicesV2Group < Inferno::TestGroup
+  module BulkDataV200
+    class BulkDataSmartBackendServicesV200Group < Inferno::TestGroup
       title 'SMART Backend Services'
       id :bulk_data_smart_backend_services_v200
       run_as_group

@@ -2,7 +2,7 @@ module BulkDataTestKit
   module BulkDataV101
     class BulkDataSmartDiscoveryV1ContentsTest < Inferno::Test
       title 'Well-known configuration contains the required fields'
-      id :bulk_data_smart_discovery_v1_contents
+      id :bulk_data_smart_discovery_v101_contents
 
       description %(
         The [Bulk Data v1.0.1 SMART Backend Services IG](https://hl7.org/fhir/uv/bulkdata/STU1.0.1/authorization/index.html#advertising-server-conformance-with-smart-backend-services) states:

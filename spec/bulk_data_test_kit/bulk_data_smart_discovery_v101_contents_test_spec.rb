@@ -1,8 +1,8 @@
-require_relative '../../lib/bulk_data_test_kit/v1.0.1/bulk_data_smart_discovery_v1_contents_test'
+require_relative '../../lib/bulk_data_test_kit/v1.0.1/bulk_data_smart_discovery_v101_contents_test'
 require 'pry'
 
 RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV1ContentsTest do
-  let(:runnable) { Inferno::Repositories::Tests.new.find('bulk_data_smart_discovery_v1_contents') }
+  let(:runnable) { Inferno::Repositories::Tests.new.find('bulk_data_smart_discovery_v101_contents') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:results_repo) { Inferno::Repositories::Results.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v101') }

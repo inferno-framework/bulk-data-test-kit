@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../version'
-require_relative 'bulk_data_smart_backend_services_v1_group'
+require_relative 'bulk_data_smart_backend_services_v101_group'
 require_relative 'bulk_data_export_tests_test_group'
 
 module BulkDataTestKit

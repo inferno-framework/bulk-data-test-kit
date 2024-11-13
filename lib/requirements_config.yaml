@@ -1,0 +1,12 @@
+test_kit_id: bulk-data-test-kit
+
+suites: 
+  - id: bulk_data_test_kit
+    class_name: BulkDataTestKit::BulkDataV200::BulkDataTestSuite
+    suite_actor: Provider
+
+requirement_sets:
+  - id: hl7.fhir.uv.bulkdata_2.0.0_reqs
+    actor_map:
+      - {spec: Client, test_kit: Server}
+

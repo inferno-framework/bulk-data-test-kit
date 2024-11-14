@@ -1,0 +1,11 @@
+test_kit_id: # name of the /lib/ directory holding testkit files and IG package. E.g., onc_certification_g31_test_kit
+
+suites:
+- id:  # "Id" in the metadata tab of the requirements excel sheet. E.g., 170.315(g)(31)_hti-2-proposal
+  class_name:  # The class name of the suite. E.g., OncCertificationG31TestKit::Suite
+  suite_actor: # Actor column value from the requirements excel sheet for the suite
+
+requirement_sets:
+- id: # "Id" in the metadata tab of the requirements excel sheet. E.g., 170.315(g)(31)_hti-2-proposal
+    actor_map:
+      - {spec: Provider, test_kit: Provider} #

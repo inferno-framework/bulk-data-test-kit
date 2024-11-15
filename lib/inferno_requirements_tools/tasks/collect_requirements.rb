@@ -10,14 +10,14 @@ module InfernoRequirementsTools
     # This class manages the collection of requirements details from
     # requirements planning excel workbooks into a CSV representation.
     # Currently splits out Requirements and Planned Not Tested Requirements
-    # into two separate files. 
-    # 
+    # into two separate files.
+    #
     # The `run` method will generate the files
     # The `run_check` method will check whether the previously generated files are up-to-date.
     class CollectRequirements
-
+      VERSION = '0.1.0' # update when making meaningful changes to this method for tracking used versions
       CONFIG = YAML.load_file(File.join('lib', 'requirements_config.yaml'))
-      
+
       TEST_KIT_ID = CONFIG['test_kit_id']
       INPUT_SETS = CONFIG['requirement_sets']
 
@@ -67,18 +67,21 @@ module InfernoRequirementsTools
       # }
       def input_requirement_sets
         @input_requirement_sets ||= INPUT_SETS.each_with_object({}) do |req_set_config, req_sets_hash|
-          req_set_id = req_set_config["id"]
+          req_set_id = req_set_config['id']
           req_set_file = available_input_worksheets.find { |worksheet_file| worksheet_file.include?(req_set_id) }
 
-          req_sets_hash[req_set_id] =
-            unless req_set_file.nil?
-              CSV.parse(Roo::Spreadsheet.open(req_set_file).sheet('Requirements').to_csv,
-                        headers: true).map do |row|
-                row_hash = row.to_h.slice(*INPUT_HEADERS)
-                req_set_config["actor_map"].each { |actor_mapping| row_hash["Actor*"]&.gsub!(actor_mapping["spec"], actor_mapping["test_kit"])}
-                row_hash
-              end
-            end
+          req_sets_hash[req_set_id] = parse_requirement_set(req_set_file, req_set_config) unless req_set_file.nil?
+        end
+      end
+
+      def parse_requirement_set(req_set_file, req_set_config)
+        CSV.parse(Roo::Spreadsheet.open(req_set_file).sheet('Requirements').to_csv,
+                  headers: true).map do |row|
+          row_hash = row.to_h.slice(*INPUT_HEADERS)
+          req_set_config['actor_map'].each do |actor_mapping|
+            row_hash['Actor*']&.gsub!(actor_mapping['spec'], actor_mapping['test_kit'])
+          end
+          row_hash
         end
       end
 

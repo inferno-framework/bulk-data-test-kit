@@ -8,16 +8,16 @@ module InfernoRequirementsTools
   module Tasks
     # This class manages the mapping of test kit tests to requirements that they verify
     # and creates a CSV file with the tests that cover each requirement.
-    # It expects a CSV file in the repo at `lib/bulk_data_test_kit/requirements/bulk_data_test_kit_requirements.csv`
+    # It expects a CSV file in the repo at `lib/[test kit id]/requirements/[test kit id]_requirements.csv`
     # that serves as the source of the requirement set for the test kit. The requirements in
     # this files are identified by a requirement set and an id and tests, groups, and suites
     # within in the test kit can claim that they verify a requirement by including a reference
-    # to that requirement in the form <requirement set>@<id> in their `verifies_requirements` field.
+    # to that requirementin the form <requirement set>@<id> in their `verifies_requirements` field.
     # Requirements that are out of scope can be listed in a companion file
-    # `lib/bulk_data_test_kit/requirements/bulk_data_test_kit_out_of_scope_requirements.csv`.
+    # `lib/[test kit id]/requirements/[test kit id]_out_of_scope_requirements.csv`.
     #
     # The `run` method generates a CSV file at
-    # `lib/bulk_data_test_kit/requirements/generated/bulk_data_test_kit_requirements_coverage.csv``.
+    # `lib/[test kit id]/requirements/generated/[test kit id]_requirements_coverage.csv``.
     # This file will be identical to the input spreadsheet, plus an additional column which holds a comma separated
     # list of inferno test IDs that test each requirement. These test IDs are Inferno short form IDs that represent the
     # position of the test within its group and suite. For example, the fifth test in the second group will have an ID
@@ -25,15 +25,15 @@ module InfernoRequirementsTools
     #
     # The `run_check` method will check whether the previously generated file is up-to-date.
     class RequirementsCoverage
-
+      VERSION = '0.1.0' # update when making meaningful changes to this method for tracking used versions
       CONFIG = YAML.load_file(File.join('lib', 'requirements_config.yaml'))
-      
-      TEST_KIT_ID = CONFIG['bulk-data-test-kit']
-      TEST_SUITES = CONFIG['BulkDataTestKit::BulkDataV200::BulkDataTestSuite'].map do |test_suite|
+
+      TEST_KIT_ID = CONFIG['test_kit_id']
+      TEST_SUITES = CONFIG['suites'].map do |test_suite|
         Object.const_get(test_suite['class_name'])
       end
-      
-      SUITE_ID_TO_ACTOR_MAP = CONFIG['BulkDataTestKit::BulkDataV200::BulkDataTestSuite'].each_with_object({}) do |test_suite, hash|
+
+      SUITE_ID_TO_ACTOR_MAP = CONFIG['suites'].each_with_object({}) do |test_suite, hash|
         hash[test_suite['id']] = test_suite['suite_actor']
       end
 
@@ -103,7 +103,6 @@ module InfernoRequirementsTools
         end
       end
 
-      # rubocop:disable Metrics/CyclomaticComplexity
       def new_csv
         @new_csv ||=
           CSV.generate(+"\xEF\xBB\xBF") do |csv|
@@ -114,30 +113,40 @@ module InfernoRequirementsTools
               TEST_SUITES.each do |suite|
                 suite_actor = SUITE_ID_TO_ACTOR_MAP[suite.id]
                 if row['Actor']&.include?(suite_actor)
-                  set_and_req_id = "#{row['Req Set']}@#{row['ID']}"
-                  suite_requirement_items = inferno_requirements_map[set_and_req_id]&.filter do |item|
-                    item[:suite_id] == suite.id
-                  end
-                  short_ids = suite_requirement_items&.map { |item| item[:short_id] }
-                  full_ids = suite_requirement_items&.map { |item| item[:full_id] }
-                  if short_ids.blank? && not_tested_requirements_map.key?(set_and_req_id)
-                    row["#{suite.title} #{SHORT_ID_HEADER}"] = 'Not Tested'
-                    row["#{suite.title} #{FULL_ID_HEADER}"] = 'Not Tested'
-                  else
-                    row["#{suite.title} #{SHORT_ID_HEADER}"] = short_ids&.join(', ')
-                    row["#{suite.title} #{FULL_ID_HEADER}"] = full_ids&.join(', ')
-                  end
+                  add_suite_tests_for_row(row, suite)
                 else
                   row["#{suite.title} #{SHORT_ID_HEADER}"] = 'NA'
                   row["#{suite.title} #{FULL_ID_HEADER}"] = 'NA'
                 end
               end
-
               csv << row.values
             end
           end
       end
-      # rubocop:enable Metrics/CyclomaticComplexity
+
+      def add_suite_tests_for_row(row, suite)
+        set_and_req_id = "#{row['Req Set']}@#{row['ID']}"
+        items = get_items_for_requirement(set_and_req_id, suite)
+        short_ids = items[0]
+        full_ids = items[1]
+        if short_ids.blank? && not_tested_requirements_map.key?(set_and_req_id)
+          row["#{suite.title} #{SHORT_ID_HEADER}"] = 'Not Tested'
+          row["#{suite.title} #{FULL_ID_HEADER}"] = 'Not Tested'
+        else
+          row["#{suite.title} #{SHORT_ID_HEADER}"] = short_ids&.join(', ')
+          row["#{suite.title} #{FULL_ID_HEADER}"] = full_ids&.join(', ')
+        end
+      end
+
+      def get_items_for_requirement(set_and_req_id, suite)
+        suite_requirement_items = inferno_requirements_map[set_and_req_id]&.filter do |item|
+          item[:suite_id] == suite.id
+        end
+        [
+          suite_requirement_items&.map { |item| item[:short_id] },
+          suite_requirement_items&.map { |item| item[:full_id] }
+        ]
+      end
 
       def input_requirement_ids
         @input_requirement_ids ||= input_rows.map { |row| "#{row['Req Set']}@#{row['ID']}" }
@@ -240,7 +249,6 @@ module InfernoRequirementsTools
       # req-id-1       | short-id-1 | full-id-1
       # req-id-2       | short-id-2 | full-id-2
       #
-      # rubocop:disable Metrics/CyclomaticComplexity
       def output_requirements_map_table(requirements_map)
         headers = %w[requirement_id short_id full_id]
         col_widths = headers.map(&:length)
@@ -255,6 +263,11 @@ module InfernoRequirementsTools
           headers[2].ljust(col_widths[2])
         ].join(' | ')
         puts col_widths.map { |width| '-' * width }.join('-+-')
+        output_requirements_map_table_contents(requirements_map, col_widths)
+        puts
+      end
+
+      def output_requirements_map_table_contents(requirements_map, col_widths)
         requirements_map.each do |requirement_id, runnables|
           runnables.each do |runnable|
             puts [
@@ -264,9 +277,7 @@ module InfernoRequirementsTools
             ].join(' | ')
           end
         end
-        puts
       end
-      # rubocop:enable Metrics/CyclomaticComplexity
     end
   end
 end

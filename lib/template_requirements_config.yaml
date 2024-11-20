@@ -1,4 +1,4 @@
-test_kit_id: # the name of the repository slug. E.g., onc-certification-g31-test-kit
+test_kit_id: # the name of the gem. E.g., onc_certification_g31_test_kit
 
 suites:
 - id:  # "Id" in the metadata tab of the requirements excel sheet. E.g., 170.315(g)(31)_hti-2-proposal

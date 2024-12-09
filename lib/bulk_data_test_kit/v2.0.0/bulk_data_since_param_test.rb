@@ -45,6 +45,8 @@ module BulkDataTestKit
       run do
         perform_since_param_test(since_timestamp)
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@53', 'hl7.fhir.uv.bulkdata_2.0.0@57', 'hl7.fhir.uv.bulkdata_2.0.0@58', 'hl7.fhir.uv.bulkdata_2.0.0@59'
     end
   end
 end

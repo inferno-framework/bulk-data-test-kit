@@ -25,6 +25,8 @@ module BulkDataTestKit
       run do
         perform_cancelled_polling_test(cancelled_polling_url)
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@122'
     end
   end
 end

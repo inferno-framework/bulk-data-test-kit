@@ -34,6 +34,8 @@ module BulkDataTestKit
         polling_url = export_kick_off_success
         output polling_url:
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@28', 'hl7.fhir.uv.bulkdata_2.0.0@32'
     end
   end
 end

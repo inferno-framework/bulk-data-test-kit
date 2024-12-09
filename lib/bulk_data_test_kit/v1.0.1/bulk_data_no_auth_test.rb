@@ -33,6 +33,7 @@ module BulkDataTestKit
       run do
         rejects_without_authorization
       end
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@9', 'hl7.fhir.uv.bulkdata_2.0.0@27'
     end
   end
 end

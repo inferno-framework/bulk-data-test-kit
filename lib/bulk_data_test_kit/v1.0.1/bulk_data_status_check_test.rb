@@ -40,6 +40,8 @@ module BulkDataTestKit
         output(requires_access_token:)
         output status_response:
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@123', 'hl7.fhir.uv.bulkdata_2.0.0@125', 'hl7.fhir.uv.bulkdata_2.0.0@132'
     end
   end
 end

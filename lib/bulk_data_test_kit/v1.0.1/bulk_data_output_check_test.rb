@@ -40,6 +40,8 @@ module BulkDataTestKit
         output status_output:,
                bulk_download_url:
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@33', 'hl7.fhir.uv.bulkdata_2.0.0@34', 'hl7.fhir.uv.bulkdata_2.0.0@35', 'hl7.fhir.uv.bulkdata_2.0.0@36', 'hl7.fhir.uv.bulkdata_2.0.0@164'
     end
   end
 end

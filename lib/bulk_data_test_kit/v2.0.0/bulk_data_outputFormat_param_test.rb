@@ -34,6 +34,8 @@ module BulkDataTestKit
       run do
         perform_outputFormat_param_test
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@47', 'hl7.fhir.uv.bulkdata_2.0.0@49', 'hl7.fhir.uv.bulkdata_2.0.0@51', 'hl7.fhir.uv.bulkdata_2.0.0@52'
     end
   end
 end

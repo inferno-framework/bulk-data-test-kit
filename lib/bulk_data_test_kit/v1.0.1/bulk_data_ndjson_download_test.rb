@@ -30,6 +30,8 @@ module BulkDataTestKit
         ndjson_download_requiresAccessToken_check(bulk_data_download_url: bulk_download_url,
                                                   bulk_requires_access_token: requires_access_token)
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@201'
     end
   end
 end

@@ -32,6 +32,8 @@ module BulkDataTestKit
         cancelled_polling_url = perform_export_cancel_test
         output cancelled_polling_url:
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@119'
     end
   end
 end

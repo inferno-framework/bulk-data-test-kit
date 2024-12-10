@@ -41,6 +41,11 @@ module BulkDataTestKit
       run do
         check_export_support
       end
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@1',
+                            'hl7.fhir.uv.bulkdata_2.0.0@29',
+                            'hl7.fhir.uv.bulkdata_2.0.0@217',
+                            'hl7.fhir.uv.bulkdata_2.0.0@220'
     end
   end
 end

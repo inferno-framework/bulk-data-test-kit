@@ -35,7 +35,16 @@ module BulkDataTestKit
         output polling_url:
       end
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@28', 'hl7.fhir.uv.bulkdata_2.0.0@32'
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@28',
+                            'hl7.fhir.uv.bulkdata_2.0.0@32',
+                            'hl7.fhir.uv.bulkdata_2.0.0@223',
+                            'hl7.fhir.uv.bulkdata_2.0.0@224',
+                            'hl7.fhir.uv.bulkdata_2.0.0@225',
+                            'hl7.fhir.uv.bulkdata_2.0.0@227',
+                            'hl7.fhir.uv.bulkdata_2.0.0@229',
+                            'hl7.fhir.uv.bulkdata_2.0.0@249',
+                            'hl7.fhir.uv.bulkdata_2.0.0@272'
+
     end
   end
 end

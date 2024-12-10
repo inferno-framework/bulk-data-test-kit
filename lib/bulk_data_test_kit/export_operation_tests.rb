@@ -58,7 +58,6 @@ module BulkDataTestKit
                "Server CapabilityStatement did not declare support for an operation named export in the #{resource_type} " \
                'resource (operation.name should be export)'
       end
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@1'
     end
 
     def rejects_without_authorization

@@ -22,25 +22,6 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#bulk-data-status-request'
 
-      input :polling_url, :bulk_timeout
-      input :bearer_token,
-            optional: true
-
-      output :status_response, :requires_access_token
-
-      def self.properties
-        @properties ||= BulkDataTestKitProperties.new(
-          resource_type: config.options[:resource_type]
-        )
-      end
-
-      run do
-        requires_access_token, status_response = export_status_check_success(polling_url)
-
-        output(requires_access_token:)
-        output status_response:
-      end
-
       verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@123',
                             'hl7.fhir.uv.bulkdata_2.0.0@125',
                             'hl7.fhir.uv.bulkdata_2.0.0@132',
@@ -59,6 +40,24 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@191',
                             'hl7.fhir.uv.bulkdata_2.0.0@196'
 
+      input :polling_url, :bulk_timeout
+      input :bearer_token,
+            optional: true
+
+      output :status_response, :requires_access_token
+
+      def self.properties
+        @properties ||= BulkDataTestKitProperties.new(
+          resource_type: config.options[:resource_type]
+        )
+      end
+
+      run do
+        requires_access_token, status_response = export_status_check_success(polling_url)
+
+        output(requires_access_token:)
+        output status_response:
+      end
     end
   end
 end

@@ -18,14 +18,6 @@ module BulkDataTestKit
         number of error messages it will display to 20.
       DESCRIPTION
 
-      input :status_output
-      input :requires_access_token
-
-      run do
-        perform_bulk_export_validation(bulk_status_output: status_output,
-                                       bulk_requires_access_token: requires_access_token)
-      end
-
       verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@33',
                             'hl7.fhir.uv.bulkdata_2.0.0@34',
                             'hl7.fhir.uv.bulkdata_2.0.0@35',
@@ -38,6 +30,14 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@207',
                             'hl7.fhir.uv.bulkdata_2.0.0@208',
                             'hl7.fhir.uv.bulkdata_2.0.0@209'
+
+      input :status_output
+      input :requires_access_token
+
+      run do
+        perform_bulk_export_validation(bulk_status_output: status_output,
+                                       bulk_requires_access_token: requires_access_token)
+      end
     end
   end
 end

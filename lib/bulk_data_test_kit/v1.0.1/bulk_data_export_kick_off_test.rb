@@ -19,6 +19,10 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---success'
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@28',
+                            'hl7.fhir.uv.bulkdata_2.0.0@32',
+                            'hl7.fhir.uv.bulkdata_2.0.0@227'
+
       input :bearer_token,
             optional: true
       output :polling_url
@@ -34,17 +38,6 @@ module BulkDataTestKit
         polling_url = export_kick_off_success
         output polling_url:
       end
-
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@28',
-                            'hl7.fhir.uv.bulkdata_2.0.0@32',
-                            'hl7.fhir.uv.bulkdata_2.0.0@223',
-                            'hl7.fhir.uv.bulkdata_2.0.0@224',
-                            'hl7.fhir.uv.bulkdata_2.0.0@225',
-                            'hl7.fhir.uv.bulkdata_2.0.0@227',
-                            'hl7.fhir.uv.bulkdata_2.0.0@229',
-                            'hl7.fhir.uv.bulkdata_2.0.0@249',
-                            'hl7.fhir.uv.bulkdata_2.0.0@272'
-
     end
   end
 end

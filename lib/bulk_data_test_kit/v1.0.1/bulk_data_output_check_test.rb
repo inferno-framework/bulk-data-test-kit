@@ -27,8 +27,8 @@ module BulkDataTestKit
       verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@164',
                             'hl7.fhir.uv.bulkdata_2.0.0@167',
                             'hl7.fhir.uv.bulkdata_2.0.0@168',
-                            'hl7.fhir.uv.bulkdata_2.0.0@170',
-                            'hl7.fhir.uv.bulkdata_2.0.0@171'
+                            'hl7.fhir.uv.bulkdata_2.0.0@169',
+                            'hl7.fhir.uv.bulkdata_2.0.0@170'
 
       input :status_response
 

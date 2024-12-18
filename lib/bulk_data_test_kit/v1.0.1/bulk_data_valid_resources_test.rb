@@ -18,6 +18,19 @@ module BulkDataTestKit
         number of error messages it will display to 20.
       DESCRIPTION
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@33',
+                            'hl7.fhir.uv.bulkdata_2.0.0@34',
+                            'hl7.fhir.uv.bulkdata_2.0.0@35',
+                            'hl7.fhir.uv.bulkdata_2.0.0@36',
+                            'hl7.fhir.uv.bulkdata_2.0.0@43',
+                            'hl7.fhir.uv.bulkdata_2.0.0@44',
+                            'hl7.fhir.uv.bulkdata_2.0.0@45',
+                            'hl7.fhir.uv.bulkdata_2.0.0@46',
+                            'hl7.fhir.uv.bulkdata_2.0.0@205',
+                            'hl7.fhir.uv.bulkdata_2.0.0@207',
+                            'hl7.fhir.uv.bulkdata_2.0.0@208',
+                            'hl7.fhir.uv.bulkdata_2.0.0@209'
+
       input :status_output
       input :requires_access_token
 

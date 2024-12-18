@@ -75,7 +75,8 @@ module BulkDataTestKit
 
       test from: :bulk_data_group_no_auth_reject
 
-      test from: :bulk_data_group_kick_off
+      test from: :bulk_data_group_kick_off,
+           verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@224', 'hl7.fhir.uv.bulkdata_2.0.0@249']
 
       test from: :bulk_data_status_check,
            id: :bulk_data_group_status_check,

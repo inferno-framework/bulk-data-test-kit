@@ -17,6 +17,8 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#bulk-data-delete-request'
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@119'
+
       input :bearer_token,
             optional: true
       output :cancelled_polling_url

@@ -25,7 +25,6 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@49',
                             'hl7.fhir.uv.bulkdata_2.0.0@51',
                             'hl7.fhir.uv.bulkdata_2.0.0@52',
-                            'hl7.fhir.uv.bulkdata_2.0.0@53',
                             'hl7.fhir.uv.bulkdata_2.0.0@230',
                             'hl7.fhir.uv.bulkdata_2.0.0@231',
                             'hl7.fhir.uv.bulkdata_2.0.0@251',

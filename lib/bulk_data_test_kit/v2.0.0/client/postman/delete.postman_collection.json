@@ -1,0 +1,117 @@
+{
+	"info": {
+		"name": "Bulk Data Client - System Export Delete",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+	},
+	"item": [
+		{
+			"name": "Kickoff",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"kick-off was accepted\", function () {",
+							"  pm.response.to.have.status(202);",
+							"});",
+							"",
+							"pm.collectionVariables.set(\"status-url\", pm.response.headers.get('Content-Location'));",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{kickoff-base-url}}/$export",
+					"host": [
+						"{{kickoff-base-url}}"
+					],
+					"path": [
+						"$export"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();",
+							"",
+							"pm.test(\"export was deleted\", function () {",
+							"  pm.response.to.have.status(202);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{status-url}}",
+					"host": [
+						"{{status-url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "kickoff-base-url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "status-url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

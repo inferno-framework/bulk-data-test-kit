@@ -17,7 +17,7 @@ module BulkDataTestKit
           def make_response
             response.status = 200
             response.headers['Content-Type'] = 'application/fhir+ndjson'
-            response.body = "#{FHIR::Patient.new.to_json.squish}\n"
+            response.body = "#{example_patient.to_json.squish}\n"
           end
 
           def tags
@@ -26,6 +26,13 @@ module BulkDataTestKit
 
           def export_id
             request.params[:export_id]
+          end
+
+          def example_patient
+            FHIR::Patient.new(
+              id: test_run_identifier,
+              name: FHIR::HumanName.new(given: 'Example', family: 'Patient')
+            )
           end
         end
       end

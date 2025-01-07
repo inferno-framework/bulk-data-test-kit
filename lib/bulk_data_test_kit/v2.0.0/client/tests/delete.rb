@@ -27,8 +27,6 @@ module BulkDataTestKit
 
           verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@119'
 
-          input :export_id
-
           run do
             assert load_tagged_requests(DELETE_TAG).any?, FAIL
           end

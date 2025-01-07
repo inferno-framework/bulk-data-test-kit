@@ -2,13 +2,13 @@
 
 require_relative '../../version'
 
-require_relative './endpoints/delete'
-require_relative './endpoints/kick_off'
-require_relative './endpoints/output'
-require_relative './endpoints/status'
+require_relative 'endpoints/delete'
+require_relative 'endpoints/kick_off'
+require_relative 'endpoints/output'
+require_relative 'endpoints/status'
 
-require_relative './groups/export'
-require_relative './groups/delete'
+require_relative 'groups/export'
+require_relative 'groups/delete'
 
 module BulkDataTestKit
   module BulkDataV200

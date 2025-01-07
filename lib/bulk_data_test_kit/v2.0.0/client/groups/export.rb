@@ -3,6 +3,7 @@
 require_relative '../export_types'
 require_relative '../urls'
 
+require_relative '../tests/export_wait'
 require_relative '../tests/kick_off'
 require_relative '../tests/status'
 require_relative '../tests/output'
@@ -57,41 +58,7 @@ module BulkDataTestKit
                 default: 1,
                 locked: true
 
-          test do
-            title 'Wait For Request Sequence'
-
-            description %(
-              This test will receive bulk data export requests until the user confirms they are finished.
-            )
-
-            input :export_type, :group_id
-
-            output :export_id
-
-            run do
-              export_id = SecureRandom.uuid
-
-              output export_id: export_id
-
-              wait(
-                identifier: export_id,
-                message: %(
-                  Perform a #{export_type} endpoint type bulk export using the following base URL:
-
-                  #{kickoff_url(export_id)}
-
-                  #{export_type == GROUP_EXPORT_TYPE ? "Ensure the Group ID is set to #{group_id}." : ''}
-
-                  The entire request sequence will be recorded and used in the subsequent tests to
-                  verify comformity to the
-                  [Bulk Data IG](https://build.fhir.org/ig/HL7/bulk-data/export.html#sequence-overview).
-
-                  [Click here](#{resume_pass_url}?id=#{export_id}) when finished.
-                )
-              )
-            end
-          end
-
+          test from: :bulk_data_client_export_wait
           test from: :bulk_data_client_kick_off
           test from: :bulk_data_client_status
           test from: :bulk_data_client_output

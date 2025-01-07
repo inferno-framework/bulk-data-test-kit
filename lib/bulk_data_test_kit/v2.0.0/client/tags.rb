@@ -5,13 +5,13 @@ module BulkDataTestKit
     module Client
       # Tags for use in Bulk Data Client tests and endpoints
       module Tags
-        METADATA_TAG = 'metadata_req'
-        PATIENT_KICKOFF_TAG = 'kickoff_patient_req'
-        GROUP_KICKOFF_TAG = 'kickoff_group_req'
-        SYSTEM_KICKOFF_TAG = 'kickoff_system_req'
-        STATUS_TAG = 'status_req'
-        OUTPUT_TAG = 'output_req'
-        DELETE_TAG = 'delete_req'
+        METADATA_TAG = 'bulk_data_metadata'
+        PATIENT_KICKOFF_TAG = 'bulk_data_kickoff_patient'
+        GROUP_KICKOFF_TAG = 'bulk_data_kickoff_group'
+        SYSTEM_KICKOFF_TAG = 'bulk_data_kickoff_system'
+        STATUS_TAG = 'bulk_data_status'
+        OUTPUT_TAG = 'bulk_data_output'
+        DELETE_TAG = 'bulk_data_delete'
       end
     end
   end

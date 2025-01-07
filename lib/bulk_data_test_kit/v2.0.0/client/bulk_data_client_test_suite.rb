@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../version'
+require_relative 'tags'
 require_relative 'urls'
 require_relative 'export_types'
 
@@ -9,8 +10,8 @@ require_relative 'endpoints/kick_off'
 require_relative 'endpoints/output'
 require_relative 'endpoints/status'
 
-require_relative 'groups/export'
-require_relative 'groups/delete'
+require_relative 'bulk_data_client_export_group'
+require_relative 'bulk_data_client_delete_group'
 
 module BulkDataTestKit
   module BulkDataV200

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../../version'
+require_relative 'urls'
+require_relative 'export_types'
 
 require_relative 'endpoints/delete'
 require_relative 'endpoints/kick_off'
@@ -16,6 +18,7 @@ module BulkDataTestKit
       # Bulk Data Access v2.0.0 Client Test Suite
       class BulkDataClientTestSuite < Inferno::TestSuite
         include URLs
+        include ExportTypes
 
         title 'Bulk Data Access v2.0.0 Client'
 
@@ -43,6 +46,34 @@ module BulkDataTestKit
             url: 'https://hl7.org/fhir/uv/bulkdata/STU2/'
           }
         ]
+
+        input :export_type,
+              title: 'Export Type',
+              description: 'The export endpoint type to test against.',
+              type: 'radio',
+              default: SYSTEM_EXPORT_TYPE,
+              options: {
+                list_options: [
+                  {
+                    label: 'All Patients',
+                    value: PATIENT_EXPORT_TYPE
+                  },
+                  {
+                    label: 'Group of Patients',
+                    value: GROUP_EXPORT_TYPE
+                  },
+                  {
+                    label: 'System Level Export',
+                    value: SYSTEM_EXPORT_TYPE
+                  }
+                ]
+              }
+
+        input :group_id,
+              title: 'Group ID',
+              description: 'If using the Group endpoint, the identifier of the Group to export.',
+              default: 1,
+              locked: true
 
         suite_endpoint :get, PATIENT_KICKOFF_ROUTE, Endpoints::KickOff
         suite_endpoint :get, GROUP_KICKOFF_ROUTE, Endpoints::KickOff

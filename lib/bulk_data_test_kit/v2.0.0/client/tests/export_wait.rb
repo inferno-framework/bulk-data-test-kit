@@ -32,11 +32,15 @@ module BulkDataTestKit
             wait(
               identifier: export_id,
               message: %(
-                Perform a #{export_type} endpoint type bulk export using the following base URL:
+                Perform a #{export_type} endpoint type bulk export kick-off using the following base URL:
 
                 #{kickoff_url(export_id)}
 
                 #{export_type == GROUP_EXPORT_TYPE ? "Ensure the Group ID is set to #{group_id}." : ''}
+
+                After the kick-off is made, a subsequent status request (using the URL provided in the response
+                to the kick-off request) and then a download request (using the URL provided in the response to
+                the status request) are expected.
 
                 The entire request sequence will be recorded and used in the subsequent tests to
                 verify comformity to the

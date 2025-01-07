@@ -12,8 +12,6 @@ module BulkDataTestKit
           include Tags
           include URLs
 
-          FAIL = 'Did not receive a download request.'
-
           title 'Bulk Data Output File Request'
 
           description %(
@@ -29,7 +27,11 @@ module BulkDataTestKit
           input :export_id
 
           run do
-            assert load_tagged_requests(OUTPUT_TAG).any?, FAIL
+            assert load_tagged_requests(OUTPUT_TAG).any?, fail_message
+          end
+
+          def fail_message
+            'Did not receive a download request.'
           end
         end
       end

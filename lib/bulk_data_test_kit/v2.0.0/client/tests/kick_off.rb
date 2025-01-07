@@ -14,10 +14,6 @@ module BulkDataTestKit
           include URLs
           include ExportTypes
 
-          PATIENT_FAIL = 'Did not receive a Patient type kick-off request.'
-          GROUP_FAIL = 'Did not receive a Group type kick-off request.'
-          SYSTEM_FAIL = 'Did not receive a System type kick-off request.'
-
           title 'Bulk Data Kick-off Request'
 
           description %(
@@ -35,12 +31,24 @@ module BulkDataTestKit
           run do
             case export_type
             when PATIENT_EXPORT_TYPE
-              assert load_tagged_requests(PATIENT_KICKOFF_TAG).any?, PATIENT_FAIL
+              assert load_tagged_requests(PATIENT_KICKOFF_TAG).any?, patient_fail_message
             when GROUP_EXPORT_TYPE
-              assert load_tagged_requests(GROUP_KICKOFF_TAG).any?, GROUP_FAIL
+              assert load_tagged_requests(GROUP_KICKOFF_TAG).any?, group_fail_message
             when SYSTEM_EXPORT_TYPE
-              assert load_tagged_requests(SYSTEM_KICKOFF_TAG).any?, SYSTEM_FAIL
+              assert load_tagged_requests(SYSTEM_KICKOFF_TAG).any?, system_fail_message
             end
+          end
+
+          def patient_fail_message
+            'Did not receive a Patient type kick-off request.'
+          end
+
+          def group_fail_message
+            'Did not receive a Group type kick-off request.'
+          end
+
+          def system_fail_message
+            'Did not receive a System type kick-off request.'
           end
         end
       end

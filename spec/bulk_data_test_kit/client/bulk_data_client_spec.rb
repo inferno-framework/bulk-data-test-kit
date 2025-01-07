@@ -22,12 +22,12 @@ RSpec.describe BulkDataTestKit::BulkDataV200::Client do
   let(:output_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::OUTPUT_TAG }
   let(:delete_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::DELETE_TAG }
 
-  let(:patient_fail) { BulkDataTestKit::BulkDataV200::Client::Tests::KickOff::PATIENT_FAIL }
-  let(:group_fail) { BulkDataTestKit::BulkDataV200::Client::Tests::KickOff::GROUP_FAIL }
-  let(:system_fail) { BulkDataTestKit::BulkDataV200::Client::Tests::KickOff::SYSTEM_FAIL }
-  let(:status_fail) { BulkDataTestKit::BulkDataV200::Client::Tests::Status::FAIL }
-  let(:output_fail) { BulkDataTestKit::BulkDataV200::Client::Tests::Output::FAIL }
-  let(:delete_fail) { BulkDataTestKit::BulkDataV200::Client::Tests::Delete::FAIL }
+  let(:patient_fail) { 'Did not receive a Patient type kick-off request.' }
+  let(:group_fail) { 'Did not receive a Group type kick-off request.' }
+  let(:system_fail) { 'Did not receive a System type kick-off request.' }
+  let(:status_fail) { 'Did not receive a status request.' }
+  let(:output_fail) { 'Did not receive a download request.' }
+  let(:delete_fail) { 'Did not receive a delete request.' }
 
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
@@ -110,14 +110,14 @@ RSpec.describe BulkDataTestKit::BulkDataV200::Client do
     describe 'delete test' do
       it 'passes after delete request received' do
         allow(delete_test).to receive_messages(suite:)
-        result = run(delete_test, export_id: 'foobar')
+        result = run(delete_test)
 
         expect(result.result).to eq('fail')
         expect(result.result_message).to eq(delete_fail)
 
         mock_request(result, [delete_tag], 'delete')
 
-        result = run(delete_test, export_id: 'foobar')
+        result = run(delete_test)
 
         expect(result.result).to eq('pass')
       end

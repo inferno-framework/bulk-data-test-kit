@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../tags'
-require_relative '../urls'
 require_relative '../export_types'
 
 module BulkDataTestKit
@@ -11,7 +10,6 @@ module BulkDataTestKit
         # Bulk Data Client Kick-off
         class KickOff < Inferno::Test
           include Tags
-          include URLs
           include ExportTypes
 
           title 'Bulk Data Kick-off Request'

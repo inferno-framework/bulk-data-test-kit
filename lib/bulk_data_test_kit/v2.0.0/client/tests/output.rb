@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../tags'
-require_relative '../urls'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -10,7 +9,6 @@ module BulkDataTestKit
         # Bulk Data Client Output
         class Output < Inferno::Test
           include Tags
-          include URLs
 
           title 'Bulk Data Output File Request'
 

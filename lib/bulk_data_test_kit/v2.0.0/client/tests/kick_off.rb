@@ -26,7 +26,7 @@ module BulkDataTestKit
 
           verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@17'
 
-          input :export_id, :export_type, :group_id
+          input :export_type
 
           run do
             case export_type

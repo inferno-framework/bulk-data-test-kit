@@ -60,14 +60,14 @@ RSpec.describe BulkDataTestKit::BulkDataV200::Client do
         describe "for #{type} type" do
           it 'passes after kick-off request received' do
             allow(kickoff_test).to receive_messages(suite:)
-            result = run(kickoff_test, export_id: 'foobar', export_type: type, group_id: 1)
+            result = run(kickoff_test, export_type: type)
 
             expect(result.result).to eq('fail')
             expect(result.result_message).to eq(send("#{type.downcase}_fail"))
 
             mock_request(result, [send("#{type.downcase}_kickoff_tag")])
 
-            result = run(kickoff_test, export_id: 'foobar', export_type: type, group_id: 1)
+            result = run(kickoff_test, export_type: type)
 
             expect(result.result).to eq('pass')
           end
@@ -78,14 +78,14 @@ RSpec.describe BulkDataTestKit::BulkDataV200::Client do
     describe 'status test' do
       it 'passes after status request received' do
         allow(status_test).to receive_messages(suite:)
-        result = run(status_test, export_id: 'foobar')
+        result = run(status_test)
 
         expect(result.result).to eq('fail')
         expect(result.result_message).to eq(status_fail)
 
         mock_request(result, [status_tag])
 
-        result = run(status_test, export_id: 'foobar')
+        result = run(status_test)
 
         expect(result.result).to eq('pass')
       end
@@ -94,14 +94,14 @@ RSpec.describe BulkDataTestKit::BulkDataV200::Client do
     describe 'output test' do
       it 'passes after export downloaded' do
         allow(output_test).to receive_messages(suite:)
-        result = run(output_test, export_id: 'foobar')
+        result = run(output_test)
 
         expect(result.result).to eq('fail')
         expect(result.result_message).to eq(output_fail)
 
         mock_request(result, [output_tag])
 
-        result = run(output_test, export_id: 'foobar')
+        result = run(output_test)
 
         expect(result.result).to eq('pass')
       end

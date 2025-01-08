@@ -20,7 +20,9 @@ module BulkDataTestKit
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---success'
 
       verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@28',
-                            'hl7.fhir.uv.bulkdata_2.0.0@227'
+                            'hl7.fhir.uv.bulkdata_2.0.0@227',
+                            'hl7.fhir.uv.bulkdata_2.0.0@300',
+                            'hl7.fhir.uv.bulkdata_2.0.0@301'
 
       input :bearer_token,
             optional: true

@@ -22,27 +22,22 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#bulk-data-status-request'
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@125',
-                            'hl7.fhir.uv.bulkdata_2.0.0@132',
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@132',
                             'hl7.fhir.uv.bulkdata_2.0.0@144',
                             'hl7.fhir.uv.bulkdata_2.0.0@145',
                             'hl7.fhir.uv.bulkdata_2.0.0@147',
                             'hl7.fhir.uv.bulkdata_2.0.0@150',
                             'hl7.fhir.uv.bulkdata_2.0.0@151',
                             'hl7.fhir.uv.bulkdata_2.0.0@152',
-                            'hl7.fhir.uv.bulkdata_2.0.0@154',
                             'hl7.fhir.uv.bulkdata_2.0.0@155',
                             'hl7.fhir.uv.bulkdata_2.0.0@156',
                             'hl7.fhir.uv.bulkdata_2.0.0@157',
                             'hl7.fhir.uv.bulkdata_2.0.0@159',
                             'hl7.fhir.uv.bulkdata_2.0.0@160',
                             'hl7.fhir.uv.bulkdata_2.0.0@161',
-                            'hl7.fhir.uv.bulkdata_2.0.0@165',
-                            'hl7.fhir.uv.bulkdata_2.0.0@166',
                             'hl7.fhir.uv.bulkdata_2.0.0@191',
                             'hl7.fhir.uv.bulkdata_2.0.0@192',
-                            'hl7.fhir.uv.bulkdata_2.0.0@193',
-                            'hl7.fhir.uv.bulkdata_2.0.0@196'
+                            'hl7.fhir.uv.bulkdata_2.0.0@193'
 
       input :polling_url, :bulk_timeout
       input :bearer_token,

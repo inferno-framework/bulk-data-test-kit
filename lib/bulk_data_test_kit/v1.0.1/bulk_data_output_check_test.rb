@@ -25,6 +25,8 @@ module BulkDataTestKit
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---complete-status'
 
       verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@164',
+                            'hl7.fhir.uv.bulkdata_2.0.0@165',
+                            'hl7.fhir.uv.bulkdata_2.0.0@166',
                             'hl7.fhir.uv.bulkdata_2.0.0@167',
                             'hl7.fhir.uv.bulkdata_2.0.0@168',
                             'hl7.fhir.uv.bulkdata_2.0.0@169',

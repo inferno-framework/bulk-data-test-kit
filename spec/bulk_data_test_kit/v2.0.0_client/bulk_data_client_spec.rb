@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../../lib/bulk_data_test_kit/v2.0.0/client/tags'
-require_relative '../../../lib/bulk_data_test_kit/v2.0.0/client/urls'
+require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/tags'
+require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/urls'
 
-RSpec.describe BulkDataTestKit::BulkDataV200::Client do
+RSpec.describe BulkDataTestKit::BulkDataV200Client do
   let(:suite) { Inferno::Repositories::TestSuites.new.find('bulk_data_v200_client') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:results_repo) { Inferno::Repositories::Results.new }
@@ -15,12 +15,12 @@ RSpec.describe BulkDataTestKit::BulkDataV200::Client do
   let(:output_test) { Inferno::Repositories::Tests.new.find('bulk_data_client_output') }
   let(:delete_test) { Inferno::Repositories::Tests.new.find('bulk_data_client_delete') }
 
-  let(:patient_kickoff_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::PATIENT_KICKOFF_TAG }
-  let(:group_kickoff_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::GROUP_KICKOFF_TAG }
-  let(:system_kickoff_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::SYSTEM_KICKOFF_TAG }
-  let(:status_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::STATUS_TAG }
-  let(:output_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::OUTPUT_TAG }
-  let(:delete_tag) { BulkDataTestKit::BulkDataV200::Client::Tags::DELETE_TAG }
+  let(:patient_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::Tags::PATIENT_KICKOFF_TAG }
+  let(:group_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::Tags::GROUP_KICKOFF_TAG }
+  let(:system_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::Tags::SYSTEM_KICKOFF_TAG }
+  let(:status_tag) { BulkDataTestKit::BulkDataV200Client::Tags::STATUS_TAG }
+  let(:output_tag) { BulkDataTestKit::BulkDataV200Client::Tags::OUTPUT_TAG }
+  let(:delete_tag) { BulkDataTestKit::BulkDataV200Client::Tags::DELETE_TAG }
 
   let(:patient_fail) { 'Did not receive a Patient type kick-off request.' }
   let(:group_fail) { 'Did not receive a Group type kick-off request.' }

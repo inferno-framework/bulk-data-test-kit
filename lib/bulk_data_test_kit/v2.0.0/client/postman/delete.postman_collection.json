@@ -45,8 +45,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"let responseData = pm.response.json();",
-							"",
 							"pm.test(\"export was deleted\", function () {",
 							"  pm.response.to.have.status(202);",
 							"});",

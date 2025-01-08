@@ -15,12 +15,12 @@ RSpec.describe BulkDataTestKit::BulkDataV200Client do
   let(:output_test) { Inferno::Repositories::Tests.new.find('bulk_data_client_output') }
   let(:delete_test) { Inferno::Repositories::Tests.new.find('bulk_data_client_delete') }
 
-  let(:patient_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::Tags::PATIENT_KICKOFF_TAG }
-  let(:group_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::Tags::GROUP_KICKOFF_TAG }
-  let(:system_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::Tags::SYSTEM_KICKOFF_TAG }
-  let(:status_tag) { BulkDataTestKit::BulkDataV200Client::Tags::STATUS_TAG }
-  let(:output_tag) { BulkDataTestKit::BulkDataV200Client::Tags::OUTPUT_TAG }
-  let(:delete_tag) { BulkDataTestKit::BulkDataV200Client::Tags::DELETE_TAG }
+  let(:patient_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::PATIENT_KICKOFF_TAG }
+  let(:group_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::GROUP_KICKOFF_TAG }
+  let(:system_kickoff_tag) { BulkDataTestKit::BulkDataV200Client::SYSTEM_KICKOFF_TAG }
+  let(:status_tag) { BulkDataTestKit::BulkDataV200Client::STATUS_TAG }
+  let(:output_tag) { BulkDataTestKit::BulkDataV200Client::OUTPUT_TAG }
+  let(:delete_tag) { BulkDataTestKit::BulkDataV200Client::DELETE_TAG }
 
   let(:patient_fail) { 'Did not receive a Patient type kick-off request.' }
   let(:group_fail) { 'Did not receive a Group type kick-off request.' }

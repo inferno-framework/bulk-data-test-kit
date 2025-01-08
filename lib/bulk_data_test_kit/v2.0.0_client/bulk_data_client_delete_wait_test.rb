@@ -5,7 +5,6 @@ module BulkDataTestKit
     # Bulk Data Client - Delete Wait
     class DeleteWaitTest < Inferno::Test
       include URLs
-      include ExportTypes
 
       title 'Wait For Request Sequence'
 

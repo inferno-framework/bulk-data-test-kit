@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../tags'
-
 module BulkDataTestKit
   module BulkDataV200Client
     module Endpoints
       # Delete Endpoint
       class Delete < Inferno::DSL::SuiteEndpoint
-        include Tags
-
         def test_run_identifier
           export_id
         end

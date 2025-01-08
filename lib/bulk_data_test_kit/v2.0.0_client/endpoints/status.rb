@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../tags'
-require_relative '../urls'
-
 module BulkDataTestKit
   module BulkDataV200Client
     module Endpoints
       # Status Endpoint
       class Status < Inferno::DSL::SuiteEndpoint
-        include Tags
         include URLs
 
         def test_run_identifier

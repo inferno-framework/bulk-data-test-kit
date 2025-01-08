@@ -17,9 +17,6 @@ module BulkDataTestKit
   module BulkDataV200Client
     # Bulk Data Access v2.0.0 Client Test Suite
     class BulkDataClientTestSuite < Inferno::TestSuite
-      include URLs
-      include ExportTypes
-
       title 'Bulk Data Access v2.0.0 Client'
 
       description File.read(File.join(__dir__, 'docs', 'suite_description.md'))

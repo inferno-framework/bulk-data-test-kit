@@ -2,17 +2,17 @@
 
 module BulkDataTestKit
   module BulkDataV200Client
+    RESUME_PASS_PATH = '/resume_pass'
+    BASE_ROUTE = '/:export_id/fhir'
+    METADATA_ROUTE = "#{BASE_ROUTE}/metadata".freeze
+    PATIENT_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/$export".freeze
+    GROUP_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/:group_id/$export".freeze
+    SYSTEM_KICKOFF_ROUTE = "#{BASE_ROUTE}/$export".freeze
+    STATUS_ROUTE = '/status/:export_id'
+    OUTPUT_ROUTE = '/output/:export_id.ndjson'
+
     # URLs for use in Bulk Data Client tests and endpoints
     module URLs
-      RESUME_PASS_PATH = '/resume_pass'
-      BASE_ROUTE = '/:export_id/fhir'
-      METADATA_ROUTE = "#{BASE_ROUTE}/metadata".freeze
-      PATIENT_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/$export".freeze
-      GROUP_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/:group_id/$export".freeze
-      SYSTEM_KICKOFF_ROUTE = "#{BASE_ROUTE}/$export".freeze
-      STATUS_ROUTE = '/status/:export_id'
-      OUTPUT_ROUTE = '/output/:export_id.ndjson'
-
       def base_url
         "#{Inferno::Application['base_url']}/custom/#{suite_id}"
       end

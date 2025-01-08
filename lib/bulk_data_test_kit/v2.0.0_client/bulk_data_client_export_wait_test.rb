@@ -5,7 +5,6 @@ module BulkDataTestKit
     # Bulk Data Client - Export Wait
     class ExportWaitTest < Inferno::Test
       include URLs
-      include ExportTypes
 
       title 'Wait For Request Sequence'
 

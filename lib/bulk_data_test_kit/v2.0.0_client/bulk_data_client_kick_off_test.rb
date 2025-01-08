@@ -4,9 +4,6 @@ module BulkDataTestKit
   module BulkDataV200Client
     # Bulk Data Client Kick-off
     class KickOffTest < Inferno::Test
-      include Tags
-      include ExportTypes
-
       title 'Bulk Data Kick-off Request'
 
       description %(

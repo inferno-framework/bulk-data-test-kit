@@ -12,7 +12,7 @@ requirements and may change the test verification logic.
 ### Sample Execution - Postman
 
 To try out these tests without a Bulk Data client implementation, you may
-run them using [this "bulk data client system export" Postman collection](https://github.com/inferno-framework/bulk-data-test-kit/blob/main/lib/bulk_data_test_kit/v2.0.0/client/postman/system_export.postman_collection.json) and [this "bulk data client delete" Postman collection](https://github.com/inferno-framework/bulk-data-test-kit/blob/main/lib/bulk_data_test_kit/v2.0.0/client/postman/delete.postman_collection.json).
+run them using [this "bulk data client system export" Postman collection](https://github.com/inferno-framework/bulk-data-test-kit/blob/main/lib/bulk_data_test_kit/v2.0.0_client/postman/system_export.postman_collection.json) and [this "bulk data client delete" Postman collection](https://github.com/inferno-framework/bulk-data-test-kit/blob/main/lib/bulk_data_test_kit/v2.0.0_client/postman/delete.postman_collection.json).
 
 To run client tests against one of the Postman collections:
 1. Start an Inferno session of the Bulk Data Client test suite.

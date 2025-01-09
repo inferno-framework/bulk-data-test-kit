@@ -22,13 +22,15 @@ module BulkDataTestKit
            id: :output_format_in_system_export_response,
            config: {
              options: { resource_type: 'system', bulk_export_url: '$export' }
-           }
+           },
+           verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@231']
 
       test from: :since_in_export_response,
            id: :since_in_system_export_response,
            config: {
              options: { resource_type: 'system', bulk_export_url: '$export' }
-           }
+           },
+           verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@234']
     end
   end
 end

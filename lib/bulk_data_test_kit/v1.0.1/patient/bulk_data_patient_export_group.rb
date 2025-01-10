@@ -15,6 +15,10 @@ module BulkDataTestKit
       description <<~DESCRIPTION
         Verify that patient level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@225',
+                            'hl7.fhir.uv.bulkdata_2.0.0@272'
+
       id :bulk_data_patient_export_group
 
       input :bearer_token,
@@ -77,8 +81,7 @@ module BulkDataTestKit
            config: {
              outputs: { polling_url: { name: :patient_polling_url } },
              options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
-           },
-           verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@225', 'hl7.fhir.uv.bulkdata_2.0.0@272']
+           }
 
       test from: :bulk_data_status_check,
            id: :bulk_data_patient_status_check,

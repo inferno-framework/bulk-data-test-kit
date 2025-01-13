@@ -16,7 +16,7 @@ module BulkDataTestKit
             }
 
       group from: :backend_services_authorization,
-            verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@2','hl7.fhir.uv.bulkdata_2.0.0@4', 'hl7.fhir.uv.bulkdata_2.0.0@19', 'hl7.fhir.uv.bulkdata_2.0.0@218']
+            verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@2', 'hl7.fhir.uv.bulkdata_2.0.0@19']
     end
   end
 end

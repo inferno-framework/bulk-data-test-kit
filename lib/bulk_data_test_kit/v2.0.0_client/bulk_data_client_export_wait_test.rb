@@ -14,23 +14,19 @@ module BulkDataTestKit
 
       id :bulk_data_client_export_wait
 
-      input :export_type, :group_id
-
-      output :export_id
+      input :access_token, :export_type, :group_id
 
       run do
-        export_id = SecureRandom.uuid
-
-        output export_id: export_id
-
         wait(
-          identifier: export_id,
+          identifier: access_token,
           message: %(
-            Perform a #{export_type} endpoint type bulk export kick-off using the following base URL:
+            Perform a **#{export_type}** endpoint type bulk export kick-off using the following base URL:
 
-            #{kickoff_url(export_id)}
+            #{kickoff_url}
 
-            #{export_type == GROUP_EXPORT_TYPE ? "Ensure the Group ID is set to #{group_id}." : ''}
+            #{export_type == GROUP_EXPORT_TYPE ? "Ensure the Group ID is set to **#{group_id}**." : ''}
+
+            Include the following bearer access token with all requests: **#{access_token}**
 
             After the kick-off is made, a subsequent status request (using the URL provided in the response
             to the kick-off request) and then a download request (using the URL provided in the response to
@@ -40,7 +36,7 @@ module BulkDataTestKit
             verify comformity to the
             [Bulk Data IG](https://build.fhir.org/ig/HL7/bulk-data/export.html#sequence-overview).
 
-            [Click here](#{resume_pass_url}?id=#{export_id}) when finished.
+            [Click here](#{resume_pass_url}?id=#{access_token}) when finished.
           )
         )
       end

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"name": "Bulk Data Client - System Export Delete",
+		"name": "Bulk Data Client - Delete",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -15,7 +15,7 @@
 							"  pm.response.to.have.status(202);",
 							"});",
 							"",
-							"pm.collectionVariables.set(\"status-url\", pm.response.headers.get('Content-Location'));",
+							"pm.collectionVariables.set(\"status_url\", pm.response.headers.get('Content-Location'));",
 							""
 						],
 						"type": "text/javascript",
@@ -27,11 +27,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{kickoff-base-url}}/$export",
+					"raw": "{{base_url}}/custom/bulk_data_v200_client/fhir/$export",
 					"host": [
-						"{{kickoff-base-url}}"
+						"{{base_url}}"
 					],
 					"path": [
+						"custom",
+						"bulk_data_v200_client",
+						"fhir",
 						"$export"
 					]
 				}
@@ -69,15 +72,25 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{status-url}}",
+					"raw": "{{status_url}}",
 					"host": [
-						"{{status-url}}"
+						"{{status_url}}"
 					]
 				}
 			},
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -102,12 +115,17 @@
 	],
 	"variable": [
 		{
-			"key": "kickoff-base-url",
-			"value": "",
+			"key": "access_token",
+			"value": "test",
 			"type": "string"
 		},
 		{
-			"key": "status-url",
+			"key": "base_url",
+			"value": "http://localhost:4567",
+			"type": "string"
+		},
+		{
+			"key": "status_url",
 			"value": "",
 			"type": "string"
 		}

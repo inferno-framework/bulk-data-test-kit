@@ -44,6 +44,10 @@ module BulkDataTestKit
         }
       ]
 
+      input :access_token,
+            title: 'Access Token',
+            description: 'The access token that will be included in all client requests during testing.'
+
       input :export_type,
             title: 'Export Type',
             description: 'The export endpoint type to test against.',

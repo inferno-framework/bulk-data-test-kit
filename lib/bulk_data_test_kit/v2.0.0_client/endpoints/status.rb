@@ -8,7 +8,7 @@ module BulkDataTestKit
         include URLs
 
         def test_run_identifier
-          export_id
+          request.get_header('HTTP_AUTHORIZATION')&.split&.last
         end
 
         def make_response
@@ -21,18 +21,14 @@ module BulkDataTestKit
           [STATUS_TAG]
         end
 
-        def export_id
-          request.params[:export_id]
-        end
-
         def response_body
           {
             transactionTime: DateTime.now.iso8601,
-            request: kickoff_url(export_id),
-            requiresAccessToken: false,
+            request: kickoff_url,
+            requiresAccessToken: true,
             output: [{
               type: 'Patient',
-              url: output_url(export_id)
+              url: output_url
             }],
             error: []
           }

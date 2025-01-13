@@ -6,7 +6,7 @@ module BulkDataTestKit
       # Delete Endpoint
       class Delete < Inferno::DSL::SuiteEndpoint
         def test_run_identifier
-          export_id
+          request.get_header('HTTP_AUTHORIZATION')&.split&.last
         end
 
         def make_response
@@ -15,10 +15,6 @@ module BulkDataTestKit
 
         def tags
           [DELETE_TAG]
-        end
-
-        def export_id
-          request.params[:export_id]
         end
       end
     end

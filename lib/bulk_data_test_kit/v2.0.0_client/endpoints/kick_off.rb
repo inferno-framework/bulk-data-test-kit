@@ -8,12 +8,12 @@ module BulkDataTestKit
         include URLs
 
         def test_run_identifier
-          export_id
+          request.get_header('HTTP_AUTHORIZATION')&.split&.last
         end
 
         def make_response
           response.status = 202
-          response.headers['Content-Location'] = status_url(export_id)
+          response.headers['Content-Location'] = status_url
         end
 
         def tags
@@ -25,10 +25,6 @@ module BulkDataTestKit
           when SYSTEM_EXPORT_TYPE
             [SYSTEM_KICKOFF_TAG]
           end
-        end
-
-        def export_id
-          request.params[:export_id]
         end
 
         def request_type

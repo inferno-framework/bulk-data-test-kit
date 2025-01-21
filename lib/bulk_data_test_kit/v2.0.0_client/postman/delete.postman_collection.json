@@ -116,7 +116,7 @@
 	"variable": [
 		{
 			"key": "access_token",
-			"value": "test",
+			"value": "SAMPLE_TOKEN",
 			"type": "string"
 		},
 		{

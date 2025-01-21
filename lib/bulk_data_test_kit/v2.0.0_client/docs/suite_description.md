@@ -25,7 +25,7 @@ run them using [this "bulk data client system export" Postman collection](https:
 To run client tests against one of the Postman collections:
 1. Start an Inferno session of the Bulk Data Client test suite.
 2. Navigate to either the export tests group or the delete tests group (depending on which Postman collection you want to use).
-3. Click the "Run Tests" button in the upper right, enter any value (e.g. `test`) as the access token, and select the "System Level Export" option for export type.
+3. Click the "Run Tests" button in the upper right, enter any value (e.g. `SAMPLE_TOKEN`) as the access token, and select the "System Level Export" option for export type.
 4. Click the "Submit" button. The simulated server will then be waiting for an interaction.
 5. Open Postman and import the relevant Postman collection.
 6. Set the `access_token` variable equal to the value entered in step 3 (the value is also displayed on the test modal in the Inferno UI for reference).

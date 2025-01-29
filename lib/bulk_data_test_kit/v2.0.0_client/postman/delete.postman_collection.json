@@ -1,0 +1,133 @@
+{
+	"info": {
+		"name": "Bulk Data Client - Delete",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Kickoff",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"kick-off was accepted\", function () {",
+							"  pm.response.to.have.status(202);",
+							"});",
+							"",
+							"pm.collectionVariables.set(\"status_url\", pm.response.headers.get('Content-Location'));",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/custom/bulk_data_v200_client/fhir/$export",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"custom",
+						"bulk_data_v200_client",
+						"fhir",
+						"$export"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"export was deleted\", function () {",
+							"  pm.response.to.have.status(202);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{status_url}}",
+					"host": [
+						"{{status_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "SAMPLE_TOKEN",
+			"type": "string"
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost:4567",
+			"type": "string"
+		},
+		{
+			"key": "status_url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

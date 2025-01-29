@@ -7,7 +7,7 @@ require_relative 'bulk_data_export_tests_test_group'
 module BulkDataTestKit
   module BulkDataV101
     class BulkDataTestSuite < Inferno::TestSuite
-      title 'Bulk Data Access v1.0.1'
+      title 'Bulk Data Access v1.0.1 Server'
       version VERSION
       id :bulk_data_v101
       links [

@@ -8,7 +8,6 @@ module BulkDataTestKit
   module BulkDataV101
     class BulkDataTestSuite < Inferno::TestSuite
       title 'Bulk Data Access v1.0.1 Server'
-      version VERSION
       id :bulk_data_v101
       links [
         {

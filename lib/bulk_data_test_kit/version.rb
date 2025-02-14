@@ -2,4 +2,5 @@
 
 module BulkDataTestKit
   VERSION = '0.10.1'
+  LAST_UPDATED = ''
 end

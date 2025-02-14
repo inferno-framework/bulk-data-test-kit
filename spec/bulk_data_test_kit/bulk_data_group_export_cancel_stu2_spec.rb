@@ -7,19 +7,19 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportCancelGroup do
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v200') }
 
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
+#  def run(runnable, inputs = {})
+#    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
+#    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
+#    inputs.each do |name, value|
+#      session_data_repo.save(
+#        test_session_id: test_session.id,
+#        name:,
+#        value:,
+#        type: runnable.config.input_type(name)
+#      )
+#    end
+#    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
+#  end
 
   describe 'Status of cancelled export test' do
     let(:url) { 'http://example.com' }

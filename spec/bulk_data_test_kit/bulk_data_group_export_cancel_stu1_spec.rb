@@ -17,19 +17,19 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
     }
   end
 
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
+#  def run(runnable, inputs = {})
+#    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
+#    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
+#    inputs.each do |name, value|
+#      session_data_repo.save(
+#        test_session_id: test_session.id,
+#        name:,
+#        value:,
+#        type: runnable.config.input_type(name)
+#      )
+#    end
+#    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
+#  end
 
   describe 'delete request tests' do
     let(:bulk_export_url) { "#{bulk_server_url}/Group/1219/$export" }

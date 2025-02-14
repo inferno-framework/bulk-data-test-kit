@@ -18,19 +18,19 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
     }
   end
 
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
+#  def run(runnable, inputs = {})
+#    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
+#    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
+#    inputs.each do |name, value|
+#      session_data_repo.save(
+#        test_session_id: test_session.id,
+#        name:,
+#        value:,
+#        type: runnable.config.input_type(name)
+#      )
+#    end
+#    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
+#  end
 
   describe 'Bulk Data Server supports "_outputFormat" query parameter test' do
     let(:test_class) do

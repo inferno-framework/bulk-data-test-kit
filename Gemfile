@@ -6,6 +6,5 @@ gemspec
 
 group :development, :test do
   gem 'debug'
+  gem 'rack-test', '~> 2.2'
 end
-
-gem "rack-test", "~> 2.2", :groups => [:development, :test]

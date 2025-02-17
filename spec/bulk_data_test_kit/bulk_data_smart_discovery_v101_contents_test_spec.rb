@@ -3,10 +3,6 @@ require 'pry'
 
 RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101ContentsTest do
   let(:suite_id) { 'bulk_data_v101' }
-  let(:runnable) { Inferno::Repositories::Tests.new.find('bulk_data_smart_discovery_v101_contents') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:results_repo) { Inferno::Repositories::Results.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:correct_metadata) {
     {
       'token_endpoint' => 'https://example.org/auth/token',
@@ -25,13 +21,13 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
   }
 
   it 'skips if well-known metadata is not present' do
-    result = run(runnable, well_known_configuration: '')
+    result = run(described_class, well_known_configuration: '')
 
     expect(result.result).to eq('skip')
   end
 
   it 'passes with all required and recommended fields' do
-    result = run(runnable, well_known_configuration: JSON.generate(correct_metadata))
+    result = run(described_class, well_known_configuration: JSON.generate(correct_metadata))
 
     expect(result.result).to eq('pass')
   end
@@ -40,7 +36,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
     recommended_capabilities.each do |key|
       metadata = correct_metadata
       metadata.delete(key)
-      result = run(runnable, well_known_configuration: JSON.generate(metadata))
+      result = run(described_class, well_known_configuration: JSON.generate(metadata))
       expect(result.result).to eq('pass')
     end
   end
@@ -48,7 +44,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
   it 'fails when token_endpoint field is missing' do
     metadata = correct_metadata
     metadata.delete('token_endpoint')
-    result = run(runnable, well_known_configuration: JSON.generate(metadata))
+    result = run(described_class, well_known_configuration: JSON.generate(metadata))
     expect(result.result).to eq('fail')
     expect(result.result_message).to match(/does not include `token_endpoint`/)
   end
@@ -64,7 +60,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
 
     incorrect_token_endpoint_values.each do |key, value|
       metadata['token_endpoint'] = key
-      result = run(runnable, well_known_configuration: JSON.generate(metadata))
+      result = run(described_class, well_known_configuration: JSON.generate(metadata))
       expect(result.result).to eq('fail')
       expect(result.result_message).to match(value)
     end
@@ -75,7 +71,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
       metadata = correct_metadata.clone
       # should be an array for all
       metadata[key] = ''
-      result = run(runnable, well_known_configuration: JSON.generate(metadata))
+      result = run(described_class, well_known_configuration: JSON.generate(metadata))
       expect(result.result).to eq('fail')
       expect(result.result_message).to match(key)
     end
@@ -83,14 +79,14 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101Contents
 
   it 'fails when token_endpoint_auth_methods_supported value is incorrect' do
     correct_metadata['token_endpoint_auth_methods_supported'] = ['invalid']
-    result = run(runnable, well_known_configuration: JSON.generate(correct_metadata))
+    result = run(described_class, well_known_configuration: JSON.generate(correct_metadata))
     expect(result.result).to eq('fail')
     expect(result.result_message).to match('private_key_jwt')
   end
 
   it 'fails when token_endpoint_auth_signing_alg_values_supported value is incorrect' do
     correct_metadata['token_endpoint_auth_signing_alg_values_supported'] = ['invalid']
-    result = run(runnable, well_known_configuration: JSON.generate(correct_metadata))
+    result = run(described_class, well_known_configuration: JSON.generate(correct_metadata))
     expect(result.result).to eq('fail')
     expect(result.result_message).to match('`RS384` or `ES384`')
   end

@@ -4,9 +4,6 @@ require_relative '../../lib/bulk_data_test_kit/v1.0.1/group/bulk_data_group_expo
 
 RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   let(:suite_id) { 'bulk_data_v101' }
-  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_group') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:bulk_server_url) { 'https://example.com/fhir' }
   let(:group_id) { '1219' }
   let(:bearer_token) { 'some_bearer_token_alphanumeric' }
@@ -33,7 +30,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   end
 
   describe '[Bulk Data Server declares support for Group export operation in CapabilityStatement] test' do
-    let(:runnable) { group.tests[1] }
+    let(:runnable) { described_class.tests[1] }
 
     let(:test_class) do
       Class.new(BulkDataTestKit::BulkDataV101::BulkDataExportOperationSupportTest) do

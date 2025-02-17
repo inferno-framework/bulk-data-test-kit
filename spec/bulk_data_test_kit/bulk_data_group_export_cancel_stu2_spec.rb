@@ -4,9 +4,6 @@ require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_expo
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportCancelGroup do
   let(:suite_id) { 'bulk_data_v200' }
-  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_cancel_group_stu2') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
 
   describe 'Status of cancelled export test' do
     let(:url) { 'http://example.com' }

@@ -4,9 +4,6 @@ require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_expo
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   let(:suite_id) { 'bulk_data_v200' }
-  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_parameters_group') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:bulk_server_url) { 'https://example.com/fhir' }
   let(:export_url) { "#{bulk_server_url}/Group/#{group_id}/$export" }
   let(:group_id) { '1219' }

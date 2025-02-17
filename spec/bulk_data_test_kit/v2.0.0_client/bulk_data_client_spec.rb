@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/bulk_data_client_test_suite'
 require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/tags'
 require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/urls'
 
@@ -55,8 +56,8 @@ RSpec.describe BulkDataTestKit::BulkDataV200Client do
                          })
   end
 
-  describe 'Bulk Data Client' do
-    describe 'kick-off test' do
+  describe BulkDataTestKit::BulkDataV200Client::BulkDataClientTestSuite do
+    describe 'kickoff test' do
       %w[Patient Group System].each do |type|
         describe "for #{type} type" do
           it 'passes after kick-off request received' do

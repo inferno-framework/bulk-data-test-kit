@@ -3,9 +3,10 @@
 require_relative '../../lib/bulk_data_test_kit/v2.0.0/group/bulk_data_group_export_parameters_group'
 
 RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
+  let(:suite_id) { 'bulk_data_v200' }
   let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_parameters_group') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v200') }
+  let(:test_session) { repo_create(:test_session, test_suite_id: suite_id) }
   let(:bulk_server_url) { 'https://example.com/fhir' }
   let(:export_url) { "#{bulk_server_url}/Group/#{group_id}/$export" }
   let(:group_id) { '1219' }
@@ -17,20 +18,6 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
       bearer_token:
     }
   end
-
-#  def run(runnable, inputs = {})
-#    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-#    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-#    inputs.each do |name, value|
-#      session_data_repo.save(
-#        test_session_id: test_session.id,
-#        name:,
-#        value:,
-#        type: runnable.config.input_type(name)
-#      )
-#    end
-#    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-#  end
 
   describe 'Bulk Data Server supports "_outputFormat" query parameter test' do
     let(:test_class) do

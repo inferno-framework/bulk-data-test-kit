@@ -31,20 +31,6 @@ RSpec.describe BulkDataTestKit::BulkDataV200Client do
   let(:output_fail) { 'Did not receive a download request.' }
   let(:delete_fail) { 'Did not receive a delete request.' }
 
-#  def run(runnable, inputs = {})
-#    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-#    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-#    inputs.each do |name, value|
-#      session_data_repo.save(
-#        test_session_id: test_session.id,
-#        name:,
-#        value:,
-#        type: runnable.config.input_type(name)
-#      )
-#    end
-#    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-#  end
-
   def mock_request(result, tags, verb = 'get')
     requests_repo.create({
                            verb:,

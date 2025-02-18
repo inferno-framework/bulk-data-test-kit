@@ -21,8 +21,6 @@ module BulkDataTestKit
 
       description File.read(File.join(__dir__, 'docs', 'suite_description.md'))
 
-      version VERSION
-
       id :bulk_data_v200_client
 
       links [

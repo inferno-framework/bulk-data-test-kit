@@ -3,9 +3,7 @@
 require_relative '../../lib/bulk_data_test_kit/v1.0.1/group/bulk_data_group_export_cancel_group'
 
 RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
-  let(:group) { Inferno::Repositories::TestGroups.new.find('bulk_data_group_export_cancel_group') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v101') }
+  let(:suite_id) { 'bulk_data_v101' }
   let(:bulk_server_url) { 'https://example.com/fhir' }
   let(:group_id) { '1219' }
   let(:bearer_token) { 'some_bearer_token_alphanumeric' }
@@ -15,20 +13,6 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
       group_id:,
       bearer_token:
     }
-  end
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
   end
 
   describe 'delete request tests' do

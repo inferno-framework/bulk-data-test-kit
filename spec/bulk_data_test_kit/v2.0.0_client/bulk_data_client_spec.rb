@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
+require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/bulk_data_client_test_suite'
 require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/tags'
 require_relative '../../../lib/bulk_data_test_kit/v2.0.0_client/urls'
 
 RSpec.describe BulkDataTestKit::BulkDataV200Client do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('bulk_data_v200_client') }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
+  let(:suite_id) { 'bulk_data_v200_client' }
   let(:results_repo) { Inferno::Repositories::Results.new }
   let(:requests_repo) { Inferno::Repositories::Requests.new }
-  let(:test_session) { repo_create(:test_session, test_suite_id: 'bulk_data_v200_client') }
 
   let(:kickoff_test) { Inferno::Repositories::Tests.new.find('bulk_data_client_kick_off') }
   let(:status_test) { Inferno::Repositories::Tests.new.find('bulk_data_client_status') }
@@ -29,20 +28,6 @@ RSpec.describe BulkDataTestKit::BulkDataV200Client do
   let(:output_fail) { 'Did not receive a download request.' }
   let(:delete_fail) { 'Did not receive a delete request.' }
 
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name:,
-        value:,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session:, test_run:).run(runnable)
-  end
-
   def mock_request(result, tags, verb = 'get')
     requests_repo.create({
                            verb:,
@@ -54,8 +39,8 @@ RSpec.describe BulkDataTestKit::BulkDataV200Client do
                          })
   end
 
-  describe 'Bulk Data Client' do
-    describe 'kick-off test' do
+  describe BulkDataTestKit::BulkDataV200Client::BulkDataClientTestSuite do
+    describe 'kickoff test' do
       %w[Patient Group System].each do |type|
         describe "for #{type} type" do
           it 'passes after kick-off request received' do

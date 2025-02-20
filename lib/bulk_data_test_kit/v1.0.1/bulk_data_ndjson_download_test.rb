@@ -21,6 +21,8 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#file-request'
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@201'
+
       input :bulk_download_url
       input :requires_access_token
       input :bearer_token,

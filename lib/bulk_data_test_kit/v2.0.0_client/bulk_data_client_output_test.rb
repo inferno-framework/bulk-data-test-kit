@@ -2,7 +2,6 @@
 
 module BulkDataTestKit
   module BulkDataV200Client
-    # Bulk Data Client Output
     class OutputTest < Inferno::Test
       title 'Bulk Data Output File Request'
 

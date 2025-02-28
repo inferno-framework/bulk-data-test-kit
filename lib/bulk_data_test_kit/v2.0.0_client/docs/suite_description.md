@@ -20,14 +20,13 @@ Note: authentication options for these tests have not been finalized and are sub
 ### Sample Execution - Postman
 
 To try out these tests without a Bulk Data client implementation, you may
-run them using [this "bulk data client system export" Postman collection](https://github.com/inferno-framework/bulk-data-test-kit/blob/main/lib/bulk_data_test_kit/v2.0.0_client/postman/system_export.postman_collection.json) and [this "bulk data client delete" Postman collection](https://github.com/inferno-framework/bulk-data-test-kit/blob/main/lib/bulk_data_test_kit/v2.0.0_client/postman/delete.postman_collection.json).
+run them using the [`Bulk Data Client - System Export Postman`](https://github.com/inferno-framework/bulk-data-test-kit/blob/main/lib/bulk_data_test_kit/v2.0.0_client/postman/collection.json) collection. This will kick-off an export, poll the status endpoint (respecting the `retry-after` header), download the first output result, and then delete the export.
 
-To run client tests against one of the Postman collections:
+To run client tests against this Postman collection:
 1. Start an Inferno session of the Bulk Data Client test suite.
-2. Navigate to either the export tests group or the delete tests group (depending on which Postman collection you want to use).
-3. Click the "Run Tests" button in the upper right, enter any value (e.g. `SAMPLE_TOKEN`) as the access token, and select the "System Level Export" option for export type.
-4. Click the "Submit" button. The simulated server will then be waiting for an interaction.
-5. Open Postman and import the relevant Postman collection.
-6. Set the `access_token` variable equal to the value entered in step 3 (the value is also displayed on the test modal in the Inferno UI for reference).
-7. Run the collection.
-8. Once the postman collection has run, click the "Click here" link in the wait dialog to evaluate the requests.
+2. Click the "Run All Tests" button in the upper right, enter any value (e.g. `SAMPLE_TOKEN`) as the access token, and select the "System Level Export" option for export type.
+3. Click the "Submit" button. The simulated server will start waiting for requests.
+4. Open Postman and import the relevant Postman collection.
+5. Set the `access_token` variable equal to the value entered in step 2 (the value is also displayed on the test modal in the Inferno UI for reference).
+6. Run the collection.
+7. Once the postman collection has run, click the "Click here" link in the Inferno wait dialog modal for both the Export test group and the Delete test group to evaluate the requests.

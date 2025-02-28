@@ -3,8 +3,9 @@
 module BulkDataTestKit
   module BulkDataV200Client
     module Endpoints
-      # Delete Endpoint
       class Delete < Inferno::DSL::SuiteEndpoint
+        include ServerProxy
+
         def test_run_identifier
           request.get_header('HTTP_AUTHORIZATION')&.split&.last
         end
@@ -15,6 +16,10 @@ module BulkDataTestKit
 
         def tags
           [DELETE_TAG]
+        end
+
+        def job_id
+          request.params[:job_id]
         end
       end
     end

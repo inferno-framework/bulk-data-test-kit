@@ -2,14 +2,13 @@
 
 module BulkDataTestKit
   module BulkDataV200Client
-    RESUME_PASS_PATH = '/resume_pass'
+    RESUME_PASS_ROUTE = '/resume_pass'
     BASE_ROUTE = '/fhir'
-    METADATA_ROUTE = "#{BASE_ROUTE}/metadata".freeze
     PATIENT_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/$export".freeze
     GROUP_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/:group_id/$export".freeze
     SYSTEM_KICKOFF_ROUTE = "#{BASE_ROUTE}/$export".freeze
-    STATUS_ROUTE = '/status'
-    OUTPUT_ROUTE = '/output/example.ndjson'
+    STATUS_ROUTE = '/status/:job_id'
+    OUTPUT_ROUTE = "#{BASE_ROUTE}/Binary/:binary_id".freeze
 
     # URLs for use in Bulk Data Client tests and endpoints
     module URLs
@@ -18,10 +17,10 @@ module BulkDataTestKit
       end
 
       def resume_pass_url
-        base_url + RESUME_PASS_PATH
+        base_url + RESUME_PASS_ROUTE
       end
 
-      def kickoff_url
+      def fhir_url
         base_url + BASE_ROUTE
       end
 

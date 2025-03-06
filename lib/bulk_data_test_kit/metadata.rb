@@ -1,3 +1,5 @@
+require_relative 'version'
+
 module BulkDataTestKit
   class Metadata < Inferno::TestKit
     id :bulk_data_test_kit

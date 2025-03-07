@@ -2,7 +2,6 @@
 
 module BulkDataTestKit
   module BulkDataV200Client
-    # Bulk Data Client - Delete
     class DeleteTest < Inferno::Test
       title 'Bulk Data Delete Request'
 

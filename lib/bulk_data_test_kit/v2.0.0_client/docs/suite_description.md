@@ -29,4 +29,4 @@ To run client tests against this Postman collection:
 4. Open Postman and import the relevant Postman collection.
 5. Set the `access_token` variable equal to the value entered in step 2 (the value is also displayed on the test modal in the Inferno UI for reference).
 6. Run the collection.
-7. Once the postman collection has run, click the "Click here" link in the Inferno wait dialog modal for both the Export test group and the Delete test group to evaluate the requests.
+7. Once the postman collection has run, click the "Click here" link in the Inferno wait dialog modal to evaluate the requests and generate the results.

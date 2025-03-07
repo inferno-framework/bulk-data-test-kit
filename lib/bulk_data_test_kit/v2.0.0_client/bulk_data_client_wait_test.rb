@@ -27,12 +27,11 @@ module BulkDataTestKit
 
             Include the following bearer access token with all requests: **#{access_token}**
 
-            After the kick-off is made, a subsequent status request(s) (using the URL provided in the response
+            After the kick-off is made, subsequent status request(s) (using the URL provided in the response
             to the kick-off request), a download request (using the URL provided in the response to
             the status request), and finally a delete request are expected.
 
-            The entire request sequence will be recorded and used in the subsequent tests to
-            verify comformity to the
+            The entire request sequence will be recorded and verified to check conformance to the
             [Bulk Data IG](https://build.fhir.org/ig/HL7/bulk-data/export.html#sequence-overview).
 
             [Click here](#{resume_pass_url}?id=#{access_token}) when finished.

@@ -8,8 +8,6 @@ module BulkDataTestKit
       id :bulk_data_smart_discovery_v101
       run_as_group
 
-      input :url
-
       test from: :well_known_endpoint
       test from: :bulk_data_smart_discovery_v101_contents
     end

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-require 'smart_app_launch/smart_stu2_suite'
+require 'smart_app_launch_test_kit'
+# require 'smart_app_launch/smart_stu2_suite'
+# require 'smart_app_launch/backend_services_authorization_group'
+# require 'smart_app_launch/smart_tls_test'
+
 require_relative 'bulk_data_smart_discovery_v101_group'
 
 module BulkDataTestKit
@@ -15,7 +19,11 @@ module BulkDataTestKit
               inputs: { url: { name: :bulk_server_url } }
             }
 
-      group from: :backend_services_authorization, run_as_group: true
+      group from: :backend_services_authorization,
+            config: {
+              inputs: { url: { name: :bulk_server_url } }
+            },
+            run_as_group: true
     end
   end
 end

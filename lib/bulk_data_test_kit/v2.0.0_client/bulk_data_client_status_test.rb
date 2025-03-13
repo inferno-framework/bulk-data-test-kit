@@ -2,7 +2,6 @@
 
 module BulkDataTestKit
   module BulkDataV200Client
-    # Bulk Data Client Status
     class StatusTest < Inferno::Test
       title 'Bulk Data Status Request'
 

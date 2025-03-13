@@ -11,7 +11,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"kick-off was accepted\", function () {",
+							"pm.test(\"export was kicked off\", function () {",
 							"  pm.response.to.have.status(202);",
 							"});",
 							"",
@@ -48,13 +48,20 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"let responseData = pm.response.json();",
-							"",
-							"pm.test(\"export is complete\", function () {",
-							"  pm.response.to.have.status(200);",
+							"pm.test(\"status was checked\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);",
 							"});",
 							"",
-							"pm.collectionVariables.set(\"download_url\", responseData.output[0].url);",
+							"if (pm.response.code === 202) {",
+							"    var retryAfter = pm.response.headers.get('retry-after');",
+							"    var retryAfterMs = parseInt(retryAfter, 10) * 1000;",
+							"    setTimeout(function() {",
+							"        pm.execution.setNextRequest(pm.info.requestName);",
+							"    }, retryAfterMs);",
+							"} else if (pm.response.code === 200) {",
+							"    let responseData = pm.response.json();",
+							"    pm.collectionVariables.set(\"download_url\", responseData.output[0].url);",
+							"}",
 							""
 						],
 						"type": "text/javascript",
@@ -91,7 +98,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"downlaod is successful\", function () {",
+							"pm.test(\"output was downloaded\", function () {",
 							"  pm.response.to.have.status(200);",
 							"});",
 							""
@@ -118,6 +125,45 @@
 					"raw": "{{download_url}}",
 					"host": [
 						"{{download_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"export was deleted\", function () {",
+							"  pm.response.to.have.status(202);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{status_url}}",
+					"host": [
+						"{{status_url}}"
 					]
 				}
 			},
@@ -159,7 +205,7 @@
 	"variable": [
 		{
 			"key": "access_token",
-			"value": "SAMPLE_TOKEN",
+			"value": "test",
 			"type": "string"
 		},
 		{

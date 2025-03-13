@@ -35,7 +35,8 @@ module BulkDataTestKit
             [Bulk Data IG](https://build.fhir.org/ig/HL7/bulk-data/export.html#sequence-overview).
 
             [Click here](#{resume_pass_url}?id=#{access_token}) when finished.
-          )
+          ),
+          timeout: 900
         )
       end
     end

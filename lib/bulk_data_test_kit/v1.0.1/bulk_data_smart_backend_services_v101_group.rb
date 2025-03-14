@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 require 'smart_app_launch_test_kit'
-# require 'smart_app_launch/smart_stu2_suite'
-# require 'smart_app_launch/backend_services_authorization_group'
-# require 'smart_app_launch/smart_tls_test'
-
 require_relative 'bulk_data_smart_discovery_v101_group'
 
 module BulkDataTestKit

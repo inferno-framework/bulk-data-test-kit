@@ -21,6 +21,12 @@ module BulkDataTestKit
         as the abbreviated representations application/ndjson and ndjson.
       DESCRIPTION
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@47',
+                            'hl7.fhir.uv.bulkdata_2.0.0@49',
+                            'hl7.fhir.uv.bulkdata_2.0.0@51',
+                            'hl7.fhir.uv.bulkdata_2.0.0@52',
+                            'hl7.fhir.uv.bulkdata_2.0.0@230'
+
       input :bearer_token,
             optional: true
 

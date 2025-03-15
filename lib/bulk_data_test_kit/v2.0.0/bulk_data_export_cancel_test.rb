@@ -16,6 +16,10 @@ module BulkDataTestKit
         http://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-delete-request
       DESCRIPTION
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@122',
+                            'hl7.fhir.uv.bulkdata_2.0.0@308',
+                            'hl7.fhir.uv.bulkdata_2.0.0@309'
+
       id :bulk_data_export_cancel_stu2
 
       input :cancelled_polling_url

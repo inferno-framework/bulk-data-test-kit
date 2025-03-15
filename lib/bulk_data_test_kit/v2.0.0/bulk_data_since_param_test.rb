@@ -27,6 +27,8 @@ module BulkDataTestKit
         After the export was successfully initiated, it is then cancelled.
       DESCRIPTION
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@53'
+
       input :bearer_token,
             optional: true
       input :since_timestamp,

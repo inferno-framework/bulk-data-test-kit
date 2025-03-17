@@ -14,7 +14,9 @@ module BulkDataTestKit
         correct behavior.
       )
 
-      input :bearer_token, 
+      input :bulk_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
             optional: true
 
       output :patient_cancelled_polling_url

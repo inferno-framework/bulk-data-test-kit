@@ -87,12 +87,6 @@ module BulkDataTestKit
       )
 
       config(
-        inputs: {
-          client_auth_encryption_method: {
-            title: 'Client Authentication Encryption Method',
-            locked: true
-          }
-        },
         options: {
           post_authorization_uri: "#{Inferno::Application['base_url']}/custom/smart_stu2/post_auth"
         }
@@ -151,15 +145,22 @@ module BulkDataTestKit
 
       fhir_client :bulk_server do
         url :bulk_server_url
+        auth_info :smart_auth_info
       end
 
       http_client :bulk_server do
         url :bulk_server_url
+        auth_info :smart_auth_info
       end
 
       group from: :bulk_data_smart_backend_services_v101
 
-      group from: :bulk_data_export_tests_v101
+      group from: :bulk_data_export_tests_v101,
+            config: {
+              inputs: {
+                bulk_auth_info: { name: :smart_auth_info }
+              }
+            }
     end
   end
 end

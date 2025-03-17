@@ -15,7 +15,10 @@ module BulkDataTestKit
 
       id :bulk_data_system_export_validation
 
-      input :system_status_output, :system_requires_access_token, :bearer_token, :system_bulk_download_url
+      input :bulk_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' }
+      input :system_status_output, :system_requires_access_token, :system_bulk_download_url
       input :lines_to_validate,
             title: 'Limit validation to a maximum resource count',
             description: 'To validate all, leave blank.',

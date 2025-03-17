@@ -17,7 +17,8 @@ module BulkDataTestKit
                         smart_auth_info: {
                           options: {
                             components: [
-                              { name: :encryption_algorithm, locked: true } 
+                              { name: :encryption_algorithm, locked: true },
+                              { name: :requested_scopes, default: 'system/*.read' }
                             ]
                           }
                         }
@@ -31,7 +32,8 @@ module BulkDataTestKit
                         smart_auth_info: {
                           options: {
                             components: [
-                              { name: :encryption_algorithm, locked: true } 
+                              { name: :encryption_algorithm, locked: true },
+                              { name: :requested_scopes, default: 'system/*.read' }
                             ]
                           }
                         }

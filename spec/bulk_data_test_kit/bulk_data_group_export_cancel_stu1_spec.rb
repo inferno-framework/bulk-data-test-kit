@@ -39,9 +39,6 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
 
       base_input[:bulk_auth_info] = Inferno::DSL::AuthInfo.new({auth_type: :backend_services})
       result = run(test_class, base_input)
-      pp "DEBUGGING"
-      pp result
-      pp result.result_message
       expect(result.result).to eq('pass')
     end
 

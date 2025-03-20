@@ -150,17 +150,11 @@ module BulkDataTestKit
 
       http_client :bulk_server do
         url :bulk_server_url
-        auth_info :smart_auth_info
       end
 
       group from: :bulk_data_smart_backend_services_v101
 
-      group from: :bulk_data_export_tests_v101,
-            config: {
-              inputs: {
-                smart_auth_info: { name: :smart_auth_info }
-              }
-            }
+      group from: :bulk_data_export_tests_v101
     end
   end
 end

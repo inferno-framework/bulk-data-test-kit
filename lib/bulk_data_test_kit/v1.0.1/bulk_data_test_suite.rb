@@ -158,7 +158,7 @@ module BulkDataTestKit
       group from: :bulk_data_export_tests_v101,
             config: {
               inputs: {
-                bulk_auth_info: { name: :smart_auth_info }
+                smart_auth_info: { name: :smart_auth_info }
               }
             }
     end

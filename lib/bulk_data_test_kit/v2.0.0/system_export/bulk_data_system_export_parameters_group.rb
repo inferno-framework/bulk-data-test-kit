@@ -13,7 +13,7 @@ module BulkDataTestKit
         Verify that the Bulk Data server supports required query parameters for system level bulk data export.
       )
 
-      input :bulk_auth_info,
+      input :smart_auth_info,
             type: :auth_info,
             options: { mode: 'access' },
             title: 'Bulk Data Authorization',

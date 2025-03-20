@@ -19,7 +19,7 @@ module BulkDataTestKit
       id :bulk_data_export_cancel_stu2
 
       input :cancelled_polling_url
-      input :bulk_auth_info,
+      input :smart_auth_info,
             type: :auth_info,
             options: { mode: 'access' },
             optional: true

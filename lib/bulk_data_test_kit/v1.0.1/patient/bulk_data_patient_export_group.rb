@@ -17,7 +17,7 @@ module BulkDataTestKit
       DESCRIPTION
       id :bulk_data_patient_export_group
 
-      input :bulk_auth_info,
+      input :smart_auth_info,
             type: :auth_info,
             options: { mode: 'access' },
             title: 'Bulk Data Authorization',

@@ -23,7 +23,7 @@ module BulkDataTestKit
 
       input :bulk_download_url
       input :requires_access_token
-      input :bulk_auth_info,
+      input :smart_auth_info,
             type: :auth_info,
             options: { mode: 'access' },
             optional: true

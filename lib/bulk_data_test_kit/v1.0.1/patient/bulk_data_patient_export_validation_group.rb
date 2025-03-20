@@ -15,7 +15,7 @@ module BulkDataTestKit
 
       id :bulk_data_patient_export_validation
 
-      input :bulk_auth_info,
+      input :smart_auth_info,
             type: :auth_info,
             options: { mode: 'access' }
       input :patient_status_output, :patient_requires_access_token, :patient_bulk_download_url

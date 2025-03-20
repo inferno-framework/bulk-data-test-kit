@@ -6,7 +6,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
   let(:suite_id) { 'bulk_data_v101' }
   let(:bulk_server_url) { 'https://example.com/fhir' }
   let(:group_id) { '1219' }
-  let(:bulk_auth_info) do
+  let(:smart_auth_info) do
     Inferno::DSL::AuthInfo.new({
       auth_type: :backend_services,
       access_token: 'some_bearer_token_alphanumeric'
@@ -16,7 +16,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
   let(:base_input) do
     {
       group_id:,
-      bulk_auth_info:
+      smart_auth_info:
     }
   end
 
@@ -37,7 +37,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
       stub_request(:delete, polling_url)
         .to_return(status: 202)
 
-      base_input[:bulk_auth_info] = Inferno::DSL::AuthInfo.new({auth_type: :backend_services})
+      base_input[:smart_auth_info] = Inferno::DSL::AuthInfo.new({auth_type: :backend_services})
       result = run(test_class, base_input)
       expect(result.result).to eq('pass')
     end
@@ -76,7 +76,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
       stub_request(:get, bulk_export_url)
         .to_return(status: 202, headers: { 'content-location': polling_url })
       stub_request(:delete, polling_url)
-        .with(headers: { authorization: "Bearer #{bulk_auth_info.access_token}" })
+        .with(headers: { authorization: "Bearer #{smart_auth_info.access_token}" })
         .to_return(status: 404)
 
       result = run(test_class, base_input)
@@ -89,7 +89,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
       stub_request(:get, bulk_export_url)
         .to_return(status: 202, headers: { 'content-location': polling_url })
       stub_request(:delete, polling_url)
-        .with(headers: { authorization: "Bearer #{bulk_auth_info.access_token}" })
+        .with(headers: { authorization: "Bearer #{smart_auth_info.access_token}" })
         .to_return(status: 202)
 
       result = run(test_class, base_input)

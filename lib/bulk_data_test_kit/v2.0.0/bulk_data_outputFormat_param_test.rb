@@ -21,7 +21,7 @@ module BulkDataTestKit
         as the abbreviated representations application/ndjson and ndjson.
       DESCRIPTION
 
-      input :bulk_auth_info,
+      input :smart_auth_info,
             type: :auth_info,
             options: { mode: 'access' },
             optional: true

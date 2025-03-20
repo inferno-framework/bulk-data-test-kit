@@ -13,7 +13,7 @@ module BulkDataTestKit
                    :bulk_export_url
 
     def perform_export_cancel_test
-      use_token = !bearer_token.blank?
+      use_token = !bulk_auth_info.access_token.blank?
       url = bulk_export_url.dup
       if resource_type == 'Group'
         skip_if group_id.blank?, 'Group id is blank, skipping test.'
@@ -32,7 +32,7 @@ module BulkDataTestKit
     def perform_cancelled_polling_test(bulk_cancelled_polling_url)
       skip 'No polling url available' unless bulk_cancelled_polling_url.present?
 
-      get(bulk_cancelled_polling_url, headers: { authorization: "Bearer #{bearer_token}", accept: 'application/json' })
+      get(bulk_cancelled_polling_url, headers: { authorization: "Bearer #{bulk_auth_info.access_token}", accept: 'application/json' })
 
       assert_response_status(404)
 

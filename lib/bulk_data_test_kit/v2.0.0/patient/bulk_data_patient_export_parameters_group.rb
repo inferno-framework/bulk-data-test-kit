@@ -13,9 +13,11 @@ module BulkDataTestKit
         Verify that the Bulk Data server supports required query parameters for the export of all Patient resources.
       )
 
-      input :bearer_token,
-            title: 'Bulk Data Authorization Bearer Token',
-            description: 'The authorization bearer token for the Bulk FHIR server. If not required, leave blank.',
+      input :bulk_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
+            title: 'Bulk Data Authorization',
+            description: 'The authorization information for the Bulk FHIR server. If not required, leave blank.',
             optional: true
 
       test from: :output_format_in_export_response,

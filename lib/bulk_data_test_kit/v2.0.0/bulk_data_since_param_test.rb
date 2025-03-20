@@ -27,7 +27,9 @@ module BulkDataTestKit
         After the export was successfully initiated, it is then cancelled.
       DESCRIPTION
 
-      input :bearer_token,
+      input :bulk_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
             optional: true
       input :since_timestamp,
             title: 'Timestamp for _since parameter',

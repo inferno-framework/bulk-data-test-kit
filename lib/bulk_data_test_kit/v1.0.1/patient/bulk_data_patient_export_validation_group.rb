@@ -15,7 +15,10 @@ module BulkDataTestKit
 
       id :bulk_data_patient_export_validation
 
-      input :patient_status_output, :patient_requires_access_token, :bearer_token, :patient_bulk_download_url
+      input :smart_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' }
+      input :patient_status_output, :patient_requires_access_token, :patient_bulk_download_url
       input :lines_to_validate,
             title: 'Limit validation to a maximum resource count',
             description: 'To validate all, leave blank.',

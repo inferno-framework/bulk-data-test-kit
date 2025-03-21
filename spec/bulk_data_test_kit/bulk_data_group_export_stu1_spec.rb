@@ -12,7 +12,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
   let(:base_input) do
     {
       group_id:,
-      bearer_token:
+      smart_auth_info: Inferno::DSL::AuthInfo.new({ auth_type: :backend_services, access_token: bearer_token })
     }
   end
   let(:capability_statement) { FHIR.from_contents(File.read('spec/fixtures/CapabilityStatement.json')) }
@@ -149,7 +149,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     end
 
     let(:bad_token_input) do
-      base_input.merge({ bearer_token: nil })
+      base_input.merge({ smart_auth_info: Inferno::DSL::AuthInfo.new({ auth_type: :backend_services }) })
     end
 
     it 'skips if bearer_token not provided' do

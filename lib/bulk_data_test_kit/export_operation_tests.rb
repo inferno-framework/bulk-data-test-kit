@@ -61,7 +61,7 @@ module BulkDataTestKit
     end
 
     def rejects_without_authorization
-      skip_if bearer_token.blank?, 'Bearer token is not set and thus not required to connect to server.'
+      skip_if smart_auth_info.access_token.blank?, 'Bearer token is not set and thus not required to connect to server.'
 
       url = bulk_export_url.dup
       if resource_type == 'Group'
@@ -74,7 +74,7 @@ module BulkDataTestKit
     end
 
     def export_kick_off_success
-      use_token = !bearer_token.blank?
+      use_token = !smart_auth_info.access_token.blank?
 
       url = bulk_export_url.dup
       if resource_type == 'Group'
@@ -107,7 +107,7 @@ module BulkDataTestKit
       used_time = 0
 
       loop do
-        get(status_polling_url, headers: { authorization: "Bearer #{bearer_token}", accept: 'application/json' })
+        get(status_polling_url, headers: { authorization: "Bearer #{smart_auth_info.access_token}", accept: 'application/json' })
 
         retry_after_val = request.response_header('retry-after')&.value.to_i
 

@@ -21,7 +21,7 @@ module BulkDataTestKit
             type: :auth_info,
             options: { mode: 'access' },
             title: 'Bulk Data Authorization',
-            # TODO description
+            description: 'The authorization information for the Bulk FHIR server. If not required, leave access token blank.',
             optional: true
       input :bulk_timeout,
             title: 'Export Times Out after (1-600)',

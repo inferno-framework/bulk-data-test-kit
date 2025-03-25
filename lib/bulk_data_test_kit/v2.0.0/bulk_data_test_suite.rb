@@ -149,6 +149,7 @@ module BulkDataTestKit
 
       fhir_client :bulk_server do
         url :bulk_server_url
+        auth_info :smart_auth_info
       end
 
       http_client :bulk_server do

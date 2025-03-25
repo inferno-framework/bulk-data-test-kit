@@ -17,9 +17,11 @@ module BulkDataTestKit
       DESCRIPTION
       id :bulk_data_system_export_group
 
-      input :bearer_token,
-            title: 'Bulk Data Authorization Bearer Token',
-            description: 'The authorization bearer token for the Bulk FHIR server. If not required, leave blank.',
+      input :smart_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
+            title: 'Bulk Data Authorization',
+            description: 'The authorization information for the Bulk FHIR server. If not required, leave access token blank.',
             optional: true
       input :bulk_timeout,
             title: 'Export Times Out after (1-600)',

@@ -11,11 +11,16 @@
       "value": "https://bulk-data.smarthealthit.org/eyJlcnIiOiIiLCJwYWdlIjoxMDAsImR1ciI6MTAsInRsdCI6NjAsIm0iOjEsInN0dSI6NCwiZGVsIjowLCJzZWN1cmUiOjF9/fhir"
     },
     {
-      "name": "backend_services_client_id",
-      "type": "text",
-      "title": "Bulk Data Client ID",
-      "description": "Client ID provided at registration to the Inferno application.",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJlZ2lzdHJhdGlvbi10b2tlbiJ9.eyJqd2tzX3VybCI6Imh0dHBzOi8vaW5mZXJuby5oZWFsdGhpdC5nb3Yvc3VpdGVzL2N1c3RvbS9idWxrX2RhdGFfdjEwMS8ud2VsbC1rbm93bi9qd2tzLmpzb24iLCJhY2Nlc3NUb2tlbnNFeHBpcmVJbiI6NjAsImlhdCI6MTcyNjUwMzU3N30.T6xomQ7aMfrnvQ_kC7S0aUgTQXzgDYDI3A-DIFBLH5g"
+      "name": "smart_auth_info",
+      "title": "Backend Services Credentials",
+      "type": "auth_info",
+      "value": {
+        "encryption_algorithm": "ES384",
+        "auth_type": "backend_services",
+        "use_discovery": "true",
+        "requested_scopes": "system/*.read",
+        "client_id": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJlZ2lzdHJhdGlvbi10b2tlbiJ9"
+      }
     },
     {
       "name": "group_id",

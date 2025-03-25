@@ -14,7 +14,9 @@ module BulkDataTestKit
         correct behavior.
       )
 
-      input :bearer_token,
+      input :smart_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
             optional: true
       input :group_id,
             title: 'Group ID',

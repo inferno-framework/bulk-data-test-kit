@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module BulkDataTestKit
-  VERSION = '0.11.1'
-  LAST_UPDATED = '2026-03-06'
+  VERSION = '0.12.0'
+  LAST_UPDATED = '2025-03-25'
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bulk_data_test_kit (0.11.1)
+    bulk_data_test_kit (0.11.2)
       bloomer (~> 1.0.0)
       colorize (~> 0.8.1)
       inferno_core (>= 0.6.7)

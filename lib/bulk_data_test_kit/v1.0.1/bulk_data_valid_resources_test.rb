@@ -18,6 +18,7 @@ module BulkDataTestKit
         number of error messages it will display to 20.
       DESCRIPTION
 
+      input :smart_auth_info, type: :auth_info
       input :status_output
       input :requires_access_token
 

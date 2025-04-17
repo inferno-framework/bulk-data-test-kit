@@ -13,11 +13,17 @@ module BulkDataTestKit
 
       id :bulk_data_client_wait
 
-      input :access_token, :export_type, :group_id
+      input :client_id,
+          title: 'Client Id',
+          type: 'text',
+          optional: true,
+          locked: true,
+          description: SMARTAppLaunch::INPUT_CLIENT_ID_DESCRIPTION_LOCKED
+      input :export_type, :group_id
 
       run do
         wait(
-          identifier: access_token,
+          identifier: client_id,
           message: %(
             Perform a **#{export_type}** endpoint type bulk export kick-off using the following base URL:
 
@@ -25,7 +31,8 @@ module BulkDataTestKit
 
             #{export_type == GROUP_EXPORT_TYPE ? "Ensure the Group ID is set to **#{group_id}**." : ''}
 
-            Include the following bearer access token with all requests: **#{access_token}**
+            Use client id `#{client_id} to obtain a backend services access token from the SMART authorization
+            server for this FHIR server and include the access token on all subsequent requests.
 
             After the kick-off is made, subsequent status request(s) (using the URL provided in the response
             to the kick-off request), a download request (using the URL provided in the response to
@@ -34,7 +41,7 @@ module BulkDataTestKit
             The entire request sequence will be recorded and verified to check conformance to the
             [Bulk Data IG](https://build.fhir.org/ig/HL7/bulk-data/export.html#sequence-overview).
 
-            [Click here](#{resume_pass_url}?id=#{access_token}) when finished.
+            [Click here](#{resume_pass_url}?id=#{client_id}) when finished.
           ),
           timeout: 900
         )

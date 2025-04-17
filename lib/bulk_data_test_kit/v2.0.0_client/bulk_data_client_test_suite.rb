@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'smart_app_launch_test_kit'
 
 require_relative '../version'
 require_relative 'tags'
@@ -11,7 +12,9 @@ require_relative 'endpoints/kick_off'
 require_relative 'endpoints/output'
 require_relative 'endpoints/status'
 
+require_relative 'bulk_data_client_registration_group'
 require_relative 'bulk_data_client_export_group'
+require_relative 'bulk_data_client_auth_verification_group'
 
 module BulkDataTestKit
   module BulkDataV200Client
@@ -40,10 +43,6 @@ module BulkDataTestKit
           url: 'https://hl7.org/fhir/uv/bulkdata/STU2/'
         }
       ]
-
-      input :access_token,
-            title: 'Access Token',
-            description: 'The access token that will be included in all client requests during testing.'
 
       input :export_type,
             title: 'Export Type',
@@ -92,6 +91,12 @@ module BulkDataTestKit
               ]
             }
 
+      # SMART Backend Services server simulation
+      route(:get, SMARTAppLaunch::SMART_DISCOVERY_PATH, lambda { |_env|
+        SMARTAppLaunch::MockSMARTServer.smart_server_metadata(id)
+      })
+      suite_endpoint :post, SMARTAppLaunch::TOKEN_PATH, SMARTAppLaunch::MockSMARTServer::TokenEndpoint
+
       suite_endpoint :get, PATIENT_KICKOFF_ROUTE, Endpoints::KickOff
       suite_endpoint :get, GROUP_KICKOFF_ROUTE, Endpoints::KickOff
       suite_endpoint :get, SYSTEM_KICKOFF_ROUTE, Endpoints::KickOff
@@ -103,7 +108,9 @@ module BulkDataTestKit
         request.query_parameters['id']
       end
 
+      group from: :bulk_data_client_registration
       group from: :bulk_data_client_export_group
+      group from: :bulk_data_client_auth_verification
     end
   end
 end

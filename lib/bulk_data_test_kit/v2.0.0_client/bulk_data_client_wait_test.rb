@@ -31,7 +31,7 @@ module BulkDataTestKit
 
             #{export_type == GROUP_EXPORT_TYPE ? "Ensure the Group ID is set to **#{group_id}**." : ''}
 
-            Use client id `#{client_id} to obtain a backend services access token from the SMART authorization
+            Use client id `#{client_id}` to obtain a backend services access token from the SMART authorization
             server for this FHIR server and include the access token on all subsequent requests.
 
             After the kick-off is made, subsequent status request(s) (using the URL provided in the response

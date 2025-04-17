@@ -59,7 +59,7 @@ module BulkDataTestKit
         end
 
         def request_type
-          path_component_before_export = request.path_info.split['/'][-2].downcase
+          path_component_before_export = request.path_info.split('/')[-2].downcase
           if path_component_before_export == 'fhir'
             SYSTEM_EXPORT_TYPE
           elsif path_component_before_export == 'patient'

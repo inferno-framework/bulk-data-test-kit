@@ -13,7 +13,7 @@ module BulkDataTestKit
     # URLs for use in Bulk Data Client tests and endpoints
     module URLs
       def base_url
-        "#{Inferno::Application['base_url']}/custom/bulk_data_v200_client"
+        "#{Inferno::Application['base_url']}/custom/#{suite_id}"
       end
 
       def resume_pass_url
@@ -30,6 +30,10 @@ module BulkDataTestKit
 
       def output_url
         base_url + OUTPUT_ROUTE
+      end
+
+      def suite_id
+        BulkDataClientTestSuite.id
       end
     end
   end

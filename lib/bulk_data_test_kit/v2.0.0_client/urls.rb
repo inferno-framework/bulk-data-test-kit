@@ -4,8 +4,8 @@ module BulkDataTestKit
   module BulkDataV200Client
     RESUME_PASS_ROUTE = '/resume_pass'
     BASE_ROUTE = '/fhir'
-    PATIENT_KICKOFF_ROUTE = "#{BASE_ROUTE}/Patient/$export".freeze
-    GROUP_KICKOFF_ROUTE = "#{BASE_ROUTE}/Group/:group_id/$export".freeze
+    PATIENT_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/$export".freeze
+    GROUP_KICKOFF_ROUTE = "#{BASE_ROUTE}/:type/:group_id/$export".freeze
     SYSTEM_KICKOFF_ROUTE = "#{BASE_ROUTE}/$export".freeze
     STATUS_ROUTE = '/status/:job_id'
     OUTPUT_ROUTE = "#{BASE_ROUTE}/Binary/:binary_id".freeze

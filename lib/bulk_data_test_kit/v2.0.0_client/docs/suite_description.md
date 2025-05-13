@@ -56,3 +56,5 @@ To run the demonstration:
 1. Set the `access_token` variable equal to the value extracted from the SMART tests.
 1. Run the collection.
 1. Once the postman collection has run, click the "Click here" link in the Inferno wait dialog modal to evaluate the requests and generate the results.
+
+The tests should pass except for expected errors in the "Verify SMART Token Requests" test.

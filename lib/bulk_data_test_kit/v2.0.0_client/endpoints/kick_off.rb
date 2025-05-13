@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'smart_app_launch_test_kit'
 
 module BulkDataTestKit
   module BulkDataV200Client
@@ -8,7 +9,11 @@ module BulkDataTestKit
         include ServerProxy
 
         def test_run_identifier
-          request.get_header('HTTP_AUTHORIZATION')&.split&.last
+          return request.params[:session_path] if request.params[:session_path].present?
+
+          SMARTAppLaunch::MockSMARTServer.issued_token_to_client_id(
+            request.headers['authorization']&.delete_prefix('Bearer ')
+          )
         end
 
         # Proxy the request to the reference server, and re-use the returned '_jobId' as
@@ -29,11 +34,11 @@ module BulkDataTestKit
         def tags
           case request_type
           when PATIENT_EXPORT_TYPE
-            [PATIENT_KICKOFF_TAG]
+            [KICKOFF_TAG, PATIENT_KICKOFF_TAG]
           when GROUP_EXPORT_TYPE
-            [GROUP_KICKOFF_TAG]
+            [KICKOFF_TAG, GROUP_KICKOFF_TAG]
           when SYSTEM_EXPORT_TYPE
-            [SYSTEM_KICKOFF_TAG]
+            [KICKOFF_TAG, SYSTEM_KICKOFF_TAG]
           end
         end
 

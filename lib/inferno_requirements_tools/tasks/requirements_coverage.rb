@@ -25,7 +25,7 @@ module InfernoRequirementsTools
     #
     # The `run_check` method will check whether the previously generated file is up-to-date.
     class RequirementsCoverage
-      VERSION = '0.1.0' # update when making meaningful changes to this method for tracking used versions
+      VERSION = '0.2.1' # update when making meaningful changes to this method for tracking used versions
       CONFIG = YAML.load_file(File.join('lib', 'requirements_config.yaml'))
 
       TEST_KIT_ID = CONFIG['test_kit_id']
@@ -38,7 +38,7 @@ module InfernoRequirementsTools
       end
 
       # Derivative constants
-      TEST_KIT_CODE_FOLDER = TEST_KIT_ID.gsub('-', '_')
+      TEST_KIT_CODE_FOLDER = TEST_KIT_ID
       INPUT_HEADERS = [
         'Req Set',
         'ID',

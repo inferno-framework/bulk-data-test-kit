@@ -14,8 +14,6 @@ module BulkDataTestKit
 
       id :bulk_data_client_delete
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@119'
-
       run do
         assert load_tagged_requests(DELETE_TAG).any?, fail_message
       end

@@ -13,8 +13,6 @@ module BulkDataTestKit
 
       id :bulk_data_client_output
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@200'
-
       run do
         assert load_tagged_requests(OUTPUT_TAG).any?, fail_message
       end

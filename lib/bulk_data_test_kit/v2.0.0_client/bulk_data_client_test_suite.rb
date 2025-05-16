@@ -44,6 +44,19 @@ module BulkDataTestKit
         }
       ]
 
+      requirement_sets(
+        {
+          identifier: 'hl7.fhir.uv.bulkdata_2.0.0',
+          title: 'Bulk Data Access IG v2.0.0',
+          actor: 'Client'
+        },
+        {
+          identifier: 'hl7.fhir.uv.bulkdata_2.0.0',
+          title: 'Bulk Data Access IG v2.0.0',
+          actor: 'Server/Client'
+        }
+      )
+
       input :export_type,
             title: 'Export Type',
             description: 'The export endpoint type to test against.',

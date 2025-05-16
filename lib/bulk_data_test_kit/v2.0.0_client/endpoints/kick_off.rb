@@ -59,7 +59,14 @@ module BulkDataTestKit
         end
 
         def request_type
-          (request.params[:type] || SYSTEM_EXPORT_TYPE).titleize
+          path_component_before_export = request.path_info.split('/')[-2].downcase
+          if path_component_before_export == 'fhir'
+            SYSTEM_EXPORT_TYPE
+          elsif path_component_before_export == 'patient'
+            PATIENT_EXPORT_TYPE
+          else
+            GROUP_EXPORT_TYPE
+          end
         end
 
         def group_id

@@ -24,6 +24,19 @@ module BulkDataTestKit
         }
       ]
 
+      requirement_sets(
+        {
+          identifier: 'hl7.fhir.uv.bulkdata_1.0.0',
+          title: 'Bulk Data Access IG v1.0.0',
+          actor: 'Client'
+        },
+        {
+          identifier: 'hl7.fhir.uv.bulkdata_1.0.0',
+          title: 'Bulk Data Access IG v1.0.0',
+          actor: 'Server/Client'
+        }
+      )
+
       VALIDATION_MESSAGE_FILTERS = [
         /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
         /\A\S+: \S+: URL value '.*' does not resolve/

@@ -2,12 +2,12 @@
 hl7.fhir.uv.bulkdata_2.0.0,1,https://hl7.org/fhir/uv/bulkdata/STU2/#conformance,"To declare conformance with this IG, a server should include the following URL in its CapabilityStatement.instantiates: http://hl7.org/fhir/uv/bulkdata/CapabilityStatement/bulk-data",SHOULD,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,2,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,All exchanges described herein between a client and a server SHALL be secured using Transport Layer Security (TLS) Protocol Version 1.2 (RFC5246) or a more recent version of TLS.,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,3,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,Use of mutual TLS is OPTIONAL.,MAY,Server,,false
-hl7.fhir.uv.bulkdata_2.0.0,4,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,"With each of the requests described herein, implementers SHOULD implement OAuth 2.0 access management in accordance with the SMART Backend Services Authorization Profile. ",SHOULD,Server,SMART Backend Services Authorization Profile,false
+hl7.fhir.uv.bulkdata_2.0.0,4,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,"With each of the requests described herein, implementers SHOULD implement OAuth 2.0 access management in accordance with the SMART Backend Services Authorization Profile.",SHOULD,Server,SMART Backend Services Authorization Profile,false
 hl7.fhir.uv.bulkdata_2.0.0,5,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,"When SMART Backend Services Authorization is used, Bulk Data Status Request and Bulk Data Output File Requests with requiresAccessToken=true SHALL be protected the same way the Bulk Data Kick-off Request, including an access token with scopes that cover all resources being exported.",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,6,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,A server MAY additionally restrict Bulk Data Status Request and Bulk Data Output File Requests by limiting them to the client that originated the export.,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,7,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,"Implementations MAY include endpoints that use authorization schemes other than OAuth 2.0, such as mutual-TLS or signed URLs.",MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,8,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,A server SHOULD NOT delete files from a Bulk Data response that a client is actively in the process of downloading regardless of the pre-specified expiration time.,SHOULD NOT,Server,,false
-hl7.fhir.uv.bulkdata_2.0.0,9,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,The FHIR server SHALL limit the data returned to only those FHIR resources for which the client is authorized. ,SHALL,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,9,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,The FHIR server SHALL limit the data returned to only those FHIR resources for which the client is authorized.,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,10,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,Implementers SHOULD incorporate technology that preserves and respects an individual’s wishes to share their data with desired privacy protections.,SHOULD,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,11,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,Server developers SHOULD consider and mitigate the risk of intentional or inadvertent denial-of-service attacks though the details are beyond the scope of this specification.,SHOULD,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,12,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#roles,Bulk Data Provider - consists of… FHIR Authorization Server,SHALL,Server,,false
@@ -22,7 +22,7 @@ hl7.fhir.uv.bulkdata_2.0.0,20,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#
 hl7.fhir.uv.bulkdata_2.0.0,21,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#roles,FHIR Resource Server … provides job status,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,22,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#roles,FHIR Resource Server ... provides ... completion manifest.,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,23,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#roles,Output File Server … returns ... attachments in response to urls in the completion manifest.,SHALL,Server,,false
-hl7.fhir.uv.bulkdata_2.0.0,24,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#roles,Output File Server … returns FHIR Bulk Data files ... in response to urls in the completion manifest. ,SHALL,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,24,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#roles,Output File Server … returns FHIR Bulk Data files ... in response to urls in the completion manifest.,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,25,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#roles,"Output File Server … may be built into the FHIR Server, or may be independently hosted.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,26,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#sequence-overview,Diagram with operation request flow,DEPRECATED,,,false
 hl7.fhir.uv.bulkdata_2.0.0,27,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-kick-off-request,a server SHALL limit the data returned to only those FHIR resources for which the client is authorized.,SHALL,Server,,false
@@ -80,14 +80,14 @@ hl7.fhir.uv.bulkdata_2.0.0,78,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 hl7.fhir.uv.bulkdata_2.0.0,79,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport",`_elements`: A server SHOULD always return mandatory elements whether they are requested or not.,SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,80,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport",`_elements`: A server SHOULD mark [resources with only some elements returned] with the tag SUBSETTED to ensure that the incomplete resource is not actually used to overwrite a complete resource.,SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,81,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport",`_elements`: A server that is unable to support _elements SHOULD return an error and FHIR OperationOutcome resource,SHOULD,Server,,true
-hl7.fhir.uv.bulkdata_2.0.0,82,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`_elements`: When a `Prefer: handling=lenient` header is included in the request, the server MAY process the request instead of returning an error. ",MAY,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,82,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`_elements`: When a `Prefer: handling=lenient` header is included in the request, the server MAY process the request instead of returning an error.",MAY,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,83,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters,`_patient`: Optionality for Server: optional,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,84,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters,`_patient`: Optionality for Client: optional,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,85,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`patient`:  When provided, the server SHALL NOT return resources in the patient compartments belonging to patients outside of this list.",SHALL NOT,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,86,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`patient`:  If a client requests patients who are not present on the server ..., the server SHOULD return details via a FHIR OperationOutcome resource in an error response to the request.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,87,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`patient`:  If a client requests patients who… in the case of a group level export, who are not members of the group..., the server SHOULD return details via a FHIR OperationOutcome resource in an error response to the request.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,88,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport",`patient`:  A server that is unable to support `patient` SHOULD return an error and FHIR `OperationOutcome` resource so the client can re-submit a request omitting the patient parameter.,SHOULD,Server,,true
-hl7.fhir.uv.bulkdata_2.0.0,89,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`patient`:  When a `Prefer: handling=lenient` header is included in the request, the server MAY process the request instead of returning an error. ",MAY,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,89,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`patient`:  When a `Prefer: handling=lenient` header is included in the request, the server MAY process the request instead of returning an error.",MAY,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,90,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters,`_includeAssociatedData`: Optionality for Server: optional,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,91,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters,`_includeAssociatedData`: Optionality for Client: optional,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,92,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport",`includeAssociatedData`: a server with support for the parameter and requested values SHALL return or omit a pre-defined set of FHIR resources associated with the request.,SHALL,Server,,true
@@ -98,7 +98,7 @@ hl7.fhir.uv.bulkdata_2.0.0,95,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#
 - `LatestProvenanceResources`…
 - `RelevantProvenanceResources`…
 - `_[custom value]`…",MAY,Client,hl7.fhir.uv.bulkdata_2.0.0@97-100,false
-hl7.fhir.uv.bulkdata_2.0.0,96,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`includeAssociatedData`: If multiple conflicting values are included, the server SHALL apply the least restrictive value (value that will return the largest dataset). ",SHALL,Server,hl7.fhir.uv.bulkdata_2.0.0@97-100,true
+hl7.fhir.uv.bulkdata_2.0.0,96,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`includeAssociatedData`: If multiple conflicting values are included, the server SHALL apply the least restrictive value (value that will return the largest dataset).",SHALL,Server,hl7.fhir.uv.bulkdata_2.0.0@97-100,true
 hl7.fhir.uv.bulkdata_2.0.0,97,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters,`includeAssociatedData`: `LatestProvenanceResources`: Export will include the most recent Provenance resources associated with each of the non-provenance resources being returned.,SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,98,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters,`includeAssociatedData`: `LatestProvenanceResources`: Other Provenance resources will not be returned.,SHALL NOT,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,99,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters,`includeAssociatedData`: `RelevantProvenanceResources`: Export will include all Provenance resources associated with each of the non-provenance resources being returned.,SHALL,Server,,true
@@ -108,7 +108,7 @@ hl7.fhir.uv.bulkdata_2.0.0,102,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 hl7.fhir.uv.bulkdata_2.0.0,103,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`_typeFilter`: When provided, a server with support for the parameter and requested search queries SHALL filter the data in the response to only include resources that meet the specified criteria.",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,104,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport",`_typeFilter`: FHIR search response parameters such as _include and _sort SHALL NOT be used.,SHALL NOT,Client,,true
 hl7.fhir.uv.bulkdata_2.0.0,105,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport",`_typeFilter`:A server unable to support the requested _typeFilter queries SHOULD return an error and FHIR OperationOutcome resource,SHOULD,Server,,true
-hl7.fhir.uv.bulkdata_2.0.0,106,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`_typeFilter`:When a Prefer: handling=lenient header is included in the request, the server MAY process the request instead of returning an error. ",MAY,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,106,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","`_typeFilter`:When a Prefer: handling=lenient header is included in the request, the server MAY process the request instead of returning an error.",MAY,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,107,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","Implementations MAY limit the resources returned to specific subsets of FHIR, such as those defined in the US Core Implementation Guide",MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,108,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","If the client explicitly asks for export of resources that the Bulk Data server doesn’t support, the server SHOULD return details via a FHIR `OperationOutcome` resource in an error response to the request.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,109,"https://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport, https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport","If an `includeAssociatedValue` value relevant to provenance is not specified ..., the server SHALL include all available Provenance resources whose Provenance.target is a resource in the Patient compartment in a patient level export request",SHALL,Server,,true
@@ -118,7 +118,7 @@ hl7.fhir.uv.bulkdata_2.0.0,112,"https://hl7.org/fhir/uv/bulkdata/STU2/export.htm
 hl7.fhir.uv.bulkdata_2.0.0,113,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#_typefilter-experimental-query-parameter,"To request finer-grained filtering, a client MAY supply a `_typeFilter` parameter alongside the _type parameter.",MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,114,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#_typefilter-experimental-query-parameter,FHIR search response parameters such as `_include` and `_sort` SHALL NOT be used.,SHALL NOT,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,115,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#_typefilter-experimental-query-parameter,"Since support for `_typeFilter` is OPTIONAL for a FHIR server, clients SHOULD be robust to servers that ignore `_typeFilter`.",SHOULD,Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,116,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#_typefilter-experimental-query-parameter,A client MAY repeat the `_typeFilter` parameter multiple times in a kick-off request. ,MAY,Client,,false
+hl7.fhir.uv.bulkdata_2.0.0,116,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#_typefilter-experimental-query-parameter,A client MAY repeat the `_typeFilter` parameter multiple times in a kick-off request.,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,117,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#_typefilter-experimental-query-parameter,"When [the `_typeFilter` parameter is] repeated, the server SHALL treat the repeated values as if they were comma delimited values within a single `_typeFilter` parameter.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,118,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-eg-unsupported-search-parameter,"If a server wants to prevent a client from beginning a new export before an in-progress export is completed, it SHOULD respond with a 429 `Too Many Requests` status and a `Retry-After` header.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,119,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-delete-request,"After a Bulk Data request has been started, a client MAY send a DELETE request to the URL provided in the Content-Location header to cancel the request as described in the FHIR Asynchronous Request Pattern.",MAY,Client,https://www.hl7.org/fhir/R4/async.html,true
@@ -127,7 +127,7 @@ hl7.fhir.uv.bulkdata_2.0.0,121,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 hl7.fhir.uv.bulkdata_2.0.0,122,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-delete-request,"Following the delete request, when subsequent requests are made to the polling location, the server SHALL return a `404 Not Found` error and an associated FHIR `OperationOutcome` in JSON format.",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,123,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"After a Bulk Data request has been started, the client MAY poll the status URL provided in the `Content-Location` header as described in the FHIR Asynchronous Request Pattern.",MAY,Client,https://www.hl7.org/fhir/R4/async.html,true
 hl7.fhir.uv.bulkdata_2.0.0,124,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,Clients SHOULD follow an exponential backoff approach when polling for status.,SHOULD,Client,,true
-hl7.fhir.uv.bulkdata_2.0.0,125,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"A server SHOULD supply a `Retry-After` header with a with a delay time in seconds (e.g., 120 to represent two minutes) or a http-date (e.g., Fri, 31 Dec 1999 23:59:59 GMT). ",SHOULD,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,125,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"A server SHOULD supply a `Retry-After` header with a with a delay time in seconds (e.g., 120 to represent two minutes) or a http-date (e.g., Fri, 31 Dec 1999 23:59:59 GMT).",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,126,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"When provided a [`Retry-After` header is provided], clients SHOULD use this information to inform the timing of future polling requests.",SHOULD,Client,,true
 hl7.fhir.uv.bulkdata_2.0.0,127,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,The server SHOULD keep an accounting of status queries received from a given client,SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,128,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"if a client is polling too frequently, the server SHOULD respond with a 429 Too Many Requests status code in addition to a Retry-After header, and optionally a FHIR OperationOutcome resource with further explanation.",SHOULD,Server,,true
@@ -136,16 +136,16 @@ hl7.fhir.uv.bulkdata_2.0.0,130,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 hl7.fhir.uv.bulkdata_2.0.0,131,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"In the case that errors prevent the export from completing, the server SHOULD respond with a FHIR OperationOutcome resource in JSON format.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,132,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,[A Bulk Data server SHALL resond to a successful Status Request that is in-progress with] HTTP Status Code of `202 Accepted`,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,133,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,the server MAY return an `X-Progress` header with a text description of the status of the request that is less than 100 characters.,MAY,Server,,false
-hl7.fhir.uv.bulkdata_2.0.0,134,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,"The format of [the `X-Progress`] description ... MAY be a percentage complete value, or MAY be a more general status such as “in progress”. ",MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,134,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,"The format of [the `X-Progress`] description ... MAY be a percentage complete value, or MAY be a more general status such as “in progress”.",MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,135,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,"The client MAY parse the [status] description [sent in the `X-Progress` header], display it to the user, or log it.",MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,136,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,[A Bulk Data server SHALL respond to an errored Bulk Data Status Request with]  HTTP Status Code of `4XX` or `5XX`,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,137,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,[A Bulk Data server SHALL respond to an errored Bulk Data Status Request with] `Content-Type` header of `application/fhir+json` when body is a FHIR `OperationOutcome` resource,SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,138,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"[When a Bulk Data server responds to an errored Bulk Data Delete Request,]  [t]he body of the response SHOULD be a FHIR OperationOutcome resource in JSON format.",SHOULD,Server,,false
-hl7.fhir.uv.bulkdata_2.0.0,139,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1," If [a response including the FHIR `OperationOutcome` resource] is not possible (for example, the infrastructure layer returning the error is not FHIR aware), the server MAY return an error message in another format and include a corresponding value for the `Content-Type` header.",MAY,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,139,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"If [a response including the FHIR `OperationOutcome` resource] is not possible (for example, the infrastructure layer returning the error is not FHIR aware), the server MAY return an error message in another format and include a corresponding value for the `Content-Type` header.",MAY,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,140,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"In the case of a polling failure that does not indicate failure of the export job, a server SHOULD use a transient code from the IssueType valueset when populating the FHIR `OperationOutcome` resource’s `issue.code` element to indicate to the client that it should retry the request at a later time.",SHOULD,Server,,true
-hl7.fhir.uv.bulkdata_2.0.0,141,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"Even if some of the requested resources cannot successfully be exported, the overall export operation MAY still succeed. ",MAY,Server,,true
-hl7.fhir.uv.bulkdata_2.0.0,142,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"[if the overall export succeeds despite some resources not sucessfully exporting], the Response.error array of the completion response body SHALL be populated with one or more files in ndjson format containing FHIR `OperationOutcome` resources to indicate what went wrong . ",SHALL,Server,,true
-hl7.fhir.uv.bulkdata_2.0.0,143,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"In the case of a partial success, the server SHALL use a 200 status code instead of 4XX or 5XX. ",SHALL,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,141,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"Even if some of the requested resources cannot successfully be exported, the overall export operation MAY still succeed.",MAY,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,142,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"[if the overall export succeeds despite some resources not sucessfully exporting], the Response.error array of the completion response body SHALL be populated with one or more files in ndjson format containing FHIR `OperationOutcome` resources to indicate what went wrong .",SHALL,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,143,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"In the case of a partial success, the server SHALL use a 200 status code instead of 4XX or 5XX.",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,144,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,[A Bulk Data server SHALL respond to a successful Status Request that has completed with] HTTP status of `200 OK`,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,145,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,[A Bulk Data server SHALL respond to a successful Status Request that has completed with] `Content-Type` header of `application/json`,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,146,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"[When a Bulk Data server responds to a successful Status Request that has completed, it] SHOULD return an Expires header indicating when the files listed will no longer be available for access.",SHOULD,Server,,false
@@ -198,7 +198,7 @@ hl7.fhir.uv.bulkdata_2.0.0,161,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 `requiresAccessToken`: Indicates whether downloading the generated files requires the same authorization mechanism as the $export operation itself.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,162,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`requiresAccessToken`: Value SHALL be true if both the file server and the FHIR API server control access using OAuth 2.0 bearer tokens. ",SHALL,Server,,true
+`requiresAccessToken`: Value SHALL be true if both the file server and the FHIR API server control access using OAuth 2.0 bearer tokens.",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,163,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `requiresAccessToken`: Value MAY be false for file servers that use access-control schemes other than OAuth 2.0",MAY,Server,,false
@@ -218,12 +218,12 @@ hl7.fhir.uv.bulkdata_2.0.0,166,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 
 
-An array of file items with one entry for each generated file. ",SHALL,Server,,false
+An array of file items with one entry for each generated file.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,167,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
 
-If no resources are returned from the kick-off request, the server SHOULD return an empty array. ",SHOULD,Server,,true
+If no resources are returned from the kick-off request, the server SHOULD return an empty array.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,168,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
@@ -237,7 +237,7 @@ hl7.fhir.uv.bulkdata_2.0.0,169,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 `output`:
 
-`type` - the FHIR resource type that is contained in the file. ",SHALL,Server,,false
+`type` - the FHIR resource type that is contained in the file.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,170,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
@@ -257,12 +257,12 @@ hl7.fhir.uv.bulkdata_2.0.0,173,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 `output`:
 
-`type`: If no data are found for a resource, the server SHOULD NOT return an output item for that resource in the response. ",SHOULD,Server,,true
+`type`: If no data are found for a resource, the server SHOULD NOT return an output item for that resource in the response.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,174,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
 
-`type`: any resource MAY have a ""contained"" array that includes referenced resources of other types. ",MAY,Server,,false
+`type`: any resource MAY have a ""contained"" array that includes referenced resources of other types.",MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,175,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
@@ -272,7 +272,7 @@ hl7.fhir.uv.bulkdata_2.0.0,176,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 `output`:
 
-`url`: The format of the file SHOULD reflect that requested in the `_outputFormat` parameter of the initial kick-off request. ",SHOULD,Server,,false
+`url`: The format of the file SHOULD reflect that requested in the `_outputFormat` parameter of the initial kick-off request.",SHOULD,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,177,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
@@ -284,7 +284,7 @@ hl7.fhir.uv.bulkdata_2.0.0,178,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 `output`:
 
-`count`: the number of resources in the file, represented as a JSON number. ",SHALL,Server,,false
+`count`: the number of resources in the file, represented as a JSON number.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,179,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 Required Fields:
@@ -300,31 +300,31 @@ hl7.fhir.uv.bulkdata_2.0.0,181,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 `deleted`: An array of deleted file items following the same structure as the `output` array.",SHALL,Server,hl7.fhir.uv.bulkdata_2.0.0@168-178,false
 hl7.fhir.uv.bulkdata_2.0.0,182,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: When a _since timestamp is supplied in the export request, this array SHOULD be populated with output files containing FHIR Transaction Bundles that indicate which FHIR resources match the kick-off request criteria, but have been deleted subsequent to the _since date. ",SHOULD,Server,,true
+`deleted`: When a _since timestamp is supplied in the export request, this array SHOULD be populated with output files containing FHIR Transaction Bundles that indicate which FHIR resources match the kick-off request criteria, but have been deleted subsequent to the _since date.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,183,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: If no resources have been deleted, ... the server MAY omit this key or MAY return an empty array. ",MAY,Server,,true
+`deleted`: If no resources have been deleted, ... the server MAY omit this key or MAY return an empty array.",MAY,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,184,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: If ... the _since parameter was not supplied, ... the server MAY omit this key or MAY return an empty array. ",MAY,Server,,true
+`deleted`: If ... the _since parameter was not supplied, ... the server MAY omit this key or MAY return an empty array.",MAY,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,185,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: If ... the server has other reasons to avoid exposing these data, the server MAY omit this key or MAY return an empty array. ",MAY,Server,,true
+`deleted`: If ... the server has other reasons to avoid exposing these data, the server MAY omit this key or MAY return an empty array.",MAY,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,186,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: Resources that appear in the 'deleted' section of an export manifest SHALL NOT appear in the 'output' section of the manifest. ",SHALL,Server,,false
+`deleted`: Resources that appear in the 'deleted' section of an export manifest SHALL NOT appear in the 'output' section of the manifest.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,187,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `deleted`: Each line in the output file SHALL contain a FHIR Bundle with a type of transaction",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,188,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: transaction ... SHALL contain one or more entry items that reflect a deleted resource. ",SHALL,Server,,false
+`deleted`: transaction ... SHALL contain one or more entry items that reflect a deleted resource.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,189,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: In each entry, the request.url and request.method elements SHALL be populated. ",SHALL,Server,,false
+`deleted`: In each entry, the request.url and request.method elements SHALL be populated.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,190,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`deleted`: The request.method element SHALL be set to DELETE. ",SHALL,Server,,false
+`deleted`: The request.method element SHALL be set to DELETE.",SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,191,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 Required Fields:
@@ -340,10 +340,10 @@ hl7.fhir.uv.bulkdata_2.0.0,193,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 `error`: Array of message file items following the same structure as the output array.",SHALL,Server,hl7.fhir.uv.bulkdata_2.0.0@168-178,false
 hl7.fhir.uv.bulkdata_2.0.0,194,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`error`: Error, warning, and information messages related to the export SHOULD be included here (not in output). ",SHOULD,Server,,false
+`error`: Error, warning, and information messages related to the export SHOULD be included here (not in output).",SHOULD,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,195,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`error`: If there are no relevant messages, the server SHOULD return an empty array. ",SHOULD,Server,,true
+`error`: If there are no relevant messages, the server SHOULD return an empty array.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,196,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `error`: Only the FHIR OperationOutcome resource type is currently supported, so the server SHALL generate files in the same format as Bulk Data output files that contain FHIR OperationOutcome resources.",SHALL,Server,,false
@@ -367,16 +367,14 @@ hl7.fhir.uv.bulkdata_2.0.0,203,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 hl7.fhir.uv.bulkdata_2.0.0,204,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint-2,[A Bulk Data server SHALL support Output File Requests at the endpoint] `GET [url from status request output field]`,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,205,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#headers-1,"[To request an Output File, a client MAY use the header] Accept (... defaults to application/fhir+ndjson)",MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,206,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-2,[A Bulk Data server SHALL respond to a successful Output File Request with] HTTP status of `200 OK`,SHALL,Server,,false
-hl7.fhir.uv.bulkdata_2.0.0,207,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-2,[A Bulk Data server SHALL respond to a successful Output File Request with] `Content-Type` header that matches the file format being delivered. ,SHALL,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,207,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-2,[A Bulk Data server SHALL respond to a successful Output File Request with] `Content-Type` header that matches the file format being delivered.,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,208,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-2,"[When Bulk Data server responds to a successful Output File Request,] [f]or files in ndjson format, [`Content-Type`] SHALL be `application/fhir+ndjson`",SHALL,Server,,false
-hl7.fhir.uv.bulkdata_2.0.0,209,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-2,"[A Bulk Data server SHALL respond to a successful Output File Request with] [b]ody of FHIR resources in newline delimited json - ndjson or other requested format
-
-",SHALL,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,209,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-2,[A Bulk Data server SHALL respond to a successful Output File Request with] [b]ody of FHIR resources in newline delimited json - ndjson or other requested format,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,210,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error,[A Bulk Data server SHALL respond to an errored Bulk Data Output File Request with]  HTTP Status Code of `4XX` or `5XX`,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,211,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#attachments,"Attachments: If resources in an output file contain elements of the type Attachment, the server SHOULD populate the Attachment.contentType code",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,212,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#attachments,"Attachments: If resources in an output file contain elements of the type Attachment, the server SHOULD populate … either the data element or the url element.",SHOULD,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,213,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#attachments,"Attachments: When populated, the url element SHALL be an absolute url that can be de-referenced to the attachment’s content.",SHALL,Server,,true
-hl7.fhir.uv.bulkdata_2.0.0,214,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#attachments,"Attachments: When the url element is populated with an absolute URL and the requiresAccessToken field in the Complete Status body is set to true, the url location must be accessible by a client with a valid access token, ",SHALL,Server,,true
+hl7.fhir.uv.bulkdata_2.0.0,214,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#attachments,"Attachments: When the url element is populated with an absolute URL and the requiresAccessToken field in the Complete Status body is set to true, the url location must be accessible by a client with a valid access token,",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,215,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#attachments,"Attachments: When the url element is populated with an absolute URL and the requiresAccessToken field in the Complete Status body is set to true, the url location ... SHALL NOT require the use of additional authentication credentials.",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,216,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#attachments,"Attachments: When the url element is populated and the requiresAccessToken field in the Complete Status body is set to false, the url location must be accessible by a client without an access token.",SHALL,Server,,true
 hl7.fhir.uv.bulkdata_2.0.0,217,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#server-capability-documentation,server providers SHOULD ensure that their Capability Statement accurately reflects the implemented Bulk Data Operations and that their documentation addresses the topics below. [see list from source document],SHOULD,Server,,false
@@ -407,16 +405,16 @@ hl7.fhir.uv.bulkdata_2.0.0,233,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDe
 hl7.fhir.uv.bulkdata_2.0.0,234,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_since`: Support is required for a server,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,235,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_since`: Support is … optional for a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,236,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_since`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,237,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_type`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,237,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_type`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,238,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_type`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,239,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_type`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,240,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_elements`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,240,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_elements`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,241,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_elements`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,242,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_elements`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,243,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`includeAssociatedData`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,243,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`includeAssociatedData`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,244,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`includeAssociatedData`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,245,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`includeAssociatedData`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,246,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_typeFilter`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,246,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_typeFilter`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,247,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_typeFilter`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,248,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-export.html#bulkdataexport,`_typeFilter`: requirements,DEPRECATED,Server/Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,249,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,Group Level Export: The FHIR server SHALL support invocation of this operation using the FHIR Asynchronous Request Pattern,SHALL,Server,,false
@@ -427,19 +425,19 @@ hl7.fhir.uv.bulkdata_2.0.0,253,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDe
 hl7.fhir.uv.bulkdata_2.0.0,254,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_since`: Support is required for a server,SHALL,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,255,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_since`: Support is … optional for a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,256,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_since`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,257,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_type`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,257,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_type`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,258,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_type`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,259,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_type`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,260,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_elements`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,260,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_elements`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,261,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_elements`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,262,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_elements`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,263,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`patient`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,263,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`patient`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,264,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`patient`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,265,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`patient`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,266,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`includeAssociatedData`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,266,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`includeAssociatedData`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,267,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`includeAssociatedData`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,268,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`includeAssociatedData`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,269,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_typeFilter`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,269,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_typeFilter`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,270,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_typeFilter`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,271,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-group-export.html#grouplevelexport,`_typeFilter`: requirements,DEPRECATED,Server/Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,272,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,Patient Level Export: The FHIR server SHALL support invocation of this operation using the FHIR Asynchronous Request Pattern,SHALL,Server,,false
@@ -450,34 +448,34 @@ hl7.fhir.uv.bulkdata_2.0.0,276,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDe
 hl7.fhir.uv.bulkdata_2.0.0,277,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_since`: Support is required for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,278,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_since`: Support is … optional for a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,279,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_since`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,280,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_type`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,280,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_type`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,281,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_type`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,282,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_type`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,283,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_elements`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,283,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_elements`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,284,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_elements`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,285,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_elements`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,286,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`patient`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,286,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`patient`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,287,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`patient`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,288,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`patient`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,289,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`includeAssociatedData`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,289,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`includeAssociatedData`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,290,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`includeAssociatedData`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,291,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`includeAssociatedData`: requirements,DEPRECATED,Server/Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,292,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_typeFilter`: Support is optional for a server ,MAY,Server,,false
+hl7.fhir.uv.bulkdata_2.0.0,292,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_typeFilter`: Support is optional for a server,MAY,Server,,false
 hl7.fhir.uv.bulkdata_2.0.0,293,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_typeFilter`: Support is optional for … a client,MAY,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,294,https://hl7.org/fhir/uv/bulkdata/STU2/OperationDefinition-patient-export.html#patientlevelexport,`_typeFilter`: requirements,DEPRECATED,Server/Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,295,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,All exchanges described herein between a client and a server SHALL be secured using Transport Layer Security (TLS) Protocol Version 1.2 (RFC5246) or a more recent version of TLS.,SHALL,Client,,false
 hl7.fhir.uv.bulkdata_2.0.0,296,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#privacy-and-security-considerations,Use of mutual TLS is OPTIONAL.,MAY,Client,,false
-hl7.fhir.uv.bulkdata_2.0.0,297,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint---all-patients,"[If the server supports Bulk Data Patient Export, the endpoint SHALL be] `[fhir base]/Patient/$export`",SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,298,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint---group-of-patients,"[If the server supports Bulk Data Group Export, the endpoint SHALL be] `[fhir base]/Group/[id]/$export`",SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,299,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint---system-level-export,"[If the server supports Bulk Data System Level Export, the endpoint SHALL be] `[fhir base]/$export`",SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,300,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success,[A Bulk Data server SHALL respond to a successful Bulk Data Kickoff Request with]  HTTP Status Code of `202 Accepted`,SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,301,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success,[A Bulk Data server SHALL respond to a successful Bulk Data Kickoff Request with]  `Content-Location` header with the absolute URL of an endpoint for subsequent status requests (polling location),SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,302,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success,[A Bulk Data server MAY respond to a successful Bulk Data Kickoff Request with]  a FHIR `OperationOutcome` resource in the body in JSON format,MAY,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,303,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-eg-unsupported-search-parameter,[A Bulk Data server SHALL respond to an errored Bulk Data Kickoff Request with]  HTTP Status Code of `4XX` or `5XX`,SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,304,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-eg-unsupported-search-parameter,"[When a Bulk Data server responds to an errored Bulk Data Kickoff Request,]  [t]he body SHALL be a FHIR OperationOutcome resource in JSON format",SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,305,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint,[A Bulk Data server SHALL support Delete Requests at the endpoint] `DELETE [polling content location]`,SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,306,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-1,[A Bulk Data server SHALL respond to a successful Delete Request with] HTTP Status Code of `202 Accepted`,SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,307,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-1,[A Bulk Data server MAY respond to a successful Delete Request with] a FHIR `OperationOutcome` resource in the body in JSON format,MAY,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,308,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status,[A Bulk Data server SHALL respond to an errored Bulk Data Delete Request with]  HTTP Status Code of `4XX` or `5XX`,SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,309,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status,"[When a Bulk Data server responds to an errored Bulk Data Delete Request,]  [t]he body SHALL be a FHIR OperationOutcome resource in JSON format",SHALL,Server,,
-hl7.fhir.uv.bulkdata_2.0.0,310,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint-1,[A Bulk Data server SHALL support Status Requests at the endpoint] `GET [polling content location]`,SHALL,Server,,
+hl7.fhir.uv.bulkdata_2.0.0,297,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint---all-patients,"[If the server supports Bulk Data Patient Export, the endpoint SHALL be] `[fhir base]/Patient/$export`",SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,298,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint---group-of-patients,"[If the server supports Bulk Data Group Export, the endpoint SHALL be] `[fhir base]/Group/[id]/$export`",SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,299,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint---system-level-export,"[If the server supports Bulk Data System Level Export, the endpoint SHALL be] `[fhir base]/$export`",SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,300,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success,[A Bulk Data server SHALL respond to a successful Bulk Data Kickoff Request with]  HTTP Status Code of `202 Accepted`,SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,301,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success,[A Bulk Data server SHALL respond to a successful Bulk Data Kickoff Request with]  `Content-Location` header with the absolute URL of an endpoint for subsequent status requests (polling location),SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,302,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success,[A Bulk Data server MAY respond to a successful Bulk Data Kickoff Request with]  a FHIR `OperationOutcome` resource in the body in JSON format,MAY,,,
+hl7.fhir.uv.bulkdata_2.0.0,303,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-eg-unsupported-search-parameter,[A Bulk Data server SHALL respond to an errored Bulk Data Kickoff Request with]  HTTP Status Code of `4XX` or `5XX`,SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,304,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-eg-unsupported-search-parameter,"[When a Bulk Data server responds to an errored Bulk Data Kickoff Request,]  [t]he body SHALL be a FHIR OperationOutcome resource in JSON format",SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,305,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint,[A Bulk Data server SHALL support Delete Requests at the endpoint] `DELETE [polling content location]`,SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,306,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-1,[A Bulk Data server SHALL respond to a successful Delete Request with] HTTP Status Code of `202 Accepted`,SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,307,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---success-1,[A Bulk Data server MAY respond to a successful Delete Request with] a FHIR `OperationOutcome` resource in the body in JSON format,MAY,,,
+hl7.fhir.uv.bulkdata_2.0.0,308,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status,[A Bulk Data server SHALL respond to an errored Bulk Data Delete Request with]  HTTP Status Code of `4XX` or `5XX`,SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,309,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status,"[When a Bulk Data server responds to an errored Bulk Data Delete Request,]  [t]he body SHALL be a FHIR OperationOutcome resource in JSON format",SHALL,,,
+hl7.fhir.uv.bulkdata_2.0.0,310,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#endpoint-1,[A Bulk Data server SHALL support Status Requests at the endpoint] `GET [polling content location]`,SHALL,,,

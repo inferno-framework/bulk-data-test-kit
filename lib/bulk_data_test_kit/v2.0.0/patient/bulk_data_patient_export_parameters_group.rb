@@ -31,8 +31,7 @@ module BulkDataTestKit
            id: :since_in_patient_export_response,
            config: {
              options: { resource_type: 'Patient', bulk_export_url: 'Patient/$export' }
-           },
-           verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@277']
+           }
     end
   end
 end

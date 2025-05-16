@@ -58,7 +58,7 @@ module BulkDataTestKit
           declares the standard Group export OperationDefinition provided in the
           Bulk Data specification, nor does it attempt to resolve any non-standard
           OperationDefinitions to verify if it is a constrained version of the
-          standard OperationDefintion.
+          standard OperationDefinition.
 
           This test will provide a warning if no operations are declared at
           `Group/[group_id]/$export`, via the

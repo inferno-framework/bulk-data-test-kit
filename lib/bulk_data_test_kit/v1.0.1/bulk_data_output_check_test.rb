@@ -29,7 +29,8 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@166',
                             'hl7.fhir.uv.bulkdata_2.0.0@168',
                             'hl7.fhir.uv.bulkdata_2.0.0@169',
-                            'hl7.fhir.uv.bulkdata_2.0.0@170'
+                            'hl7.fhir.uv.bulkdata_2.0.0@170',
+                            'hl7.fhir.uv.bulkdata_2.0.0@175'
 
       input :status_response
 

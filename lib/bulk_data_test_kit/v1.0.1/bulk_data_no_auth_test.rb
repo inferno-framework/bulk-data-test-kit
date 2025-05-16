@@ -24,8 +24,10 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@27',
                             'hl7.fhir.uv.bulkdata_2.0.0@226'
 
-      input :bearer_token,
-          optional: true
+      input :smart_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
+            optional: true
 
       def self.properties
         @properties ||= BulkDataTestKitProperties.new(

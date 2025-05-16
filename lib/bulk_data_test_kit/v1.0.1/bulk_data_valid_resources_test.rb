@@ -24,6 +24,7 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@208',
                             'hl7.fhir.uv.bulkdata_2.0.0@209'
 
+      input :smart_auth_info, type: :auth_info
       input :status_output
       input :requires_access_token
 

@@ -29,7 +29,7 @@ module BulkDataTestKit
 
     def build_headers(use_token)
       headers = { accept: 'application/fhir+ndjson' }
-      headers.merge!({ authorization: "Bearer #{bearer_token}" }) if use_token == 'true'
+      headers.merge!({ authorization: "Bearer #{smart_auth_info.access_token}" }) if use_token == 'true'
       headers
     end
 
@@ -142,7 +142,7 @@ module BulkDataTestKit
 
     def perform_bulk_export_validation(bulk_status_output: '', bulk_requires_access_token: '')
       skip_if bulk_status_output.blank?, 'Could not verify this functionality when Bulk Status Output is not provided'
-      skip_if (bulk_requires_access_token == 'true' && bearer_token.blank?),
+      skip_if (bulk_requires_access_token == 'true' && smart_auth_info.access_token.blank?),
               'Could not verify this functionality when Bearer Token is required and not provided'
 
       $num_messages = 0
@@ -194,7 +194,7 @@ module BulkDataTestKit
               'Could not verify this functionality when requiresAccessToken is not provided'
       omit_if bulk_requires_access_token == 'false',
               'Could not verify this functionality when requiresAccessToken is false'
-      skip_if bearer_token.blank?, 'Could not verify this functionality when Bearer Token is not provided'
+      skip_if smart_auth_info.access_token.blank?, 'Could not verify this functionality when Bearer Token is not provided'
 
       get(bulk_data_download_url, headers: { accept: 'application/fhir+ndjson' })
       assert_response_status([400, 401])

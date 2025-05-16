@@ -24,7 +24,9 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@300',
                             'hl7.fhir.uv.bulkdata_2.0.0@301'
 
-      input :bearer_token,
+      input :smart_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
             optional: true
       output :polling_url
 

@@ -4,7 +4,7 @@ require_relative '../../lib/bulk_data_test_kit/export_kick_off_performer'
 
 class ExportKickOffPerformerTesterClass < Inferno::Test
   include BulkDataTestKit::ExportKickOffPerformer
-  attr_accessor :bearer_token, :group_id, :requests
+  attr_accessor :smart_auth_info, :group_id, :requests
 
   def http_clients
     { bulk_server: Inferno::DSL::HTTPClientBuilder.new.build(self, proc { url 'https://www.example.com' }) }
@@ -27,7 +27,7 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
   end
 
   before do
-    performer.bearer_token = token
+    performer.smart_auth_info = Inferno::DSL::AuthInfo.new({auth_type: :backend_services, access_token: token})
     performer.group_id = group_id
     performer.requests = [request]
   end
@@ -45,7 +45,7 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
     end
 
     it 'raises skip if use_token but token is not present' do
-      performer.bearer_token = nil
+      performer.smart_auth_info = Inferno::DSL::AuthInfo.new({ auth_type: :backend_services })
 
       expect { performer.perform_export_kick_off_request(url: "Group/#{group_id}/$export") }
         .to raise_exception(Inferno::Exceptions::SkipException)

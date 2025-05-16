@@ -7,8 +7,7 @@ require_relative 'bulk_data_export_tests_test_group'
 module BulkDataTestKit
   module BulkDataV101
     class BulkDataTestSuite < Inferno::TestSuite
-      title 'Bulk Data Access v1.0.1'
-      version VERSION
+      title 'Bulk Data Access v1.0.1 Server'
       id :bulk_data_v101
       links [
         {
@@ -88,12 +87,6 @@ module BulkDataTestKit
       )
 
       config(
-        inputs: {
-          client_auth_encryption_method: {
-            title: 'Client Authentication Encryption Method',
-            locked: true
-          }
-        },
         options: {
           post_authorization_uri: "#{Inferno::Application['base_url']}/custom/smart_stu2/post_auth"
         }
@@ -152,6 +145,7 @@ module BulkDataTestKit
 
       fhir_client :bulk_server do
         url :bulk_server_url
+        auth_info :smart_auth_info
       end
 
       http_client :bulk_server do

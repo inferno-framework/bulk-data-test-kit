@@ -29,7 +29,9 @@ module BulkDataTestKit
 
       verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@53'
 
-      input :bearer_token,
+      input :smart_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
             optional: true
       input :since_timestamp,
             title: 'Timestamp for _since parameter',

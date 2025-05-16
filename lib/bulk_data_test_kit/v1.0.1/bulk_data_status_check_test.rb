@@ -40,7 +40,9 @@ module BulkDataTestKit
                             'hl7.fhir.uv.bulkdata_2.0.0@193'
 
       input :polling_url, :bulk_timeout
-      input :bearer_token,
+      input :smart_auth_info,
+            type: :auth_info,
+            options: { mode: 'access' },
             optional: true
 
       output :status_response, :requires_access_token

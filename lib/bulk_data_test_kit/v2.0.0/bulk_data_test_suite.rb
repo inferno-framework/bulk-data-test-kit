@@ -7,8 +7,7 @@ require_relative 'bulk_data_export_tests_test_group'
 module BulkDataTestKit
   module BulkDataV200
     class BulkDataTestSuite < Inferno::TestSuite
-      title 'Bulk Data Access v2.0.0'
-      version VERSION
+      title 'Bulk Data Access v2.0.0 Server'
       id :bulk_data_v200
       links [
         {
@@ -150,6 +149,7 @@ module BulkDataTestKit
 
       fhir_client :bulk_server do
         url :bulk_server_url
+        auth_info :smart_auth_info
       end
 
       http_client :bulk_server do

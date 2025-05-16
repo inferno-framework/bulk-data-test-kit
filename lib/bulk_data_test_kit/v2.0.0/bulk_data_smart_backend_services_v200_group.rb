@@ -12,11 +12,34 @@ module BulkDataTestKit
 
       group from: :smart_discovery_stu2,
             config: {
-              inputs: { url: { name: :bulk_server_url } }
+              inputs: {
+                        url: { name: :bulk_server_url },
+                        smart_auth_info: {
+                          options: {
+                            components: [
+                              { name: :requested_scopes, default: 'system/*.read'} 
+                            ]
+                          }
+                        }
+                      }
             }
 
       group from: :backend_services_authorization,
-            verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@2', 'hl7.fhir.uv.bulkdata_2.0.0@19']
+            verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@2', 'hl7.fhir.uv.bulkdata_2.0.0@19'],
+            config: {
+              inputs: {
+                        url: { name: :bulk_server_url },
+                        smart_auth_info: {
+                          options: {
+                            components: [
+                              { name: :requested_scopes, default: 'system/*.read' } 
+                            ]
+                          }
+                        }
+                      }
+            },
+            run_as_group: true
+
     end
   end
 end

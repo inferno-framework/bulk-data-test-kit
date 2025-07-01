@@ -24,13 +24,15 @@ module BulkDataTestKit
            id: :output_format_in_system_export_response,
            config: {
              options: { resource_type: 'system', bulk_export_url: '$export' }
-           }
+           },
+           verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@47','hl7.fhir.uv.bulkdata_2.0.0@49','hl7.fhir.uv.bulkdata_2.0.0@51','hl7.fhir.uv.bulkdata_2.0.0@52','hl7.fhir.uv.bulkdata_2.0.0@231']
 
       test from: :since_in_export_response,
            id: :since_in_system_export_response,
            config: {
              options: { resource_type: 'system', bulk_export_url: '$export' }
-           }
+           },
+           verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@53','hl7.fhir.uv.bulkdata_2.0.0@234']
     end
   end
 end

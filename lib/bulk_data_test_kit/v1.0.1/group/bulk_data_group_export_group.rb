@@ -17,6 +17,10 @@ module BulkDataTestKit
       description <<~DESCRIPTION
         Verify that group level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@224',
+                            'hl7.fhir.uv.bulkdata_1.0.0@249'
+
       id :bulk_data_group_export_group
 
       input :smart_auth_info,
@@ -54,7 +58,7 @@ module BulkDataTestKit
           declares the standard Group export OperationDefinition provided in the
           Bulk Data specification, nor does it attempt to resolve any non-standard
           OperationDefinitions to verify if it is a constrained version of the
-          standard OperationDefintion.
+          standard OperationDefinition.
 
           This test will provide a warning if no operations are declared at
           `Group/[group_id]/$export`, via the

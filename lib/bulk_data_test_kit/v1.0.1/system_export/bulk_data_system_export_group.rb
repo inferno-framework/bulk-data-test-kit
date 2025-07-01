@@ -15,6 +15,9 @@ module BulkDataTestKit
       description <<~DESCRIPTION
         Verify that system level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@229'
+
       id :bulk_data_system_export_group
 
       input :smart_auth_info,

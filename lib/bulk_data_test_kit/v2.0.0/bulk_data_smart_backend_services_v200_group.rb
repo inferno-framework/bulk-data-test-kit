@@ -25,6 +25,7 @@ module BulkDataTestKit
             }
 
       group from: :backend_services_authorization,
+            verifies_requirements: ['hl7.fhir.uv.bulkdata_2.0.0@2', 'hl7.fhir.uv.bulkdata_2.0.0@19'],
             config: {
               inputs: {
                         url: { name: :bulk_server_url },

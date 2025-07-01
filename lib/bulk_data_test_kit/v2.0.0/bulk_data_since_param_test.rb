@@ -15,7 +15,7 @@ module BulkDataTestKit
         This test verifies that the server accepts an export request with the
         `[_since](http://hl7.org/fhir/uv/bulkdata/STU2/export.html#query-parameters)`
         query parameter.  It initiates a new export using a _since parameter of
-        one week ago, and ensures that the export was initiated succesfully.
+        one week ago, and ensures that the export was initiated successfully.
 
         The test does not attempt to verify that resources returned were
         modified after the _since date that was requested, because the Bulk Data
@@ -26,6 +26,8 @@ module BulkDataTestKit
 
         After the export was successfully initiated, it is then cancelled.
       DESCRIPTION
+
+      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@53'
 
       input :smart_auth_info,
             type: :auth_info,

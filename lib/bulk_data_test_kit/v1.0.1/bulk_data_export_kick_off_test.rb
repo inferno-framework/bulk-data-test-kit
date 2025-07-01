@@ -19,6 +19,10 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---success'
 
+      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@28',
+                            'hl7.fhir.uv.bulkdata_1.0.0@300',
+                            'hl7.fhir.uv.bulkdata_1.0.0@301'
+
       input :smart_auth_info,
             type: :auth_info,
             options: { mode: 'access' },

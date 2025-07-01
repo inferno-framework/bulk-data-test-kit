@@ -16,8 +16,7 @@ module BulkDataTestKit
         Verify that patient level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@225',
-                            'hl7.fhir.uv.bulkdata_2.0.0@272'
+      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@272'
 
       id :bulk_data_patient_export_group
 

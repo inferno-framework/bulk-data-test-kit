@@ -24,13 +24,13 @@ module BulkDataTestKit
       DESCRIPTION
       # link 'http://hl7.org/fhir/uv/bulkdata/STU1.0.1/export/index.html#response---complete-status'
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@164',
-                            'hl7.fhir.uv.bulkdata_2.0.0@165',
-                            'hl7.fhir.uv.bulkdata_2.0.0@166',
-                            'hl7.fhir.uv.bulkdata_2.0.0@168',
-                            'hl7.fhir.uv.bulkdata_2.0.0@169',
-                            'hl7.fhir.uv.bulkdata_2.0.0@170',
-                            'hl7.fhir.uv.bulkdata_2.0.0@175'
+      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@164',
+                            'hl7.fhir.uv.bulkdata_1.0.0@165',
+                            'hl7.fhir.uv.bulkdata_1.0.0@166',
+                            'hl7.fhir.uv.bulkdata_1.0.0@168',
+                            'hl7.fhir.uv.bulkdata_1.0.0@169',
+                            'hl7.fhir.uv.bulkdata_1.0.0@170',
+                            'hl7.fhir.uv.bulkdata_1.0.0@175'
 
       input :status_response
 

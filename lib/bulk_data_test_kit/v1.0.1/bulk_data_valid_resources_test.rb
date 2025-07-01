@@ -18,9 +18,9 @@ module BulkDataTestKit
         number of error messages it will display to 20.
       DESCRIPTION
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@207',
-                            'hl7.fhir.uv.bulkdata_2.0.0@208',
-                            'hl7.fhir.uv.bulkdata_2.0.0@209'
+      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@207',
+                            'hl7.fhir.uv.bulkdata_1.0.0@208',
+                            'hl7.fhir.uv.bulkdata_1.0.0@209'
 
       input :smart_auth_info, type: :auth_info
       input :status_output

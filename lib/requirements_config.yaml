@@ -7,6 +7,9 @@ suites:
   - id: bulk_data_v200
     class_name: BulkDataTestKit::BulkDataV200::BulkDataTestSuite
     suite_actor: Server
+  - id: bulk_data_v200_client
+    class_name: BulkDataTestKit::BulkDataV200Client::BulkDataClientTestSuite
+    suite_actor: Client
 
 requirement_sets:
   - id: hl7.fhir.uv.bulkdata_2.0.0

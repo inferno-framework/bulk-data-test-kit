@@ -175,19 +175,19 @@ hl7.fhir.uv.bulkdata_2.0.0,164,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 Required Fields:
 
-`output`: required",SHALL,Server,false,,,"",""
+`output`: required",SHALL,Server,false,,,"2.2.1.05, 2.3.1.05, 2.4.1.05","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_output_check"
 hl7.fhir.uv.bulkdata_2.0.0,165,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 Required Fields:
 
-`output`: type: JSON array",SHALL,Server,false,,,"",""
+`output`: type: JSON array",SHALL,Server,false,,,"2.2.1.05, 2.3.1.05, 2.4.1.05","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_output_check"
 hl7.fhir.uv.bulkdata_2.0.0,166,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
 
 
 
-An array of file items with one entry for each generated file.",SHALL,Server,false,,,"",""
+An array of file items with one entry for each generated file.",SHALL,Server,false,,,"2.2.1.05, 2.3.1.05, 2.4.1.05","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_output_check"
 hl7.fhir.uv.bulkdata_2.0.0,167,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
@@ -201,17 +201,17 @@ Each file item SHALL contain the following fields:
 
 - `type`
 
-- `url`",SHALL,Server,false,,,"",""
+- `url`",SHALL,Server,false,,,"2.2.1.05, 2.3.1.05, 2.4.1.05","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_output_check"
 hl7.fhir.uv.bulkdata_2.0.0,169,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
 
-`type` - the FHIR resource type that is contained in the file.",SHALL,Server,false,,,"",""
+`type` - the FHIR resource type that is contained in the file.",SHALL,Server,false,,,"2.2.1.05, 2.3.1.05, 2.4.1.05","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_output_check"
 hl7.fhir.uv.bulkdata_2.0.0,170,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
 
-`type`: Each file SHALL contain resources of only one type",SHALL,Server,false,,,"",""
+`type`: Each file SHALL contain resources of only one type",SHALL,Server,false,,,"2.2.1.05, 2.3.1.05, 2.4.1.05","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_output_check"
 hl7.fhir.uv.bulkdata_2.0.0,171,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:
@@ -236,7 +236,7 @@ hl7.fhir.uv.bulkdata_2.0.0,175,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 `output`:
 
-`url`: the absolute path to the file.",SHALL,Server,false,,,"",""
+`url`: the absolute path to the file.",SHALL,Server,false,,,"2.2.1.05, 2.3.1.05, 2.4.1.05","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_output_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_output_check"
 hl7.fhir.uv.bulkdata_2.0.0,176,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `output`:

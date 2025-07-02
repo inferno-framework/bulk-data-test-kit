@@ -28,6 +28,14 @@ module BulkDataTestKit
 
               children.find { |child| child.id.ends_with?('bulk_data_group_no_auth_reject') }
                 .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@27')
+              children.find { |child| child.id.ends_with?('bulk_data_group_output_check') }
+                .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@164',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@165',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@166',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@168',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@169',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@170',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@175')
             end
             
 

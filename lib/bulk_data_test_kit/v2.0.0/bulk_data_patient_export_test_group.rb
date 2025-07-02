@@ -26,6 +26,7 @@ module BulkDataTestKit
               verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@225',
                                     'hl7.fhir.uv.bulkdata_2.0.0@272'
 
+              # re-using the stu1 group for stu2, but need to update requirements in the children to v2.0.0
               children.find { |child| child.id.ends_with?('bulk_data_patient_no_auth_reject') }
                 .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@9',
                                        'hl7.fhir.uv.bulkdata_2.0.0@27',
@@ -66,6 +67,7 @@ module BulkDataTestKit
       group from: :bulk_data_patient_export_validation,
             title: 'All Patient Export Validation Tests STU2',
             id: :bulk_data_patient_export_validation_stu2 do
+              # re-using the stu1 group for stu2, but need to update requirements in the children to v2.0.0
               children.find { |child| child.id.ends_with?('bulk_data_patient_valid_resources') }
                 .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@207',
                                        'hl7.fhir.uv.bulkdata_2.0.0@208',

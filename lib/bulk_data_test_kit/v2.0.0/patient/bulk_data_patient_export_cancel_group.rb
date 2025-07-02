@@ -14,6 +14,7 @@ module BulkDataTestKit
              inputs: { cancelled_polling_url: { name: :patient_cancelled_polling_url } }
            }
 
+      # re-using the stu1 group for stu2, but need to update requirements in the children to v2.0.0
       children.find { |child| child.id.ends_with?('bulk_data_patient_export_cancel') }
         .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@305', 'hl7.fhir.uv.bulkdata_2.0.0@306')
     end

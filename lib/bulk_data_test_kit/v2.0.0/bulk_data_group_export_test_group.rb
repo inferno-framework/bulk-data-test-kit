@@ -22,7 +22,14 @@ module BulkDataTestKit
             id: :bulk_data_group_export_group_stu2,
             config: {
               options: { require_absolute_urls_in_output: true }
-            }
+            } do
+              verifies_requirements 'hl7.fhir.uv.bulkdata_2.0.0@224',
+                                    'hl7.fhir.uv.bulkdata_2.0.0@249'
+
+              children.find { |child| child.id.ends_with?('bulk_data_group_no_auth_reject') }
+                .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@27')
+            end
+            
 
       group from: :bulk_data_group_export_validation,
             title: 'Group Compartment Export Validation Tests STU2',

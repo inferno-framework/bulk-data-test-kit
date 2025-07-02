@@ -18,8 +18,7 @@ module BulkDataTestKit
         Verify that group level export on the Bulk Data server follow the Bulk Data Access Implementation Guide
       DESCRIPTION
 
-      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@224',
-                            'hl7.fhir.uv.bulkdata_1.0.0@249'
+      verifies_requirements 'hl7.fhir.uv.bulkdata_1.0.0@249'
 
       id :bulk_data_group_export_group
 

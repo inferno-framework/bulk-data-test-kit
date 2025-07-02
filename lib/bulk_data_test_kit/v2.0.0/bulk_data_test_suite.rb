@@ -31,9 +31,12 @@ module BulkDataTestKit
           actor: 'Server'
         },
         {
-          identifier: 'hl7.fhir.uv.bulkdata_2.0.0',
-          title: 'Bulk Data Access IG v2.0.0',
-          actor: 'Server/Client'
+          identifier: 'hl7.fhir.uv.smart-app-launch_2.2.0',
+          title: 'SMART App Launch',
+          actor: 'Server',
+          # backend services and confidential asymmetric requirements
+          requirements: '30,228,231,240,241,243-262,265,266,285-289,296,297,305,306,310,311,316,326,335-342,344,372-374,' \
+                        '376,377,380-386,389-394,438,439'
         }
       )
 

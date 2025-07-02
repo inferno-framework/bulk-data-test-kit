@@ -104,7 +104,7 @@ hl7.fhir.uv.bulkdata_2.0.0,127,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 hl7.fhir.uv.bulkdata_2.0.0,128,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"if a client is polling too frequently, the server SHOULD respond with a 429 Too Many Requests status code in addition to a Retry-After header, and optionally a FHIR OperationOutcome resource with further explanation.",SHOULD,Server,true,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,129,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"If excessively frequent status queries persist, the server MAY return a 429 Too Many Requests status code and terminate the session.",MAY,Server,true,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,131,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-status-request,"In the case that errors prevent the export from completing, the server SHOULD respond with a FHIR OperationOutcome resource in JSON format.",SHOULD,Server,true,,,"",""
-hl7.fhir.uv.bulkdata_2.0.0,132,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,[A Bulk Data server SHALL resond to a successful Status Request that is in-progress with] HTTP Status Code of `202 Accepted`,SHALL,Server,false,,,"",""
+hl7.fhir.uv.bulkdata_2.0.0,132,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,[A Bulk Data server SHALL resond to a successful Status Request that is in-progress with] HTTP Status Code of `202 Accepted`,SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,133,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,the server MAY return an `X-Progress` header with a text description of the status of the request that is less than 100 characters.,MAY,Server,false,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,134,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---in-progress-status,"The format of [the `X-Progress`] description ... MAY be a percentage complete value, or MAY be a more general status such as “in progress”.",MAY,Server,false,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,136,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,[A Bulk Data server SHALL respond to an errored Bulk Data Status Request with]  HTTP Status Code of `4XX` or `5XX`,SHALL,Server,false,,,"",""
@@ -115,21 +115,21 @@ hl7.fhir.uv.bulkdata_2.0.0,140,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 hl7.fhir.uv.bulkdata_2.0.0,141,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"Even if some of the requested resources cannot successfully be exported, the overall export operation MAY still succeed.",MAY,Server,true,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,142,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"[if the overall export succeeds despite some resources not sucessfully exporting], the Response.error array of the completion response body SHALL be populated with one or more files in ndjson format containing FHIR `OperationOutcome` resources to indicate what went wrong .",SHALL,Server,true,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,143,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---error-status-1,"In the case of a partial success, the server SHALL use a 200 status code instead of 4XX or 5XX.",SHALL,Server,true,,,"",""
-hl7.fhir.uv.bulkdata_2.0.0,144,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,[A Bulk Data server SHALL respond to a successful Status Request that has completed with] HTTP status of `200 OK`,SHALL,Server,false,,,"",""
-hl7.fhir.uv.bulkdata_2.0.0,145,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,[A Bulk Data server SHALL respond to a successful Status Request that has completed with] `Content-Type` header of `application/json`,SHALL,Server,false,,,"",""
+hl7.fhir.uv.bulkdata_2.0.0,144,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,[A Bulk Data server SHALL respond to a successful Status Request that has completed with] HTTP status of `200 OK`,SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
+hl7.fhir.uv.bulkdata_2.0.0,145,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,[A Bulk Data server SHALL respond to a successful Status Request that has completed with] `Content-Type` header of `application/json`,SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,146,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"[When a Bulk Data server responds to a successful Status Request that has completed, it] SHOULD return an Expires header indicating when the files listed will no longer be available for access.",SHOULD,Server,false,,,"",""
-hl7.fhir.uv.bulkdata_2.0.0,147,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"[A Bulk Data server SHALL respond to a successful Status Request that has completed with a] body containing a JSON object providing metadata, and links to the generated Bulk Data files.",SHALL,Server,false,,,"",""
+hl7.fhir.uv.bulkdata_2.0.0,147,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"[A Bulk Data server SHALL respond to a successful Status Request that has completed with a] body containing a JSON object providing metadata, and links to the generated Bulk Data files.",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,148,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"[When a Bulk Data server responds to a successful Status Request that has completed,] [t]he files [linked in the response] SHALL be accessible to the client at the URLs advertised.",SHALL,Server,false,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,149,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"[When a Bulk Data server responds to a successful Status Request that has completed, the] URLs [advertised in the response] MAY be served by file servers other than a FHIR-specific server.",MAY,Server,false,,,"",""
 hl7.fhir.uv.bulkdata_2.0.0,150,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`transactionTime`: required",SHALL,Server,false,,,"",""
+`transactionTime`: required",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,151,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`transactionTime`: type: FHIR instant",SHALL,Server,false,,,"",""
+`transactionTime`: type: FHIR instant",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,152,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`transactionTime`: Indicates the server's time when the query is run.",SHALL,Server,false,,,"",""
+`transactionTime`: Indicates the server's time when the query is run.",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,153,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `transactionTime`: The response SHOULD NOT include any resources modified after this instant",SHOULD,Server,false,,,"",""
@@ -140,15 +140,15 @@ hl7.fhir.uv.bulkdata_2.0.0,155,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 Required Fields:
 
-`request`: required",SHALL,Server,false,,,"",""
+`request`: required",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,156,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 Required Fields:
 
-`request`: type: String",SHALL,Server,false,,,"",""
+`request`: type: String",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,157,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"""Response - Complete Status:
 
-`request`: The full URL of the original Bulk Data kick-off request.",SHALL,Server,false,,,"",""
+`request`: The full URL of the original Bulk Data kick-off request.",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,158,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `request`: In the case of a POST request, this URL will not include the request parameters.",SHALL,Server,true,,,"",""
@@ -156,15 +156,15 @@ hl7.fhir.uv.bulkdata_2.0.0,159,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 Required Fields:
 
-`requiresAccessToken`: required",SHALL,Server,false,,,"",""
+`requiresAccessToken`: required",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,160,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 Required Fields:
 
-`requiresAccessToken`: type: Boolean",SHALL,Server,false,,,"",""
+`requiresAccessToken`: type: Boolean",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,161,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`requiresAccessToken`: Indicates whether downloading the generated files requires the same authorization mechanism as the $export operation itself.",SHALL,Server,false,,,"",""
+`requiresAccessToken`: Indicates whether downloading the generated files requires the same authorization mechanism as the $export operation itself.",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,162,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `requiresAccessToken`: Value SHALL be true if both the file server and the FHIR API server control access using OAuth 2.0 bearer tokens.",SHALL,Server,true,,,"",""
@@ -298,15 +298,15 @@ hl7.fhir.uv.bulkdata_2.0.0,191,https://hl7.org/fhir/uv/bulkdata/STU2/export.html
 
 Required Fields:
 
-`error`: required",SHALL,Server,false,,,"",""
+`error`: required",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,192,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 Required Fields:
 
-`error`: type: Array",SHALL,Server,false,,,"",""
+`error`: type: Array",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,193,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
-`error`: Array of message file items following the same structure as the output array.",SHALL,Server,false,,,"",""
+`error`: Array of message file items following the same structure as the output array.",SHALL,Server,false,,,"2.2.1.04, 2.3.1.04, 2.4.1.04","bulk_data_v200-bulk_data_export_tests_v200-bulk_data_group_export_v200-bulk_data_group_export_group_stu2-bulk_data_group_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_patient_export_v200-bulk_data_patient_export_group_stu2-bulk_data_patient_status_check, bulk_data_v200-bulk_data_export_tests_v200-bulk_data_system_export_v200-bulk_data_system_export_group_stu2-bulk_data_system_status_check"
 hl7.fhir.uv.bulkdata_2.0.0,194,https://hl7.org/fhir/uv/bulkdata/STU2/export.html#response---complete-status,"Response - Complete Status:
 
 `error`: Error, warning, and information messages related to the export SHOULD be included here (not in output).",SHOULD,Server,false,,,"",""

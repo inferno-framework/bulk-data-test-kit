@@ -36,6 +36,23 @@ module BulkDataTestKit
                                        'hl7.fhir.uv.bulkdata_2.0.0@169',
                                        'hl7.fhir.uv.bulkdata_2.0.0@170',
                                        'hl7.fhir.uv.bulkdata_2.0.0@175')
+              children.find { |child| child.id.ends_with?('bulk_data_group_status_check') }
+                .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@132',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@144',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@145',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@147',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@150',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@151',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@152',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@155',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@156',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@157',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@159',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@160',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@161',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@191',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@192',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@193')
             end
             
 

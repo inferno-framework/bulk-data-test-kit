@@ -10,6 +10,9 @@ module BulkDataTestKit
 
       test from: :bulk_data_export_cancel_stu2,
            id: :bulk_data_group_export_cancel_stu2
+
+      children.find { |child| child.id.ends_with?('bulk_data_export_group_cancel') }
+        .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@305', 'hl7.fhir.uv.bulkdata_2.0.0@306')
     end
   end
 end

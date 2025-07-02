@@ -27,7 +27,9 @@ module BulkDataTestKit
                                     'hl7.fhir.uv.bulkdata_2.0.0@249'
 
               children.find { |child| child.id.ends_with?('bulk_data_group_no_auth_reject') }
-                .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@27')
+                .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@9',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@27',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@226')
               children.find { |child| child.id.ends_with?('bulk_data_group_output_check') }
                 .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@164',
                                        'hl7.fhir.uv.bulkdata_2.0.0@165',
@@ -53,6 +55,11 @@ module BulkDataTestKit
                                        'hl7.fhir.uv.bulkdata_2.0.0@191',
                                        'hl7.fhir.uv.bulkdata_2.0.0@192',
                                        'hl7.fhir.uv.bulkdata_2.0.0@193')
+              children.find { |child| child.id.ends_with?('bulk_data_group_kick_off') }
+                .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@28',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@227',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@300',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@301')
             end
             
 

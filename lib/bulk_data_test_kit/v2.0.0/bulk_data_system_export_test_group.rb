@@ -31,7 +31,12 @@ module BulkDataTestKit
 
       group from: :bulk_data_system_export_validation,
             title: 'System Level Export Validation Tests STU2',
-            id: :bulk_data_system_export_validation_stu2
+            id: :bulk_data_system_export_validation_stu2 do
+              children.find { |child| child.id.ends_with?('bulk_data_system_valid_resources') }
+                .verifies_requirements('hl7.fhir.uv.bulkdata_2.0.0@207',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@208',
+                                       'hl7.fhir.uv.bulkdata_2.0.0@209')
+            end
 
       group from: :bulk_data_system_export_cancel_group_stu2
       group from: :bulk_data_system_export_parameters_group

@@ -6,7 +6,6 @@ Gem::Specification.new do |spec|
   spec.name          = 'bulk_data_test_kit'
   spec.version       = BulkDataTestKit::VERSION
   spec.authors       = ['Inferno Team']
-  spec.email         = ['inferno@groups.mitre.org']
   spec.summary       = 'Bulk Data Test Kit'
   spec.description   = 'FHIR Bulk Data Access Test Kit'
   spec.homepage      = 'https://github.com/inferno-framework/bulk-data-test-kit'

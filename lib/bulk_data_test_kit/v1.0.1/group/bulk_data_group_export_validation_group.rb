@@ -27,8 +27,7 @@ module BulkDataTestKit
       test from: :tls_version_test do
         title 'Bulk Data Server is secured by transport layer security'
         description <<~DESCRIPTION
-          [§170.315(g)(10) Test Procedure]
-          (https://www.healthit.gov/test-method/standardized-api-patient-and-population-services)
+          [§170.315(g)(10) Test Procedure](https://www.healthit.gov/test-method/standardized-api-patient-and-population-services)
           requires that all exchanges described herein between a client and a
           server SHALL be secured using Transport Layer Security  (TLS)
           Protocol Version 1.2 (RFC5246).

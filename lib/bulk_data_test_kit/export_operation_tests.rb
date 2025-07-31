@@ -107,7 +107,8 @@ module BulkDataTestKit
       used_time = 0
 
       loop do
-        get(status_polling_url, headers: { authorization: "Bearer #{smart_auth_info.access_token}", accept: 'application/json' })
+        get(status_polling_url,
+            headers: { authorization: "Bearer #{smart_auth_info.access_token}", accept: 'application/json' })
 
         retry_after_val = request.response_header('retry-after')&.value.to_i
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pry'
 module BulkDataTestKit
   module BulkDataV101
@@ -39,10 +41,10 @@ module BulkDataTestKit
 
         output smart_token_url: token_endpoint
 
-        recommended_capabilities = [
-          'token_endpoint_auth_methods_supported',
-          'token_endpoint_auth_signing_alg_values_supported',
-          'scopes_supported'
+        recommended_capabilities = %w[
+          token_endpoint_auth_methods_supported
+          token_endpoint_auth_signing_alg_values_supported
+          scopes_supported
         ]
 
         present_capabilities = []
@@ -61,15 +63,15 @@ module BulkDataTestKit
 
         if present_capabilities.include?('token_endpoint_auth_methods_supported')
           assert config['token_endpoint_auth_methods_supported'].include?('private_key_jwt'),
-                '`token_endpoint_auth_methods_supported` does not include the value `private_key_jwt`'
+                 '`token_endpoint_auth_methods_supported` does not include the value `private_key_jwt`'
         end
 
         if present_capabilities.include?('token_endpoint_auth_methods_supported')
-            supports_RS384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'RS384'
+          supports_RS384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'RS384'
           supports_ES384 = config['token_endpoint_auth_signing_alg_values_supported'].include? 'ES384'
 
           assert (supports_RS384 || supports_ES384),
-          '`token_endpoint_auth_signing_alg_values_supported` does not include values for `RS384` or `ES384`'
+                 '`token_endpoint_auth_signing_alg_values_supported` does not include values for `RS384` or `ES384`'
         end
       end
     end

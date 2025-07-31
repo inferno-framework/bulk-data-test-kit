@@ -120,7 +120,7 @@ module BulkDataTestKit
           resources of diverse resource types pertaining to all patients
         - Group of Patients: FHIR Operation to obtain a detailed set of FHIR
           resources of diverse resource types pertaining to all members of a
-          specified Group 
+          specified Group
         - System Level Export: FHIR Operation to export data from a FHIR
           server, whether or not it is associated with a patient
 

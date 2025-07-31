@@ -14,11 +14,11 @@ module BulkDataTestKit
       id :bulk_data_client_wait
 
       input :client_id,
-          title: 'Client Id',
-          type: 'text',
-          optional: true,
-          locked: true,
-          description: SMARTAppLaunch::INPUT_CLIENT_ID_DESCRIPTION_LOCKED
+            title: 'Client Id',
+            type: 'text',
+            optional: true,
+            locked: true,
+            description: SMARTAppLaunch::INPUT_CLIENT_ID_DESCRIPTION_LOCKED
       input :export_type, :group_id
 
       run do

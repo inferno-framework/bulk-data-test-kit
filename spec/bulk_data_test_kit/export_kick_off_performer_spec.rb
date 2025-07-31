@@ -27,7 +27,7 @@ RSpec.describe BulkDataTestKit::ExportKickOffPerformer do
   end
 
   before do
-    performer.smart_auth_info = Inferno::DSL::AuthInfo.new({auth_type: :backend_services, access_token: token})
+    performer.smart_auth_info = Inferno::DSL::AuthInfo.new({ auth_type: :backend_services, access_token: token })
     performer.group_id = group_id
     performer.requests = [request]
   end

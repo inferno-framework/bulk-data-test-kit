@@ -13,29 +13,29 @@ module BulkDataTestKit
       group from: :bulk_data_smart_discovery_v101,
             config: {
               inputs: {
-                        url: { name: :bulk_server_url },
-                        smart_auth_info: {
-                          options: {
-                            components: [
-                              { name: :requested_scopes, default: 'system/*.read' }
-                            ]
-                          }
-                        }
-                      }
+                url: { name: :bulk_server_url },
+                smart_auth_info: {
+                  options: {
+                    components: [
+                      { name: :requested_scopes, default: 'system/*.read' }
+                    ]
+                  }
+                }
+              }
             }
 
       group from: :backend_services_authorization,
             config: {
               inputs: {
-                        url: { name: :bulk_server_url },
-                        smart_auth_info: {
-                          options: {
-                            components: [
-                              { name: :requested_scopes, default: 'system/*.read' }
-                            ]
-                          }
-                        }
-                      }
+                url: { name: :bulk_server_url },
+                smart_auth_info: {
+                  options: {
+                    components: [
+                      { name: :requested_scopes, default: 'system/*.read' }
+                    ]
+                  }
+                }
+              }
             },
             run_as_group: true
     end

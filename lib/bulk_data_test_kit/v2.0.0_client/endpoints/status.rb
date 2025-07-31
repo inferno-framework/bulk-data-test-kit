@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'smart_app_launch_test_kit'
 
 module BulkDataTestKit

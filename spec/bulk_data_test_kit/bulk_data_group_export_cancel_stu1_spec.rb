@@ -8,9 +8,9 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
   let(:group_id) { '1219' }
   let(:smart_auth_info) do
     Inferno::DSL::AuthInfo.new({
-      auth_type: :backend_services,
-      access_token: 'some_bearer_token_alphanumeric'
-  })
+                                 auth_type: :backend_services,
+                                 access_token: 'some_bearer_token_alphanumeric'
+                               })
   end
   let(:polling_url) { 'https://redirect.com' }
   let(:base_input) do
@@ -37,7 +37,7 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportCancelGroup do
       stub_request(:delete, polling_url)
         .to_return(status: 202)
 
-      base_input[:smart_auth_info] = Inferno::DSL::AuthInfo.new({auth_type: :backend_services})
+      base_input[:smart_auth_info] = Inferno::DSL::AuthInfo.new({ auth_type: :backend_services })
       result = run(test_class, base_input)
       expect(result.result).to eq('pass')
     end

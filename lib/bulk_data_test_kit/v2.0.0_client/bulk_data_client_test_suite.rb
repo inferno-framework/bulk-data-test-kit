@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'smart_app_launch_test_kit'
 
 require_relative '../version'
@@ -15,6 +16,7 @@ require_relative 'endpoints/status'
 require_relative 'bulk_data_client_registration_group'
 require_relative 'bulk_data_client_export_group'
 require_relative 'bulk_data_client_auth_verification_group'
+require_relative 'visual_inspection_and_attestation/bulk_data_v200_client_visual_attestation_group'
 
 module BulkDataTestKit
   module BulkDataV200Client
@@ -126,6 +128,7 @@ module BulkDataTestKit
       group from: :bulk_data_client_registration
       group from: :bulk_data_client_export_group
       group from: :bulk_data_client_auth_verification
+      group from: :bulk_data_v200_client_visual_inspection_and_attestation
     end
   end
 end

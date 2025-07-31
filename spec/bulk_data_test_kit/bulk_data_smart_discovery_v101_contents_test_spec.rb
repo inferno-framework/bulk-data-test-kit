@@ -1,24 +1,26 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/bulk_data_test_kit/v1.0.1/bulk_data_smart_discovery_v101_contents_test'
 require 'pry'
 
 RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataSmartDiscoveryV101ContentsTest do
   let(:suite_id) { 'bulk_data_v101' }
-  let(:correct_metadata) {
+  let(:correct_metadata) do
     {
       'token_endpoint' => 'https://example.org/auth/token',
       'token_endpoint_auth_methods_supported' => ['private_key_jwt'],
-      'token_endpoint_auth_signing_alg_values_supported' => [ 'RS384', 'ES384' ],
+      'token_endpoint_auth_signing_alg_values_supported' => %w[RS384 ES384],
       'scopes_supported' => ['system/*.read']
     }
-  }
-  
-  let(:recommended_capabilities) {
-    [
-      'token_endpoint_auth_methods_supported',
-      'token_endpoint_auth_signing_alg_values_supported',
-      'scopes_supported'
+  end
+
+  let(:recommended_capabilities) do
+    %w[
+      token_endpoint_auth_methods_supported
+      token_endpoint_auth_signing_alg_values_supported
+      scopes_supported
     ]
-  }
+  end
 
   it 'skips if well-known metadata is not present' do
     result = run(described_class, well_known_configuration: '')

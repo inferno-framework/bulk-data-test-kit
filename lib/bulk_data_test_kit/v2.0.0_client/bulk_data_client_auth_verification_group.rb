@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'smart_app_launch_test_kit'
 require_relative 'bulk_data_client_token_verification_test'
 
@@ -14,7 +16,6 @@ module BulkDataTestKit
            config: {
              options: { access_request_tags: [KICKOFF_TAG, STATUS_TAG, OUTPUT_TAG, DELETE_TAG] }
            }
-
     end
   end
 end

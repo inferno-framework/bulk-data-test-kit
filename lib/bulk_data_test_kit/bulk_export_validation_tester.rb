@@ -194,7 +194,8 @@ module BulkDataTestKit
               'Could not verify this functionality when requiresAccessToken is not provided'
       omit_if bulk_requires_access_token == 'false',
               'Could not verify this functionality when requiresAccessToken is false'
-      skip_if smart_auth_info.access_token.blank?, 'Could not verify this functionality when Bearer Token is not provided'
+      skip_if smart_auth_info.access_token.blank?,
+              'Could not verify this functionality when Bearer Token is not provided'
 
       get(bulk_data_download_url, headers: { accept: 'application/fhir+ndjson' })
       assert_response_status([400, 401])

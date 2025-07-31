@@ -378,14 +378,14 @@ RSpec.describe BulkDataTestKit::BulkDataV101::BulkDataGroupExportGroup do
     end
 
     it 'fails when output does not contain required attributes' do
-      result = run(test_class, status_response: bad_status_output )
+      result = run(test_class, status_response: bad_status_output)
 
       expect(result.result).to eq('fail')
       expect(result.result_message).to eq('Output file did not contain "type" as required')
     end
 
     it 'passes when response contains output with required attributes' do
-      result = run(test_class, status_response: status_output )
+      result = run(test_class, status_response: status_output)
 
       expect(result.result).to eq('pass')
     end

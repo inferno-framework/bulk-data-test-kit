@@ -3,6 +3,7 @@
 require_relative '../version'
 require_relative 'bulk_data_smart_backend_services_v200_group'
 require_relative 'bulk_data_export_tests_test_group'
+require_relative 'visual_inspection_and_attestation/bulk_data_v200_visual_attestation_group'
 
 module BulkDataTestKit
   module BulkDataV200
@@ -66,7 +67,7 @@ module BulkDataTestKit
             end
           end
 
-           matches_filter ||
+          matches_filter ||
             (message.type != 'error' && $num_messages > 50 && !message.message.include?('Inferno is only showing the first')) ||
             (message.type == 'error' && $num_errors > 20 && !message.message.include?('Inferno is only showing the first'))
         end
@@ -173,8 +174,8 @@ module BulkDataTestKit
       end
 
       group from: :bulk_data_smart_backend_services_v200
-
       group from: :bulk_data_export_tests_v200
+      group from: :bulk_data_v200_visual_inspection_and_attestation
     end
   end
 end

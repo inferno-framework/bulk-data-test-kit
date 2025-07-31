@@ -32,7 +32,8 @@ module BulkDataTestKit
     def perform_cancelled_polling_test(bulk_cancelled_polling_url)
       skip 'No polling url available' unless bulk_cancelled_polling_url.present?
 
-      get(bulk_cancelled_polling_url, headers: { authorization: "Bearer #{smart_auth_info.access_token}", accept: 'application/json' })
+      get(bulk_cancelled_polling_url,
+          headers: { authorization: "Bearer #{smart_auth_info.access_token}", accept: 'application/json' })
 
       assert_response_status(404)
 

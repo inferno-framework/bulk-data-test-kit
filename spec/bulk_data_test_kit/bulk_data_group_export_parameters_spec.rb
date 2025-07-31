@@ -12,7 +12,7 @@ RSpec.describe BulkDataTestKit::BulkDataV200::BulkDataGroupExportParameters do
   let(:input) do
     {
       group_id:,
-      smart_auth_info: Inferno::DSL::AuthInfo.new({ auth_type: :backend_services, access_token: bearer_token } )
+      smart_auth_info: Inferno::DSL::AuthInfo.new({ auth_type: :backend_services, access_token: bearer_token })
     }
   end
 

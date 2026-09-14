@@ -27,7 +27,7 @@ module BulkDataTestKit
         implementation guide, along with preliminary Bulk Submit tests for
         Data Provider and Data Consumer implementations of the
         [Bulk Submit Operation](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/)
-        within the Bulk Data Access v4.0.0 IG.
+        within the ballot version of the Bulk Data Access v4.0.0 IG.
 
         <!-- break -->
 
@@ -42,8 +42,11 @@ module BulkDataTestKit
           whether or not it is associated with a patient
 
         The preliminary v4.0.0 Bulk Submit tests are organized as separate
-        Data Provider and Data Consumer suites. These preview suites are
-        incomplete and may change as their coverage is expanded.
+        Data Provider and Data Consumer suites. These preview suites are built using the
+        [ballot version of the Bulk Data Access v4.0.0 IG](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/).
+        The v4.0.0 specification has not yet been published as a final release and is
+        subject to change. These suites are incomplete and may change as their
+        coverage is expanded.
 
         The Bulk Data Access Test Kit is built using the
         [Inferno Framework](https://inferno-framework.github.io/). The Inferno

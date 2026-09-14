@@ -4,7 +4,10 @@ within the Bulk Data Access v4.0.0 IG.
 
 ## Scope
 
-These tests are a **PREVIEW** intended to allow implementers to perform
+These tests are a **PREVIEW** built using the
+[ballot version of the Bulk Data Access v4.0.0 IG](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/).
+The v4.0.0 specification has not yet been published as a final release and is
+subject to change. These tests are intended to allow implementers to perform
 preliminary checks of their systems against the requirements stated for Bulk Submit actors
 and [provide feedback](https://github.com/inferno-framework/bulk-data-test-kit/issues)
 on the tests. Future versions of these tests may verify other

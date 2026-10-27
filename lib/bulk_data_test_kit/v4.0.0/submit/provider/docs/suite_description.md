@@ -1,4 +1,4 @@
-The Bulk Submit Data Provider test suite validates a Data Provider
+The Bulk Data Access v4.0.0-ballot Submit - Provider test suite validates a Data Provider
 implementation of the [Bulk Submit Operation](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/)
 within the Bulk Data Access v4.0.0-ballot IG.
 
@@ -34,11 +34,11 @@ below for how to use the SMART server tests to obtain an access token that the c
 You can run the Data Provider and Data Consumer suites against each other to
 see how the tests work:
 
-1. Start a session in the Bulk Data Access v4.0.0-ballot - Data Provider suite.
+1. Start a session in the Bulk Data Access v4.0.0-ballot Submit - Provider suite.
 1. Select the "Demo: Run Data Provider Against Inferno Data Consumer" preset.
 1. Click the "Run All Tests" button.
-1. In another browser tab, start a session in the Bulk Data Access v4.0.0-ballot -
-   Data Consumer suite.
+1. In another browser tab, start a session in the Bulk Data Access v4.0.0-ballot
+   Submit - Consumer suite.
 1. Select the "Demo: Run Data Consumer Against Inferno Data Provider" preset.
 1. Click the "Run All Tests" button.
 1. When the Data Consumer suite pauses after sending `completed`, advance the

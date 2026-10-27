@@ -1,4 +1,4 @@
-﻿Req Set,ID,URL,Requirement,Conformance,Actors,Conditionality,Not Tested Reason,Not Tested Details,Bulk Data Access v1.0.1 Server Short ID(s),Bulk Data Access v1.0.1 Server Full ID(s)
+﻿Req Set,ID,URL,Requirement,Conformance,Actors,Conditionality,Not Tested Reason,Not Tested Details,Bulk Data Access v1.0.1 Export - Server Short ID(s),Bulk Data Access v1.0.1 Export - Server Full ID(s)
 hl7.fhir.uv.bulkdata_1.0.0,2,https://hl7.org/fhir/uv/bulkdata/stu1/export/#security-considerations,All exchanges described herein between a client and a server SHALL be secured using Transport Layer Security (TLS) Protocol Version 1.2 (RFC5246) or a more recent version of TLS.,SHALL,Server,false,,,"",""
 hl7.fhir.uv.bulkdata_1.0.0,3,https://hl7.org/fhir/uv/bulkdata/stu1/export/#security-considerations,Use of mutual TLS is OPTIONAL.,MAY,Server,false,,,"",""
 hl7.fhir.uv.bulkdata_1.0.0,4,https://hl7.org/fhir/uv/bulkdata/stu1/export/#security-considerations,"With each of the requests described herein, implementers SHOULD implement OAuth 2.0 access management in accordance with the SMART Backend Services Authorization Profile.",SHOULD,Server,false,,,"",""

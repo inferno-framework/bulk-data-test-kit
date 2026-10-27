@@ -1,5 +1,5 @@
-The Bulk Data Access v2.0.0 Client test suite validates the conformance of a client
-to the [FHIR Bulk Data Access IG STU2](http://hl7.org/fhir/uv/bulkdata/STU2).
+The Bulk Data Access v2.0.0 Export - Client test suite validates the conformance
+of a client to the [FHIR Bulk Data Access IG STU2](http://hl7.org/fhir/uv/bulkdata/STU2).
 
 ## Scope
 
@@ -37,7 +37,7 @@ This collection includes requests to kick-off an export, poll the status endpoin
 (respecting the `retry-after` header), download the first output result, and then delete the export.
 
 To run the demonstration:
-1. Start an Inferno session of the Bulk Data Client test suite.
+1. Start an Inferno session of the Bulk Data Access v2.0.0 Export - Client suite.
 1. In a second tab, start an instance of the SMART App Launch STU2.2 test suite and select the "Demo: Run Against the SMART 
    Client Suite (Confidential Asymmetric)" preset.
 1. Select the "Backend Services" group and click the "RUN TESTS" button, but don't run the tests yet.

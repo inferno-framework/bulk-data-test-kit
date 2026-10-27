@@ -23,7 +23,7 @@ module BulkDataTestKit
           include URLs
           extend Shared::JWKS
 
-          title 'Bulk Data Access v4.0.0-ballot - Data Consumer'
+          title 'Bulk Data Access v4.0.0-ballot Submit - Consumer'
 
           description File.read(File.join(__dir__, 'docs', 'suite_description.md'))
 

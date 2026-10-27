@@ -24,10 +24,10 @@ module BulkDataTestKit
         This Test Kit currently includes export tests for
         [STU1](http://hl7.org/fhir/uv/bulkdata/STU1.0.1/) and
         [STU2](http://hl7.org/fhir/uv/bulkdata/STU2/) versions of this
-        implementation guide, along with preliminary Bulk Submit tests for
+        implementation guide, along with Bulk Submit tests for
         Data Provider and Data Consumer implementations of the
         [Bulk Submit Operation](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/)
-        within the ballot version of the Bulk Data Access v4.0.0 IG.
+        within the Bulk Data Access v4.0.0-ballot IG.
 
         <!-- break -->
 
@@ -41,11 +41,11 @@ module BulkDataTestKit
         - System Level Export: FHIR Operation to export data from a FHIR server,
           whether or not it is associated with a patient
 
-        The preliminary v4.0.0 Bulk Submit tests are organized as separate
-        Data Provider and Data Consumer suites. These preview suites are built using the
-        [ballot version of the Bulk Data Access v4.0.0 IG](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/).
-        The v4.0.0 specification has not yet been published as a final release and is
-        subject to change. These suites are incomplete and may change as their
+        The v4.0.0-ballot Bulk Submit tests are organized as separate
+        Data Provider and Data Consumer suites. These suites target the
+        [Bulk Data Access v4.0.0-ballot IG](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/).
+        The ballot specification is subject to change before final publication.
+        These suites are incomplete and may change as their
         coverage is expanded.
 
         The Bulk Data Access Test Kit is built using the

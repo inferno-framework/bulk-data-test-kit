@@ -58,7 +58,7 @@ module BulkDataTestKit
 
                   The entire request sequence will be recorded and verified to check conformance to the
                   [Bulk Submit Operation](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/)
-                  within the Bulk Data Access v4.0.0 IG.
+                  within the Bulk Data Access v4.0.0-ballot IG.
 
                   [Click here](#{resume_pass_url}?id=#{identifier}) when finished.
                 ),

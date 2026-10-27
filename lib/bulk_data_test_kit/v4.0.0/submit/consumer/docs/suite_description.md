@@ -1,13 +1,13 @@
 The Bulk Submit Data Consumer test suite validates a Data Consumer
 implementation of the [Bulk Submit Operation](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/)
-within the Bulk Data Access v4.0.0 IG.
+within the Bulk Data Access v4.0.0-ballot IG.
 
 ## Scope
 
-These tests are a **PREVIEW** built using the
-[ballot version of the Bulk Data Access v4.0.0 IG](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/).
-The v4.0.0 specification has not yet been published as a final release and is
-subject to change. These tests are intended to allow implementers to perform
+These tests target the
+[Bulk Data Access v4.0.0-ballot IG](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/).
+The ballot specification is subject to change before final publication.
+These tests are intended to allow implementers to perform
 preliminary checks of their systems against the requirements stated for Bulk Submit actors
 and [provide feedback](https://github.com/inferno-framework/bulk-data-test-kit/issues)
 on the tests. Future versions of these tests may verify other
@@ -33,11 +33,11 @@ Data Consumer system.
 You can run the Data Provider and Data Consumer suites against each other to
 see how the tests work:
 
-1. Start a session in the Bulk Data Access v4.0.0 Submit - Data Provider (Preview) suite.
+1. Start a session in the Bulk Data Access v4.0.0-ballot - Data Provider suite.
 1. Select the "Demo: Run Data Provider Against Inferno Data Consumer" preset.
 1. Click the "Run All Tests" button.
-1. In another browser tab, start a session in the Bulk Data Access v4.0.0
-   Submit - Data Consumer (Preview) suite.
+1. In another browser tab, start a session in the Bulk Data Access v4.0.0-ballot -
+   Data Consumer suite.
 1. Select the "Demo: Run Data Consumer Against Inferno Data Provider" preset.
 1. Click the "Run All Tests" button.
 1. When the Data Consumer suite pauses after sending `completed`, advance the

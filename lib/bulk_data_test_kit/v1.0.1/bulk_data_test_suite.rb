@@ -7,7 +7,7 @@ require_relative 'bulk_data_export_tests_test_group'
 module BulkDataTestKit
   module BulkDataV101
     class BulkDataTestSuite < Inferno::TestSuite
-      title 'Bulk Data Access v1.0.1 Server'
+      title 'Bulk Data Access v1.0.1 Export - Server'
       id :bulk_data_v101
       links [
         {
@@ -110,8 +110,8 @@ module BulkDataTestKit
 
       description %(
 
-        The Bulk Data Access v1.0.1 suite validates the conformance of a FHIR®
-        server to the [FHIR Bulk Data Access
+        The Bulk Data Access v1.0.1 Export - Server suite validates the conformance
+        of a FHIR® server to the [FHIR Bulk Data Access
         IG STU1.0.1](http://hl7.org/fhir/uv/bulkdata/STU1.0.1).
 
         This test suite is split into three different types of bulk data export:

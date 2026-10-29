@@ -19,7 +19,7 @@ require_relative 'bulk_data_client_auth_verification_group'
 module BulkDataTestKit
   module BulkDataV200Client
     class BulkDataClientTestSuite < Inferno::TestSuite
-      title 'Bulk Data Access v2.0.0 Client'
+      title 'Bulk Data Access v2.0.0 Export - Client'
 
       description File.read(File.join(__dir__, 'docs', 'suite_description.md'))
 

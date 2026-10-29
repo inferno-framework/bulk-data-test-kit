@@ -9,13 +9,30 @@ APIs through which an authenticated and authorized client may request a Bulk
 Data Export from a server, receive status information regarding progress in the
 generation of the requested files, and retrieve these files.
 
-This test kit is split into three different types of bulk data export: 
+This test kit is split into three different types of bulk data export:
   - All Patients: FHIR Operation to obtain a detailed set of FHIR resources of
     diverse resource types pertaining to all patients
   - Group of Patients: FHIR Operation to obtain a detailed set of FHIR resources
     of diverse resource types pertaining to all members of a specified Group
   - System Level Export: FHIR Operation to export data from a FHIR server,
     whether or not it is associated with a patient
+
+## Bulk Submit
+
+The test kit also includes suites for implementations of the
+[Bulk Submit Operation](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/)
+within the Bulk Data Access v4.0.0-ballot IG:
+
+- **Data Provider**: Inferno simulates a Data Consumer while the system under
+  test submits data and reports submission status.
+- **Data Consumer**: Inferno simulates a Data Provider while the system under
+  test accepts submissions and retrieves submitted data.
+
+These suites target the
+[Bulk Data Access v4.0.0-ballot IG](https://hl7.org/fhir/uv/bulkdata/4.0.0-202609-ballot/en/).
+The ballot specification is subject to change before final publication.
+These suites have incomplete coverage and may change as support for the
+specification is expanded.
 
 The BulkData Access Test Kit is built using the [Inferno
 Framework](https://inferno-framework.github.io/).  The Inferno Framework is
